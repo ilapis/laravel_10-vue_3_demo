@@ -13,5 +13,5 @@ export default {
 </script>
 
 <template>
-  <h1> Hello, VueJs3 with Laravel 10 ! {{name}}</h1>
+    <router-view/>
 </template>
