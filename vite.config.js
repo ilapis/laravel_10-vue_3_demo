@@ -7,6 +7,9 @@ import path from 'path';
 export default defineConfig({
     server: {
         host: 'localhost', // replace with your domain
+        cors: {
+          origin: '*',
+        },
         https: {
             key: fs.readFileSync(path.join(__dirname, 'data/certificates/localhost.key')),
             cert: fs.readFileSync(path.join(__dirname, 'data/certificates/localhost.crt')),

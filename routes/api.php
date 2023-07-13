@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +18,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', function() {
-    return 'Hello, api world!';
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login'])->name('login');
+    Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register'])->name('register');
+
+    Route::middleware('auth.jwt')->group(function () {
+        Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+        Route::post('refresh', [App\Http\Controllers\API\AuthController::class, 'refresh'])->name('refresh');
+    });
+
 });
+/*
+Route::group(['prefix' => 'article'], function () {
+    Route::middleware('auth:api')->group(function () {
+        Route::post('create', [App\Http\Controllers\API\ArticleController::class, 'create'])->name('login');
+    });
+});
+*/
