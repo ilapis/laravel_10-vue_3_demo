@@ -4,6 +4,7 @@ import DefaultLayout from '@/Layouts/Default.vue';
 
 <template>
     <DefaultLayout>
+        <RouterLink :to="{ name: 'admin'}">Admin</RouterLink>
         <div>HOMEPAGE TODO</div>
     </DefaultLayout>
 </template>

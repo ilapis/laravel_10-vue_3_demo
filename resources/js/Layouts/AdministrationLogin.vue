@@ -2,7 +2,7 @@
 import {markRaw} from "vue";
 
 export default markRaw({
-    name: 'DefaultLayout'
+    name: 'AdministrationLoginLayout'
 });
 </script>
 

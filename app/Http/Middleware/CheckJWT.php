@@ -20,13 +20,23 @@ class CheckJWT
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = explode('|', $request->bearerToken())[1];
+        $bearerToken = $request->bearerToken();
 
-        if (!$token) {
+        if (!$bearerToken) {
             return response()->json([
                 'message' => 'Not authorized',
             ], 401);
         }
+
+        $tokenParts = explode('|', $bearerToken);
+
+        if (count($tokenParts) < 2) {
+            return response()->json([
+                'message' => 'Invalid token format',
+            ], 401);
+        }
+
+        $token = $tokenParts[1];
 
         // Find the user associated with the token
         $user = $this->authService->getUserByToken($token);

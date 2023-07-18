@@ -12,7 +12,7 @@ services:
     ports:
       - "8000:8000"
     build:
-      context: ./docker/php-dev
+      context: ./docker/php
       dockerfile: Dockerfile
       args:
         - PHP_VERSION=${PHP_VERSION}

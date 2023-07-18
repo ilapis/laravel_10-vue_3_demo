@@ -13,11 +13,11 @@ use App\Http\Controllers\API\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+/*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+*/
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login'])->name('login');
     Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register'])->name('register');
@@ -28,10 +28,3 @@ Route::group(['prefix' => 'auth'], function () {
     });
 
 });
-/*
-Route::group(['prefix' => 'article'], function () {
-    Route::middleware('auth:api')->group(function () {
-        Route::post('create', [App\Http\Controllers\API\ArticleController::class, 'create'])->name('login');
-    });
-});
-*/

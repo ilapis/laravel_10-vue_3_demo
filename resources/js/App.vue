@@ -8,6 +8,7 @@ export default {
 
 <script setup>
   import {ref} from "vue";
+  import "@fontsource/roboto";
 
   const name = ref('Jonas')
 </script>
