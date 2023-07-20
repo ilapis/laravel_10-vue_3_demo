@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,18 +12,28 @@ use App\Http\Controllers\API\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-/*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login'])->name('login');
-    Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register'])->name('register');
+Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], function () {
 
-    Route::middleware('auth.jwt')->group(function () {
-        Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
-        Route::post('refresh', [App\Http\Controllers\API\AuthController::class, 'refresh'])->name('refresh');
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('login', 'AuthController@login')->name('login');
+        Route::post('register', 'AuthController@register')->name('register');
+
+        Route::middleware('auth.jwt')->group(function () {
+            Route::post('logout', 'AuthController@logout')->name('logout');
+            Route::post('refresh', 'AuthController@refresh')->name('refresh');
+        });
     });
 
+    Route::get('/language/enabled', 'LanguageController@enabled');
+
+    Route::middleware('auth.jwt')->group(function () {
+        Route::get('/language', 'LanguageController@index');
+        Route::post('/language', 'LanguageController@store');
+        Route::put('/language/{language}', 'LanguageController@update');
+        Route::delete('/language/{language}', 'LanguageController@destroy');
+
+        Route::post('/translation', 'TranslationController@store');
+        Route::put('/translation/{translation}', 'TranslationController@update');
+        Route::delete('/translation/{translation}', 'TranslationController@destroy');
+    });
 });

@@ -2,27 +2,26 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\AuthService;
 use Closure;
 use Illuminate\Http\Request;
-use App\Services\AuthService;
 
 class CheckJWT
 {
     public function __construct(private AuthService $authService)
-    {}
+    {
+    }
 
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         $bearerToken = $request->bearerToken();
 
-        if (!$bearerToken) {
+        if (! $bearerToken) {
             return response()->json([
                 'message' => 'Not authorized',
             ], 401);
@@ -41,14 +40,13 @@ class CheckJWT
         // Find the user associated with the token
         $user = $this->authService->getUserByToken($token);
 
-        if (!$user) {
+        if (! $user) {
             return response()->json([
                 'message' => 'Invalid token',
             ], 401);
         }
 
-        // Attach the user to the request
-        $request->user = $user;
+        auth()->setUser($user);
 
         return $next($request);
     }

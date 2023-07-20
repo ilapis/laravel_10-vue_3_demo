@@ -2,13 +2,20 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthService
 {
-    public function registerUser($data)
+    /**
+     * Register a new user.
+     *
+     * @param  array<string>  $data
+     */
+    public function registerUser(array $data): User
     {
         return User::create([
             'name' => $data['name'],
@@ -17,11 +24,19 @@ class AuthService
         ]);
     }
 
-    public function loginUser($credentials): ?array
+    /**
+     * Log in a user.
+     *
+     * @param  array<string>  $credentials
+     * @return array<string, mixed>|null
+     */
+    public function loginUser(array $credentials): ?array
     {
         if (Auth::attempt($credentials)) {
-
             $user = Auth::user();
+            /**
+             * @var PersonalAccessToken|null $existingToken
+             */
             $existingToken = $user->tokens->first();
 
             if ($existingToken && now()->lessThanOrEqualTo($existingToken->expires_at)) {
@@ -34,9 +49,18 @@ class AuthService
         return null;
     }
 
-    public function logoutUser($request): array
+    /**
+     * Log out a user.
+     *
+     * @return array<string, mixed>
+     */
+    public function logoutUser(Request $request): array
     {
-        $bearerToken = explode('|', $request->bearerToken())[1];
+        $authorizationHeader = $request->header('Authorization');
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+
+        $bearerToken = explode('|', $token)[1];
+        //$bearerToken = explode('|', $request->bearerToken())[1];
         if ($bearerToken && $user = $this->getUserByToken($bearerToken)) {
             $user->tokens->where('token', $bearerToken)->first()->delete();
         }
@@ -46,18 +70,31 @@ class AuthService
         ];
     }
 
-    public function refreshToken($request): array
+    /**
+     * Refresh the user's token.
+     *
+     * @return array<string, mixed>
+     */
+    public function refreshToken(Request $request): array
     {
         return $this->createToken($request->user);
     }
 
-    public function getUserByToken($token): ?User
+    /**
+     * Get a user by token.
+     */
+    public function getUserByToken(string $token): ?User
     {
         return User::whereHas('tokens', function ($query) use ($token) {
             $query->where('token', $token);
         })->first();
     }
 
+    /**
+     * Create a new token for the user.
+     *
+     * @return array<string, mixed>
+     */
     private function createToken(User $user): array
     {
         if ($existingToken = $user->tokens->first()) {
@@ -71,10 +108,15 @@ class AuthService
         );
     }
 
-    private function returnToken($existingToken): array
+    /**
+     * Return the token details.
+     *
+     * @return array<string, mixed>
+     */
+    private function returnToken(PersonalAccessToken $existingToken): array
     {
         return [
-            'token' => $existingToken->id . '|' . $existingToken->token,
+            'token' => $existingToken->id.'|'.$existingToken->token,
             'abilities' => $existingToken->abilities,
             'name' => $existingToken->name,
             'expires_at' => $existingToken->expires_at,

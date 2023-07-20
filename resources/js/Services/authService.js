@@ -8,7 +8,7 @@ class AuthService {
     }
 
     async login(form) {
-        const response = await post('/api/auth/login', form);
+        const response = await post('/api/v1/auth/login', form);
 
         if (response?.authorization?.token) {
             localStorage.setItem('token', response?.authorization?.token)
@@ -22,7 +22,7 @@ class AuthService {
     }
 
     async logout() {
-        await post('/api/auth/logout');
+        await post('/api/v1/auth/logout');
         localStorage.removeItem('token');
         this.router.push({ name: 'admin' });
     }

@@ -14,7 +14,7 @@ const logout = async () => {
 
 <template>
     <div>
-        <button @click="logout">Logout</button>
+        <button class="button border-none bg-primary bg-primary-text line-height-3rem float-right py-4" @click="logout">Logout</button>
     </div>
 </template>
 

@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
-
 class LoginRequest extends BaseRequest
 {
     /**
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string, string>
      */
     public function rules(): array
     {

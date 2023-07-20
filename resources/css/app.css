@@ -31,6 +31,10 @@ html, body, #app {
     background: #ccc;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 div {
     background: #fff;
 }
@@ -424,6 +428,10 @@ body {
     height: 3rem;
 }
 
+.button-pagination {
+
+}
+
 label {
     line-height: var(--line-height);
     /*text-indent: var(--text-indent);
@@ -445,3 +453,41 @@ input {
     /*text-indent: var(--text-indent);
     */
 }
+
+.line-height-3rem {
+    line-height: 3rem;
+}
+
+.text-indent-1rem {
+    text-indent: 1rem;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.bg-hover-grey:hover {
+    background: #cccccc;
+}
+
+.bg-primary {
+    background: #0039a6;
+}
+
+.bg-primary-text {
+    color: #ffffff;
+}
+
+.bg-primary:hover {
+    background: #ffffff;
+    border: 1px solid #0039a6 !important;
+}
+
+.bg-primary-text:hover {
+    color: #0039a6;
+}
+
+.float-right {
+    float: right;
+}
+

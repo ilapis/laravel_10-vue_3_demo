@@ -3,7 +3,6 @@
 
 <template>
     <div>
-        PAGE
         <slot></slot>
     </div>
 </template>

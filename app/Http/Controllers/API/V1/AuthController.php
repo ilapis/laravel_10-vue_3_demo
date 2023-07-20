@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     public function __construct(protected AuthService $authService)
-    {}
+    {
+    }
 
-    public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         $credentials = $request->only('email', 'password');
         $authData = $this->authService->loginUser($credentials);
@@ -25,7 +26,7 @@ class AuthController extends Controller
                 'authorization' => array_merge(
                     $authData,
                     ['type' => 'bearer']
-                )
+                ),
             ]);
         } else {
             return response()->json([
@@ -55,7 +56,7 @@ class AuthController extends Controller
             'authorization' => array_merge(
                 $this->authService->refreshToken($request),
                 ['type' => 'bearer']
-            )
+            ),
         ]);
     }
 }
