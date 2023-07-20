@@ -37,7 +37,6 @@ onMounted(fetchLanguages);
 
 <template>
     <AdministrationLayout>
-        {{response?.meta}}
         <table class="w-full">
             <thead>
             <tr class="line-height-3rem text-indent-1rem text-align-left">

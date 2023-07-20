@@ -32,17 +32,13 @@ class AuthService
      */
     public function loginUser(array $credentials): ?array
     {
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            /**
-             * @var PersonalAccessToken|null $existingToken
-             */
-            $existingToken = $user->tokens->first();
-
-            if ($existingToken && now()->lessThanOrEqualTo($existingToken->expires_at)) {
-                return $this->returnToken($existingToken);
-            } else {
-                return $this->createToken($user);
+        if (Auth::attempt($credentials) && $user = Auth::user()) {
+            if ($existingToken = $user->tokens->first()) {
+                if ($existingToken instanceof PersonalAccessToken && now()->lessThanOrEqualTo($existingToken->expires_at)) {
+                    return $this->returnToken($existingToken);
+                } else {
+                    return $this->createToken($user);
+                }
             }
         }
 
@@ -57,12 +53,14 @@ class AuthService
     public function logoutUser(Request $request): array
     {
         $authorizationHeader = $request->header('Authorization');
-        $token = str_replace('Bearer ', '', $authorizationHeader);
+        $token = str_replace('Bearer ', '', $authorizationHeader ?? '');
 
-        $bearerToken = explode('|', $token)[1];
-        //$bearerToken = explode('|', $request->bearerToken())[1];
+        $bearerToken = explode('|', $token)[1] ?? null;
         if ($bearerToken && $user = $this->getUserByToken($bearerToken)) {
-            $user->tokens->where('token', $bearerToken)->first()->delete();
+            $tokenModel = $user->tokens->where('token', $bearerToken)->first();
+            if ($tokenModel) {
+                $tokenModel->delete();
+            }
         }
 
         return [
@@ -77,7 +75,13 @@ class AuthService
      */
     public function refreshToken(Request $request): array
     {
-        return $this->createToken($request->user);
+        $user = $request->user();
+
+        if (! $user instanceof User) {
+            throw new \Exception('No authenticated user found');
+        }
+
+        return $this->createToken($user);
     }
 
     /**
@@ -98,14 +102,14 @@ class AuthService
     private function createToken(User $user): array
     {
         if ($existingToken = $user->tokens->first()) {
-            $existingToken->delete();
+            if ($existingToken instanceof PersonalAccessToken) {
+                $existingToken->delete();
+            }
         }
 
-        return $this->returnToken(
-            $user
-                ->createToken($user->name, ['*'], now()->addHours(8))
-                ->accessToken
-        );
+        $newToken = $user->createToken($user->name, ['*'], now()->addHours(8));
+
+        return $this->returnToken($newToken->accessToken);
     }
 
     /**

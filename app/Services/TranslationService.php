@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Translation;
 use App\DTO\TranslationDTO;
+use App\Models\Translation;
 
 class TranslationService
 {

@@ -29,11 +29,11 @@ class LanguageController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $languages = $this->languageService->list(
-            $request->get('per_page', 3)
-        );
+        $per_page = filter_var($request->get('per_page', 3), FILTER_VALIDATE_INT, ['options' => ['default' => 3, 'min_range' => 1]]);
 
-        return LanguageResource::collection($languages);
+        return LanguageResource::collection(
+            $this->languageService->list($per_page)
+        );
     }
 
     public function store(Request $request, LanguageCreateRequest $languageCreateRequest): JsonResponse

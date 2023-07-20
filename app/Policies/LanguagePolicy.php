@@ -17,7 +17,7 @@ class LanguagePolicy
          */
         $existingToken = $user->tokens->first();
 
-        return ! empty(array_intersect(['can_create_language'], $existingToken->abilities));
+        return ! empty(array_intersect(['can_create_language'], $existingToken->abilities ?? []));
     }
 
     public function update(User $user): bool
@@ -27,6 +27,6 @@ class LanguagePolicy
          */
         $existingToken = $user->tokens->first();
 
-        return ! empty(array_intersect(['can_update_language'], $existingToken->abilities));
+        return ! empty(array_intersect(['can_update_language'], $existingToken->abilities ?? []));
     }
 }

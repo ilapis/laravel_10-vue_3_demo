@@ -13,7 +13,7 @@ class LanguageResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array<string, int|string|bool>
+     * @return array<string, int|string|bool|null>
      */
     public function toArray($request): array
     {
@@ -22,8 +22,8 @@ class LanguageResource extends JsonResource
             'code' => $this->code,
             'name' => $this->name,
             'enabled' => $this->enabled,
-            'created_at' => $this->created_at->format('Y-m-d H:i'),
-            'updated_at' => $this->updated_at->format('Y-m-d H:i'),
+            'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i') : null,
+            'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i') : null,
         ];
     }
 }

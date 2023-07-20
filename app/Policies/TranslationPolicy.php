@@ -17,7 +17,7 @@ class TranslationPolicy
          */
         $existingToken = $user->tokens->first();
 
-        return ! empty(array_intersect(['can_create_translation'], $existingToken->abilities));
+        return ! empty(array_intersect(['can_create_translation'], $existingToken->abilities ?? []));
     }
 
     public function update(User $user): bool
@@ -27,7 +27,7 @@ class TranslationPolicy
          */
         $existingToken = $user->tokens->first();
 
-        return ! empty(array_intersect(['can_update_translation'], $existingToken->abilities));
+        return ! empty(array_intersect(['can_update_translation'], $existingToken->abilities ?? []));
     }
 
     public function destroy(User $user): bool
@@ -37,6 +37,6 @@ class TranslationPolicy
          */
         $existingToken = $user->tokens->first();
 
-        return ! empty(array_intersect(['can_destroy_translation'], $existingToken->abilities));
+        return ! empty(array_intersect(['can_destroy_translation'], $existingToken->abilities ?? []));
     }
 }

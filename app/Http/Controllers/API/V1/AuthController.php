@@ -40,6 +40,14 @@ class AuthController extends Controller
         $user = $this->authService->registerUser($request->all());
 
         $userResourceArray = (new UserResource($user))->response()->getData(true);
+
+        if (! is_array($userResourceArray)) {
+            // Handle error, maybe throw an exception or return a specific message
+            return response()->json([
+                'message' => 'An error occurred while processing the request',
+            ], 500);
+        }
+
         $userResourceArray['message'] = 'User created successfully';
 
         return response()->json($userResourceArray);
