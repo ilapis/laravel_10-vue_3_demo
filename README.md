@@ -1,66 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Pint
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Pint is a tool that can help correct code style issues in your project. You can use it by invoking the Pint binary that is located in your project's \`vendor/bin\` directory:
 
-## About Laravel
+```bash
+./vendor/bin/pint
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+You also have the option to run Pint on specific files or directories:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+./vendor/bin/pint app/Models
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+./vendor/bin/pint app/Models/User.php
+```
 
-## Learning Laravel
+Pint will then generate a detailed list of all the files it has updated. If you want more information about the changes Pint has made, you can use the \`-v\` option:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+./vendor/bin/pint -v
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+If you only want Pint to inspect your code for style errors without making any changes to the files, use the \`--test\` option:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+./vendor/bin/pint --test
+```
 
-## Laravel Sponsors
+If you prefer Pint to only modify the files that have uncommitted changes according to Git, you can use the \`--dirty\` option:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+./vendor/bin/pint --dirty
+```
 
-### Premium Partners
+# Larastan 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Focuses on finding errors in your code.
 
-## Contributing
+Configuration is in root directory `phpstan.neon`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```yaml
+includes:
+- ./vendor/nunomaduro/larastan/extension.neon
 
-## Code of Conduct
+parameters:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    paths:
+        - app/
 
-## Security Vulnerabilities
+    # Level 9 is the highest level
+    level: 5
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
+#
+#    checkMissingIterableValueType: false
+```
 
-## License
+For all available options, please take a look at the [PHPStan documentation](https://phpstan.org/config-reference).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3: Finally, you may start analyzing your code using the `phpstan` console command:
+
+```bash
+./vendor/bin/phpstan analyse
+```
+
+If you are getting the error `Allowed memory size exhausted`, then you can use the `--memory-limit` option fix the problem:
+
+```bash
+./vendor/bin/phpstan analyse --memory-limit=2G
+```
+
+## Ignoring errors
+
+Ignoring a specific error can be done either with a php comment or in the configuration file:
+
+```php
+// @phpstan-ignore-next-line
+$test->badMethod();
+
+$test->badMethod(); // @phpstan-ignore-line
+```
+
+# Tests
+
+Tests checks api, so execute on fresh copy, test database
+
+<code>
+php artisan db:refresh_test && ./vendor/bin/pest
+</code>

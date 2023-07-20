@@ -11,6 +11,7 @@ RUN apk add openssh
 RUN apk add apache2-utils
 RUN apk add htop
 RUN apk add npm
+RUN apk add mysql-client mariadb-connector-c
 
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
@@ -21,8 +22,8 @@ RUN docker-php-ext-install zip
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-configure opcache --enable-opcache \
-    && docker-php-ext-install opcache
+#RUN docker-php-ext-configure opcache --enable-opcache \
+#    && docker-php-ext-install opcache
 
 # REDIS
 RUN set -xe \
@@ -33,8 +34,9 @@ RUN set -xe \
     && rm -rf /tmp/* \
     && apk del  .phpize-deps
 
-COPY docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+#COPY docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY php.ini /usr/local/etc/php/php.ini
+COPY caching_sha2_password.cnf /etc/mysql/mariadb.conf.d/
 
 EXPOSE 8000

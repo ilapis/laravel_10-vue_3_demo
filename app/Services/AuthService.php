@@ -39,6 +39,8 @@ class AuthService
                 } else {
                     return $this->createToken($user);
                 }
+            } else {
+                return $this->createToken($user);
             }
         }
 
