@@ -11,6 +11,7 @@ RUN apk add openssh
 RUN apk add apache2-utils
 RUN apk add htop
 RUN apk add npm
+RUN apk add xdg-utils
 RUN apk add mysql-client mariadb-connector-c
 
 RUN docker-php-ext-install pdo_mysql
@@ -33,6 +34,21 @@ RUN set -xe \
     && rm -rf /usr/share/php \
     && rm -rf /tmp/* \
     && apk del  .phpize-deps
+
+# Add xdebug
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
+RUN apk add --update linux-headers
+RUN pecl install xdebug-3.2.2
+RUN docker-php-ext-enable xdebug
+RUN apk del -f .build-deps
+
+# Configure Xdebug
+RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.mode=develop,debug,coverage" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.log=/var/www/html/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.client_host=php" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.client_port=9001" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 #COPY docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf

@@ -35,11 +35,11 @@ class RefreshTestDatabase extends Command
         $testDbName = 'test';
 
         // Exclude Telescope tables from the export
-        $excludeTables = []; /*[
+        $excludeTables = [
             'telescope_entries',
             'telescope_monitoring',
             'telescope_entries_tags',
-        ];*/
+        ];
 
         // Export the structure of the original database
         $this->info('Exporting structure of original database...');

@@ -90,6 +90,13 @@ $test->badMethod(); // @phpstan-ignore-line
 
 Tests checks api, so execute on fresh copy, test database
 
-<code>
+```bash
 php artisan db:refresh_test && ./vendor/bin/pest
-</code>
+````
+
+```bash
+php artisan db:refresh_test && ./vendor/bin/pest --coverage
+```
+
+
+#
