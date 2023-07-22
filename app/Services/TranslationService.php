@@ -9,7 +9,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class TranslationService
 {
     /**
-     * @param int $perPage
      * @return LengthAwarePaginator<Translation>
      */
     public function list(int $perPage = 15): LengthAwarePaginator

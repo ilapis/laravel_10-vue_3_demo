@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use App\Traits\HandlesAbilities;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class LanguagePolicy
 {
@@ -13,16 +13,16 @@ class LanguagePolicy
 
     public function create(User $user): bool
     {
-        return $this->checkAbility($user, 'can_create_language');;
+        return $this->checkAbility($user, 'can_create_language');
     }
 
     public function update(User $user): bool
     {
-        return $this->checkAbility($user, 'can_update_language');;
+        return $this->checkAbility($user, 'can_update_language');
     }
 
     public function delete(User $user): bool
     {
-        return $this->checkAbility($user, 'can_delete_language');;
+        return $this->checkAbility($user, 'can_delete_language');
     }
 }

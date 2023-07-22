@@ -14,7 +14,7 @@ beforeEach(function () {
 it('create test_language', function () {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ])->post('/api/v1/language', [
         'code' => $this->languageCode,
         'name' => $this->languageName,
@@ -34,8 +34,8 @@ it('create test_language', function () {
 it('gets language', function ($languageId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->get('/api/v1/language/' . $languageId);
+        'Authorization' => 'Bearer '.$this->token,
+    ])->get('/api/v1/language/'.$languageId);
 
     $data = json_decode($response->getContent(), true)['data'];
 
@@ -48,8 +48,8 @@ it('gets language', function ($languageId) {
 it('updates language', function ($languageId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->put('/api/v1/language/' . $languageId, [
+        'Authorization' => 'Bearer '.$this->token,
+    ])->put('/api/v1/language/'.$languageId, [
         'code' => $this->languageCode,
         'name' => $this->languageNameUpated,
         'enabled' => $this->languageEnabled,
@@ -67,7 +67,7 @@ it('updates language', function ($languageId) {
 
 it('gets languages', function () {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ])->get('/api/v1/language');
 
     $data = json_decode($response->getContent(), true);
@@ -87,8 +87,8 @@ it('gets languages', function () {
 
 it('delete language', function ($languageId) {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->delete('/api/v1/language/' . $languageId);
+        'Authorization' => 'Bearer '.$this->token,
+    ])->delete('/api/v1/language/'.$languageId);
 
     $this->assertEquals(204, $response->getStatusCode());
 

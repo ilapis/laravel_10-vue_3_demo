@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\DTO\TranslationDTO;
-use App\Models\Translation;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use App\Services\TranslationService;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TranslationResource;
 use App\Http\Requests\TranslationCreateRequest;
 use App\Http\Requests\TranslationUpdateRequest;
+use App\Http\Resources\TranslationResource;
+use App\Models\Translation;
+use App\Services\TranslationService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TranslationController extends Controller

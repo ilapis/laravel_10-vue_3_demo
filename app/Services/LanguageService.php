@@ -4,21 +4,17 @@ namespace App\Services;
 
 use App\DTO\LanguageDTO;
 use App\Models\Language;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class LanguageService
 {
-    /**
-     * @return Collection
-     */
     public function enabled(): Collection
     {
         return Language::where('enabled', true)->get();
     }
 
     /**
-     * @param int $perPage
      * @return LengthAwarePaginator<Language>
      */
     public function list(int $perPage = 15): LengthAwarePaginator

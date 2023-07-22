@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->seedOnce('seeded_master_account:seedMasterAccount');
 
         if (app()->environment('production')) {
-           ///add production only
+            ///add production only
         }
         if (app()->environment('staging')) {
             ///add staging only
@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             ///add testing only
         }
     }
+
     private function seedOnce(string $keyAndMethod): void
     {
         [$key, $method] = explode(':', $keyAndMethod);
@@ -45,12 +46,14 @@ class DatabaseSeeder extends Seeder
 
         $this->updateSeedingDone($key);
     }
+
     private function checkSeedingDone($key): bool
     {
         $seedingDone = DB::table('configurations')->where('key', $key)->first();
 
         return $seedingDone && $seedingDone->value;
     }
+
     private function updateSeedingDone($key): void
     {
         DB::table('configurations')->updateOrInsert(
@@ -62,6 +65,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
     }
+
     private function seedMasterAccount(): void
     {
         \App\Models\User::factory()->create([
@@ -70,6 +74,7 @@ class DatabaseSeeder extends Seeder
             'password' => env('MASTER_PASSWORD'),
         ]);
     }
+
     private function seedLanguage(): void
     {
 
