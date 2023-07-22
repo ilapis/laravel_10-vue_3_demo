@@ -6,12 +6,16 @@ import { useLanguageStore } from '@/Stores/languageStore.js';
 const languageStore = new useLanguageStore();
 const showModal = ref(false);
 
-const doModalAction = async (action) => {
+const doModalAction = (action) => {
     if ('cancel' === action) {
-        await hideModal();
+         hideModal();
     }
     if ('action' === action) {
-        await put();
+        update().then(() => {
+            if (!languageStore?.errors) {
+                hideModal();
+            }
+        });
     }
 }
 
@@ -35,8 +39,8 @@ const openModal = async () => {
     showModal.value = true;
 }
 
-const put = async () => {
-    languageStore.update(props.id, form);
+const update = () => {
+    return languageStore.update(props.id, form);
 }
 </script>
 

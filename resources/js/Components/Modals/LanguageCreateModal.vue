@@ -8,12 +8,16 @@ const showModal = ref(false);
 
 let response = ref(null);
 
-const doModalAction = async (action) => {
+const doModalAction = (action) => {
     if ('cancel' === action) {
-        await hideModal();
+        hideModal();
     }
     if ('action' === action) {
-        await post();
+        create().then(() => {
+            if (!languageStore?.errors) {
+                hideModal();
+            }
+        });
     }
 }
 
@@ -23,21 +27,21 @@ const form = reactive({
     enabled: false,
 });
 
-const hideModal = async () => {
+const hideModal = () => {
     showModal.value = false;
 }
 
-const openModal = async () => {
+const openModal = () => {
     showModal.value = true;
 }
 
-const post = async () => {
-    await languageStore.post(form);
+const create = () => {
+    return languageStore.create(form);
 }
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="showModal = true" label="Add" />
+    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="openModal" label="Add" />
     <ModalComponent
         :show="showModal"
         actionLabel="Create"

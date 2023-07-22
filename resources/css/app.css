@@ -549,6 +549,10 @@ input {
     background-color: #405cf5;
     color: #fff;
 }
+.btn-danger {
+    background-color: #750f13;
+    color: #fff;
+}
 .btn-default, .btn-primary {
     backface-visibility: hidden;
     font-size: 100%;

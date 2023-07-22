@@ -22,10 +22,10 @@ export const useLanguageStore = defineStore('language-store', {
         },
 
         async refreshPage() {
-            await this.fetchPage(this._query_parameter_page);
+            return this.fetchPage(this._query_parameter_page);
         },
 
-        async post(form) {
+        async create(form) {
             this.errors = null;
 
             await http.post(`/api/v1/language`, form).then((response) => {
@@ -49,8 +49,26 @@ export const useLanguageStore = defineStore('language-store', {
         async update(id, form) {
             this.errors = null;
 
-            http.put(`/api/v1/language/${id}`, form).then((response) => {
-                this.refreshPage();
+            return http.put(`/api/v1/language/${id}`, form).then((response) => {
+
+                if (response?.data?.errors) {
+                    this.errors = response?.data?.errors;
+                } else {
+                    this.refreshPage();
+                }
+            });
+        },
+
+        async destroy(id) {
+            this.errors = null;
+
+            return http.delete(`/api/v1/language/${id}`).then((response) => {
+
+                if (response?.data?.errors) {
+                    this.errors = response?.data?.errors;
+                } else {
+                    this.refreshPage();
+                }
             });
         },
     },

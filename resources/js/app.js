@@ -12,6 +12,7 @@ import CloseIcon from "@/Components/Icons/CloseIcon.vue";
 import ModalComponent from "@/Components/UI/ModalComponent.vue";
 import LanguageCreateModal from "@/Components/Modals/LanguageCreateModal.vue";
 import LanguageEditModal from "@/Components/Modals/LanguageEditModal.vue";
+import DeleteModal from "@/Components/Modals/DeleteModal.vue";
 
 const pinia = createPinia()
 const app = createApp(App);
@@ -28,3 +29,4 @@ app.component('CloseIcon', CloseIcon);
 app.component('ModalComponent', ModalComponent);
 app.component('LanguageCreateModal', LanguageCreateModal);
 app.component('LanguageEditModal', LanguageEditModal);
+app.component('DeleteModal', DeleteModal);

@@ -51,7 +51,8 @@ onMounted(fetchLanguages);
             <tr class="line-height-4rem text-indent-1rem text-align-left">
                 <template class=" height-12" v-for="(header, index) in headers" :key="header">
                     <th>{{ header }}</th>
-                    <th v-if="(index+1) == headers.length"></th>
+                    <th v-if="(index+1) == headers.length" style="width:120px;padding:0 1rem;"></th>
+                    <th v-if="(index+1) == headers.length" style="width:120px;padding:0 1rem;"></th>
                 </template>
             </tr>
             </thead>
@@ -59,9 +60,14 @@ onMounted(fetchLanguages);
             <tr class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey" v-for="row in languageStore.collection?.data" :key="row.id">
                 <template class=" height-12" v-for="(header, index) in headers" :key="header">
                     <td>{{ row[header] }}</td>
-                    <td v-if="(index+1) == headers.length">
-                        <LanguageEditModal :id="row.id" />
-                    </td>
+                    <template v-if="(index+1) == headers.length">
+                        <td style="width:120px;padding:0 1rem;">
+                            <LanguageEditModal :id="row.id" />
+                        </td>
+                        <td style="width:120px;padding:0 1rem;">
+                            <DeleteModal :service="languageStore" :id="row.id" />
+                        </td>
+                    </template>
                 </template>
             </tr>
             </tbody>
