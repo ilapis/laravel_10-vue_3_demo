@@ -37,14 +37,7 @@ class TranslationController extends Controller
     public function store(Request $request, TranslationCreateRequest $translationCreateRequest): JsonResponse
     {
         $this->authorize('create', Translation::class);
-/*
-        return response()->json(
-            $this->translationService->create(
-                TranslationDTO::fromRequest($request)
-            ),
-            201
-        );
-*/
+
         $translation = $this->translationService->create(
             TranslationDTO::fromRequest($request)
         );
@@ -55,14 +48,7 @@ class TranslationController extends Controller
     public function update(Request $request, Translation $translation, TranslationUpdateRequest $translationUpdateRequest): JsonResponse
     {
         $this->authorize('update', $translation);
-/*
-        return response()->json(
-            $this->translationService->update(
-                $translation,
-                TranslationDTO::fromRequest($request, $translation->id)
-            )
-        );
-        */
+
         $translation = $this->translationService->update(
             $translation,
             TranslationDTO::fromRequest($request, $translation->id)

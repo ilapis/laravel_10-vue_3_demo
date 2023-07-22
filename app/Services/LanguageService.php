@@ -33,6 +33,8 @@ class LanguageService
 
     public function update(Language $language, LanguageDTO $languageDTO): Language
     {
-        return $language->update($languageDTO->getAttributes());
+        $language->update($languageDTO->getAttributes());
+
+        return $language;
     }
 }

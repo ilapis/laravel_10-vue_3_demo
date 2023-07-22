@@ -1,18 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-/*
-function loginAndGetToken()//: string
+function loginMasterUser(): string
 {
-    $response = Http::withoutVerifying()->post('https://nginx/api/v1/auth/login', [
-        'email' => 'sablo.andre@gmail.com',
-        'password' => 'testtest',
+    $response = test()->post('/api/v1/auth/login', [
+        'email' => env('MASTER_EMAIL'),
+        'password' => env('MASTER_PASSWORD'),
     ]);
 
-    $token = json_decode($response->body(), true)['authorization']['token'];
+    if ($response->getStatusCode() == 200) {
+        $array = json_decode($response->content(), true);
 
-    return $token;
+        return $array['authorization']['token'];
+    }
+
+    return '';
 }
-*/

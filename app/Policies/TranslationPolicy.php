@@ -21,8 +21,8 @@ class TranslationPolicy
         return $this->checkAbility($user, 'can_update_translation');;
     }
 
-    public function destroy(User $user): bool
+    public function delete(User $user): bool
     {
-        return $this->checkAbility($user, 'can_destroy_translation');;
+        return $this->checkAbility($user, 'can_delete_translation');;
     }
 }

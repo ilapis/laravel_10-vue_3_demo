@@ -59,7 +59,7 @@ class LanguageController extends Controller
             LanguageDTO::fromRequest($request, $language->id)
         );
 
-        return new LanguageResource($language);
+        return response(new LanguageResource($language));
     }
 
     public function destroy(Language $language): Response

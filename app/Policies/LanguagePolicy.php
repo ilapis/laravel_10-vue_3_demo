@@ -20,4 +20,9 @@ class LanguagePolicy
     {
         return $this->checkAbility($user, 'can_update_language');;
     }
+
+    public function delete(User $user): bool
+    {
+        return $this->checkAbility($user, 'can_delete_language');;
+    }
 }

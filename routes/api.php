@@ -28,6 +28,7 @@ Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], 
     Route::get('/language/enabled', 'LanguageController@enabled');
 
     Route::middleware('auth.jwt')->group(function () {
+    //Route::middleware('auth.jwt')->group(function () {
         Route::resource('language', 'LanguageController')->only([
             'index', 'show', 'store', 'update', 'destroy'
         ]);
@@ -35,8 +36,5 @@ Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], 
         Route::resource('translation', 'TranslationController')->only([
             'index', 'show', 'store', 'update', 'destroy'
         ]);
-        //Route::post('/translation', 'TranslationController@store');
-        //Route::put('/translation/{translation}', 'TranslationController@update');
-        //Route::delete('/translation/{translation}', 'TranslationController@destroy');
     });
 });

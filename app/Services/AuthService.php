@@ -92,7 +92,8 @@ class AuthService
     public function getUserByToken(string $token): ?User
     {
         return User::whereHas('tokens', function ($query) use ($token) {
-            $query->where('token', $token);
+            $query->where('token', $token)
+                ->where('expires_at', '>', now());
         })->first();
     }
 
