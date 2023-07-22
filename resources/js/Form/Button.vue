@@ -14,6 +14,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    type: {
+        type: String,
+        default: 'btn-primary'
+    },
 });
 
 const emit = defineEmits(['click']);
@@ -24,7 +28,5 @@ const onClick = (event) => {
 </script>
 
 <template>
-    <div class="w-full mt-4">
-        <button @click="onClick" class="button border-none float-right">{{ label }}</button>
-    </div>
+    <button @click="onClick" :class="[type]" class="btn button border-none box-shadow-6">{{ label }}</button>
 </template>

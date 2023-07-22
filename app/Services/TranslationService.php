@@ -4,9 +4,19 @@ namespace App\Services;
 
 use App\DTO\TranslationDTO;
 use App\Models\Translation;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class TranslationService
 {
+    /**
+     * @param int $perPage
+     * @return LengthAwarePaginator<Translation>
+     */
+    public function list(int $perPage = 15): LengthAwarePaginator
+    {
+        return Translation::orderBy('id', 'desc')->paginate($perPage);
+    }
+
     public function create(TranslationDTO $dto): Translation
     {
         return Translation::create([
@@ -25,10 +35,5 @@ class TranslationService
         ]);
 
         return $translation;
-    }
-
-    public function delete(Translation $translation): void
-    {
-        $translation->delete();
     }
 }

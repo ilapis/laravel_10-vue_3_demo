@@ -29,4 +29,19 @@ class LanguageDTO extends DataTransferObject
 
         return new self($data);
     }
+
+    public function getAttributes(): array
+    {
+        $data = [
+            'code' => $this->code,
+            'name' => $this->name,
+            'enabled' => $this->enabled,
+        ];
+
+        if ($this->id !== null) {
+            $data['id'] = $this->id;
+        }
+
+        return $data;
+    }
 }

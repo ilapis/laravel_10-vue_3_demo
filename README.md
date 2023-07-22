@@ -90,13 +90,8 @@ $test->badMethod(); // @phpstan-ignore-line
 
 Tests checks api, so execute on fresh copy, test database
 
+Will load environment variables from .env.testing
 ```bash
-php artisan db:refresh_test && ./vendor/bin/pest
-````
-
-```bash
-php artisan db:refresh_test && ./vendor/bin/pest --coverage
+php artisan db:refresh_test && APP_ENV=testing php artisan db:seed && ./vendor/bin/pest --coverage
 ```
-
-
 #

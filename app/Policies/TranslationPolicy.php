@@ -4,39 +4,25 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Laravel\Sanctum\PersonalAccessToken;
+use \App\Traits\HandlesAbilities;
 
 class TranslationPolicy
 {
     use HandlesAuthorization;
+    use HandlesAbilities;
 
     public function create(User $user): bool
     {
-        /**
-         * @var PersonalAccessToken $existingToken
-         */
-        $existingToken = $user->tokens->first();
-
-        return ! empty(array_intersect(['can_create_translation'], $existingToken->abilities ?? []));
+        return $this->checkAbility($user, 'can_create_translation');;
     }
 
     public function update(User $user): bool
     {
-        /**
-         * @var PersonalAccessToken $existingToken
-         */
-        $existingToken = $user->tokens->first();
-
-        return ! empty(array_intersect(['can_update_translation'], $existingToken->abilities ?? []));
+        return $this->checkAbility($user, 'can_update_translation');;
     }
 
     public function destroy(User $user): bool
     {
-        /**
-         * @var PersonalAccessToken $existingToken
-         */
-        $existingToken = $user->tokens->first();
-
-        return ! empty(array_intersect(['can_destroy_translation'], $existingToken->abilities ?? []));
+        return $this->checkAbility($user, 'can_destroy_translation');;
     }
 }

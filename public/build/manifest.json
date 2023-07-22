@@ -56,12 +56,12 @@
     "src": "node_modules/@fontsource/roboto/files/roboto-vietnamese-400-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-9185d96a.css",
+    "file": "assets/app-5d20cf55.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-c97d4672.css",
+    "file": "assets/app-e477156a.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -82,9 +82,9 @@
       "assets/roboto-latin-400-normal-a9fdbefa.woff"
     ],
     "css": [
-      "assets/app-c97d4672.css"
+      "assets/app-e477156a.css"
     ],
-    "file": "assets/app-5c40e352.js",
+    "file": "assets/app-0d9f1296.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

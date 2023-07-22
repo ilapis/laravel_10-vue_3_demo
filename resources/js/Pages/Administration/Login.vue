@@ -32,7 +32,7 @@ const login = async () => {
                 :underlineText="(response?.error && response?.errors?.password) ? response.errors.password : ['The password field is required.']"
                 v-model="form.password"
             />
-            <Button label="Login" @click="login" />
+            <Button class="mt-4" label="Login" @click="login" />
         </div>
     </AdministrationLogin>
 </template>

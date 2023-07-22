@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,75 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        //for all databases
+        $this->seedOnce('seeded_languages:seedLanguage');
+        $this->seedOnce('seeded_master_account:seedMasterAccount');
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        if (app()->environment('production')) {
+           ///add production only
+        }
+        if (app()->environment('staging')) {
+            ///add staging only
+        }
+        if (app()->environment('local')) {
+            ///add local only
+        }
+        if (app()->environment('testing')) {
+            ///add testing only
+        }
+    }
+    private function seedOnce(string $keyAndMethod): void
+    {
+        [$key, $method] = explode(':', $keyAndMethod);
+
+        if ($this->checkSeedingDone($key)) {
+            // Seeding already done, so return without seeding
+            return;
+        }
+
+        // Execute the seeder
+        call_user_func([$this, $method]);
+
+        $this->updateSeedingDone($key);
+    }
+    private function checkSeedingDone($key): bool
+    {
+        $seedingDone = DB::table('configurations')->where('key', $key)->first();
+
+        return $seedingDone && $seedingDone->value;
+    }
+    private function updateSeedingDone($key): void
+    {
+        DB::table('configurations')->updateOrInsert(
+            ['key' => $key],
+            [
+                'value' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+    }
+    private function seedMasterAccount(): void
+    {
+        \App\Models\User::factory()->create([
+            'name' => env('MASTER_NAME'),
+            'email' => env('MASTER_EMAIL'),
+            'password' => env('MASTER_PASSWORD'),
+        ]);
+    }
+    private function seedLanguage(): void
+    {
+
+        \App\Models\Language::factory(1)->create([
+            'code' => 'lt',
+            'name' => 'Lietuvių',
+            'enabled' => true,
+        ]);
+
+        \App\Models\Language::factory(1)->create([
+            'code' => 'en',
+            'name' => 'English',
+            'enabled' => true,
+        ]);
     }
 }

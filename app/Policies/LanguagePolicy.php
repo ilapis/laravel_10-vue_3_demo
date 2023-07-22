@@ -4,29 +4,20 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Laravel\Sanctum\PersonalAccessToken;
+use App\Traits\HandlesAbilities;
 
 class LanguagePolicy
 {
     use HandlesAuthorization;
+    use HandlesAbilities;
 
     public function create(User $user): bool
     {
-        /**
-         * @var PersonalAccessToken $existingToken
-         */
-        $existingToken = $user->tokens->first();
-
-        return ! empty(array_intersect(['can_create_language'], $existingToken->abilities ?? []));
+        return $this->checkAbility($user, 'can_create_language');;
     }
 
     public function update(User $user): bool
     {
-        /**
-         * @var PersonalAccessToken $existingToken
-         */
-        $existingToken = $user->tokens->first();
-
-        return ! empty(array_intersect(['can_update_language'], $existingToken->abilities ?? []));
+        return $this->checkAbility($user, 'can_update_language');;
     }
 }
