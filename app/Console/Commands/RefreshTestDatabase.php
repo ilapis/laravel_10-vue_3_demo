@@ -24,10 +24,8 @@ class RefreshTestDatabase extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $this->info('Starting refresh of test database...');
 
@@ -60,11 +58,8 @@ class RefreshTestDatabase extends Command
 
     /**
      * Export the structure of the original database, excluding specified tables.
-     *
-     * @param  string  $database
-     * @return void
      */
-    protected function exportDatabaseStructure($database, array $excludeTables)
+    protected function exportDatabaseStructure(string $database, array $excludeTables): void
     {
         $username = 'root'; //env('DB_USERNAME');
         $password = env('DB_PASSWORD_ROOT'); //env('DB_PASSWORD');
@@ -89,11 +84,8 @@ class RefreshTestDatabase extends Command
 
     /**
      * Create a new database for the test environment.
-     *
-     * @param  string  $database
-     * @return void
      */
-    protected function createTestDatabase($database)
+    protected function createTestDatabase(string $database): void
     {
         $createDatabaseStatement = "CREATE DATABASE IF NOT EXISTS $database";
         DB::connection('mysql_root')->getPdo()->exec($createDatabaseStatement);
@@ -101,11 +93,8 @@ class RefreshTestDatabase extends Command
 
     /**
      * Import the database structure into the test database.
-     *
-     * @param  string  $database
-     * @return void
      */
-    protected function importDatabaseStructure($database)
+    protected function importDatabaseStructure(string $database): void
     {
         $username = 'root'; //env('DB_USERNAME');
         $password = env('DB_PASSWORD_ROOT'); //env('DB_PASSWORD');

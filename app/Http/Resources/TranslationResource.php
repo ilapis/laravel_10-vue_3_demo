@@ -2,20 +2,21 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Translation;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\Language
+ * @mixin Translation
  */
 class TranslationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return array<string, int|string|bool|null>
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
