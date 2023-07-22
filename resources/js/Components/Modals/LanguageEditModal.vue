@@ -6,41 +6,45 @@ import { useLanguageStore } from '@/Stores/languageStore.js';
 const languageStore = new useLanguageStore();
 const showModal = ref(false);
 
-let response = ref(null);
-
 const doModalAction = async (action) => {
     if ('cancel' === action) {
         await hideModal();
     }
     if ('action' === action) {
-        await post();
+        await put();
     }
 }
 
-const form = reactive({
+let form = reactive({
     code: '',
     name: '',
     enabled: false,
 });
+
+const props = defineProps({
+    id: Number,
+})
 
 const hideModal = async () => {
     showModal.value = false;
 }
 
 const openModal = async () => {
+    const { code, name, enabled } = await languageStore.get(props.id);
+    form = { code, name, enabled };
     showModal.value = true;
 }
 
-const post = async () => {
-    await languageStore.post(form);
+const put = async () => {
+    languageStore.update(props.id, form);
 }
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="showModal = true" label="Add" />
+    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="openModal" label="Edit" />
     <ModalComponent
         :show="showModal"
-        actionLabel="Create"
+        actionLabel="Update"
         @update:show="showModal = $event"
         @update:action="doModalAction($event)" >
 

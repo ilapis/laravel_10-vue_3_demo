@@ -48,22 +48,30 @@ onMounted(fetchLanguages);
         <div class="w-full" style="height:calc(100% - 8rem);">
         <table class="w-full" style="height:calc(100% - 8rem);">
             <thead>
-            <tr class="line-height-3rem text-indent-1rem text-align-left">
-                <th class=" height-12" v-for="header in headers" :key="header">{{ header }}</th>
+            <tr class="line-height-4rem text-indent-1rem text-align-left">
+                <template class=" height-12" v-for="(header, index) in headers" :key="header">
+                    <th>{{ header }}</th>
+                    <th v-if="(index+1) == headers.length"></th>
+                </template>
             </tr>
             </thead>
             <tbody id='languages_table_body' class="w-full">
-            <tr class="line-height-3rem text-indent-1rem text-align-left bg-hover-grey" v-for="row in languageStore.collection?.data" :key="row.id">
-                <td class=" height-12" v-for="header in headers" :key="header">{{ row[header] }}</td>
+            <tr class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey" v-for="row in languageStore.collection?.data" :key="row.id">
+                <template class=" height-12" v-for="(header, index) in headers" :key="header">
+                    <td>{{ row[header] }}</td>
+                    <td v-if="(index+1) == headers.length">
+                        <LanguageEditModal :id="row.id" />
+                    </td>
+                </template>
             </tr>
             </tbody>
         </table>
         </div>
         <div class="mt-4 height-12">
             <template v-for="link in languageStore.collection?.meta?.links" :key="link.label">
-                <button class="btn btn-pagination mt-1" :class="{'btn-primary': link.active, 'btn-default': !link.active}" @click="changePage(link.url)" :disabled="!link.url">
+                <ButtonComponent class="btn-pagination mt-1" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
                     {{ decodeHtmlEntities(link.label) }}
-                </button>
+                </ButtonComponent>
             </template>
         </div>
     </AdministrationLayout>

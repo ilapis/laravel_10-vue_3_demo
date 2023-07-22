@@ -6,10 +6,12 @@ import { createPinia } from 'pinia';
 
 import InputText from "@/Form/InputText.vue";
 import InputPassword from "@/Form/InputPassword.vue";
-import Button from "@/Form/Button.vue";
+import InputCheckbox from "@/Form/InputCheckbox.vue";
+import ButtonComponent from "@/Form/ButtonComponent.vue";
 import CloseIcon from "@/Components/Icons/CloseIcon.vue";
 import ModalComponent from "@/Components/UI/ModalComponent.vue";
 import LanguageCreateModal from "@/Components/Modals/LanguageCreateModal.vue";
+import LanguageEditModal from "@/Components/Modals/LanguageEditModal.vue";
 
 const pinia = createPinia()
 const app = createApp(App);
@@ -20,7 +22,9 @@ app.mount("#app");
 
 app.component('InputText', InputText);
 app.component('InputPassword', InputPassword);
-app.component('Button', Button);
+app.component('InputCheckbox', InputCheckbox);
+app.component('ButtonComponent', ButtonComponent);
 app.component('CloseIcon', CloseIcon);
 app.component('ModalComponent', ModalComponent);
 app.component('LanguageCreateModal', LanguageCreateModal);
+app.component('LanguageEditModal', LanguageEditModal);

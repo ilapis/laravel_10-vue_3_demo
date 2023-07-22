@@ -37,7 +37,7 @@ const updateInputValue = (event) => {
     <div class="w-full mt-4">
         <label class="display-block">{{props.label}}</label>
         <input type="text" :value="inputValue" @input="updateInputValue" autocomplete="new-password" class="w-full border-bottom" />
-        <span class="w-full display-block small-text">
+        <span class="w-full line-height-2rem display-block small-text">
               <template v-if="typeof props.underlineText === 'string'">
                 {{props.underlineText}}
               </template>

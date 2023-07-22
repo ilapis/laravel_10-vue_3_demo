@@ -1,6 +1,7 @@
 <script setup>
 const props = defineProps({
     show: Boolean,
+    actionLabel: String,
     headTitle: String,
 })
 
@@ -27,8 +28,8 @@ function action(action) {
                 </div>
                 <div class="modal-footer height-12">
                     <slot name="footer">
-                        <Button label="cancel" type="btn-default" @click="action('cancel')" />
-                        <Button label="ok" class="float-right" @click="action('action')" />
+                        <ButtonComponent label="Cancel" class="btn-default float-left" @click="action('cancel')" />
+                        <ButtonComponent :label="actionLabel" class="btn-primary float-right" @click="action('action')" />
                     </slot>
                 </div>
             </div>
@@ -41,17 +42,15 @@ function action(action) {
     position: absolute;
     background: #ffffff;
     min-width: 480px;
-    max-width: 100%;
-    max-height: 400px;
     z-index:101;
-    /* Your modal styles here */
     display: flex;
     flex-direction: column;
-    /*max-height: 80vh; /* Adjust this value as needed */
     overflow: hidden;
 }
+
 .modal-header, .modal-footer {
     padding: 1rem;
+    text-indent: 0;
 }
 .modal-close-icon {
     float: right;
