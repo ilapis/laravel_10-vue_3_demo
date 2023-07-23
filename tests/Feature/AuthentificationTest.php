@@ -2,7 +2,7 @@
 
 uses(Tests\TestCase::class);
 
-it('register user', function () {
+test('it register user', function () {
     $response = $this->post('/api/v1/auth/register', [
         'name' => 'test2',
         'email' => 'test@example.com2',
@@ -15,7 +15,7 @@ it('register user', function () {
 
 })->group('register-user');
 
-it('register user second time', function () {
+test('it register user second time', function () {
     $response = $this->post('/api/v1/auth/register', [
         'name' => 'test2',
         'email' => 'test@example.com2',
@@ -28,7 +28,7 @@ it('register user second time', function () {
 
 })->group('register-user');
 
-it('login existing user', function () {
+test('it login existing user', function () {
     $response = $this->post('/api/v1/auth/login', [
         'email' => 'test@example.com2',
         'password' => 'password',
@@ -40,7 +40,7 @@ it('login existing user', function () {
 
 })->group('register-user');
 
-it('login not existing user', function () {
+test('it login not existing user', function () {
     $response = $this->post('/api/v1/auth/login', [
         'email' => 'test@example.com',
         'password' => 'password_dd',

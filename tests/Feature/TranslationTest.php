@@ -11,10 +11,10 @@ beforeEach(function () {
     $this->translationValueUpated = 'test_value_updated';
 });
 
-it('create test_translation', function () {
+test('it create test_translation', function () {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer '.$this->token,
+        'Authorization' => 'Bearer ' . $this->token,
     ])->post('/api/v1/translation', [
         'language_id' => $this->languageId,
         'key' => $this->translationKey,
@@ -30,11 +30,11 @@ it('create test_translation', function () {
 
 })->group('translation-tests');
 
-it('gets translation', function ($translationId) {
+test('it gets translation', function ($translationId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer '.$this->token,
-    ])->get('/api/v1/translation/'.$translationId);
+        'Authorization' => 'Bearer ' . $this->token,
+    ])->get('/api/v1/translation/' . $translationId);
 
     $data = json_decode($response->getContent(), true)['data'];
 
@@ -43,11 +43,11 @@ it('gets translation', function ($translationId) {
 
 })->group('translation-tests')->depends('it create test_translation');
 
-it('updates translation', function ($translationId) {
+test('it updates translation', function ($translationId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer '.$this->token,
-    ])->put('/api/v1/translation/'.$translationId, [
+        'Authorization' => 'Bearer ' . $this->token,
+    ])->put('/api/v1/translation/' . $translationId, [
         'language_id' => $this->languageId,
         'key' => $this->translationKey,
         'value' => $this->translationValueUpated,
@@ -62,9 +62,9 @@ it('updates translation', function ($translationId) {
 
 })->group('translation-tests')->depends('it create test_translation');
 
-it('get translations', function () {
+test('it get translations', function () {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer '.$this->token,
+        'Authorization' => 'Bearer ' . $this->token,
     ])->get('/api/v1/translation');
 
     $data = json_decode($response->getContent(), true);
@@ -82,10 +82,10 @@ it('get translations', function () {
 
 })->group('translation-tests')->depends('it create test_translation');
 
-it('delete translation', function ($translationId) {
+test('it delete translation', function ($translationId) {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer '.$this->token,
-    ])->delete('/api/v1/translation/'.$translationId);
+        'Authorization' => 'Bearer ' . $this->token,
+    ])->delete('/api/v1/translation/' . $translationId);
 
     $this->assertEquals(204, $response->getStatusCode());
 
