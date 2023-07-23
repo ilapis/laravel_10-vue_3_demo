@@ -13,7 +13,7 @@ class TranslationDTO extends DataTransferObject
 
     public string $key;
 
-    public bool $value;
+    public string $value;
 
     public static function fromRequest(Request $request, ?int $id = null): self
     {
@@ -28,5 +28,20 @@ class TranslationDTO extends DataTransferObject
         }
 
         return new self($data);
+    }
+
+    public function getAttributes(): array
+    {
+        $data = [
+            'language_id' => $this->language_id,
+            'key' => $this->key,
+            'value' => $this->value,
+        ];
+
+        if ($this->id !== null) {
+            $data['id'] = $this->id;
+        }
+
+        return $data;
     }
 }

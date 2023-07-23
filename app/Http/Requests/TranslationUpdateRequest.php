@@ -11,6 +11,8 @@ class TranslationUpdateRequest extends BaseRequest
      */
     public function rules(): array
     {
+        $id = $this->route('translation'); // Fetch the ID from the route parameters.
+
         return [
             'language_id' => [
                 'required',
@@ -20,9 +22,9 @@ class TranslationUpdateRequest extends BaseRequest
             'key' => [
                 'required',
                 'string',
-                Rule::unique('translations')->where(function ($query) {
-                    return $query->where('language_id', $this->language_id);
-                })->ignore($this->id),
+                Rule::unique('translations', 'key')->ignore($id)->where(function ($query) {
+                    return $query->where('key', $this->key);
+                }),
             ],
             'value' => [
                 'required',

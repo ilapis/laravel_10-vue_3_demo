@@ -9,9 +9,9 @@ use App\Http\Requests\TranslationUpdateRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
 use App\Services\TranslationService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class TranslationController extends Controller
 {
@@ -34,7 +34,7 @@ class TranslationController extends Controller
         );
     }
 
-    public function store(Request $request, TranslationCreateRequest $translationCreateRequest): JsonResponse
+    public function store(Request $request, TranslationCreateRequest $translationCreateRequest): Response
     {
         $this->authorize('create', Translation::class);
 
@@ -45,7 +45,7 @@ class TranslationController extends Controller
         return response(new TranslationResource($translation), 201);
     }
 
-    public function update(Request $request, Translation $translation, TranslationUpdateRequest $translationUpdateRequest): JsonResponse
+    public function update(Request $request, Translation $translation, TranslationUpdateRequest $translationUpdateRequest): Response
     {
         $this->authorize('update', $translation);
 
@@ -54,15 +54,15 @@ class TranslationController extends Controller
             TranslationDTO::fromRequest($request, $translation->id)
         );
 
-        return new TranslationResource($translation);
+        return response(new TranslationResource($translation));
     }
 
-    public function destroy(Translation $translation): JsonResponse
+    public function destroy(Translation $translation): Response
     {
         $this->authorize('delete', $translation);
 
         $translation->delete();
 
-        return response()->json(null, 204);  // 204 status code indicates successful deletion with no content in the response
+        return response(null, 204);  // 204 status code indicates successful deletion with no content in the response
     }
 }

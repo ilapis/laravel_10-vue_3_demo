@@ -18,20 +18,12 @@ class TranslationService
 
     public function create(TranslationDTO $dto): Translation
     {
-        return Translation::create([
-            'language_id' => $dto->language_id,
-            'key' => $dto->key,
-            'value' => $dto->value,
-        ]);
+        return Translation::create($dto->getAttributes());
     }
 
     public function update(Translation $translation, TranslationDTO $dto): Translation
     {
-        $translation->update([
-            'language_id' => $dto->language_id,
-            'key' => $dto->key,
-            'value' => $dto->value,
-        ]);
+        $translation->update($dto->getAttributes());
 
         return $translation;
     }
