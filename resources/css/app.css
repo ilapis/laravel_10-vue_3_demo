@@ -553,6 +553,9 @@ input {
     background-color: #750f13;
     color: #fff;
 }
+.error {
+    color: #750f13;
+}
 .btn-default, .btn-primary {
     backface-visibility: hidden;
     font-size: 100%;

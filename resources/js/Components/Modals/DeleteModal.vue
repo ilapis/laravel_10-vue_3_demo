@@ -1,6 +1,6 @@
 <script setup>
 
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import { useLanguageStore } from '@/Stores/languageStore.js';
 
 const languageStore = new useLanguageStore();
@@ -18,13 +18,7 @@ const doModalAction = (action) => {
         });
     }
 }
-/*
-let form = reactive({
-    code: '',
-    name: '',
-    enabled: false,
-});
-*/
+
 const props = defineProps({
     id: Number,
     service: Object,

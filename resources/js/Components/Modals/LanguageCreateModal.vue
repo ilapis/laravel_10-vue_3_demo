@@ -1,43 +1,17 @@
 <script setup>
-
-import {reactive, ref} from "vue";
 import { useLanguageStore } from '@/Stores/languageStore.js';
+import { useModalForm } from '@/Helpers/useModalForm.js';
+import {ref} from "vue";
 
 const languageStore = new useLanguageStore();
-const showModal = ref(false);
 
-let response = ref(null);
-
-const doModalAction = (action) => {
-    if ('cancel' === action) {
-        hideModal();
-    }
-    if ('action' === action) {
-        create().then(() => {
-            if (!languageStore?.errors) {
-                hideModal();
-            }
-        });
-    }
-}
-
-const form = reactive({
+let form = ref({
     code: '',
     name: '',
-    enabled: false,
+    enabled: false
 });
 
-const hideModal = () => {
-    showModal.value = false;
-}
-
-const openModal = () => {
-    showModal.value = true;
-}
-
-const create = () => {
-    return languageStore.create(form);
-}
+const { showModal, openModal, doModalAction } = useModalForm(languageStore, form, (form) => languageStore.create(form.value));
 </script>
 
 <template>
@@ -48,22 +22,9 @@ const create = () => {
         @update:show="showModal = $event"
         @update:action="doModalAction($event)" >
 
-        <InputText
-            label="Code"
-            :underlineText="(languageStore?.errors?.code) ? languageStore.errors.code : ['The Code field is required.']"
-            v-model="form.code"
-        />
-
-        <InputText
-            label="Language"
-            :underlineText="(languageStore?.errors?.name && languageStore.errors?.name) ? languageStore.collection.errors.name : ['The Language field is required.']"
-            v-model="form.name"
-        />
-
-        <InputCheckbox
-            label="Enabled"
-            :underlineText="(languageStore?.errors?.enabled && languageStore.errors?.enabled) ? languageStore.collection.errors.enabled : ['']"
-            v-model="form.enabled"
+        <LanguageForm
+            :languageStore="languageStore"
+            :form="form"
         />
         <br/>
     </ModalComponent>
