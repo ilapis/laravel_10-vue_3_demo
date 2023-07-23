@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import AdministrationLayout from '@/Layouts/Administration.vue';
 import { useLanguageStore } from '@/Stores/languageStore.js';
 const languageStore = new useLanguageStore();
@@ -19,7 +19,7 @@ const fetchLanguages = async () => {
 };
 
 const setTableBodyHeight = () => {
-    document.getElementById("languages_table_body").style.height = window.innerHeight - 228 + "px";
+    document.getElementById("languages_table_body").style.height = window.innerHeight - 276 + "px";
 };
 
 const changePage = async (url) => {
@@ -36,8 +36,14 @@ const decodeHtmlEntities = (str) => {
     return textArea.value;
 };
 
-onMounted(fetchLanguages);
+onMounted( () => {
+    window.addEventListener('resize', setTableBodyHeight);
+    fetchLanguages();
+});
 
+onUnmounted( () => {
+    window.removeEventListener('resize', setTableBodyHeight);
+});
 </script>
 
 <template>
@@ -73,9 +79,9 @@ onMounted(fetchLanguages);
             </tbody>
         </table>
         </div>
-        <div class="mt-4 height-12">
+        <div>
             <template v-for="link in languageStore.collection?.meta?.links" :key="link.label">
-                <ButtonComponent class="btn-pagination mt-1" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
+                <ButtonComponent class="btn btn-pagination mt-1" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
                     {{ decodeHtmlEntities(link.label) }}
                 </ButtonComponent>
             </template>

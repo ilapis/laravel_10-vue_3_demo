@@ -14,9 +14,9 @@ import Sidebar from '@/Partials/Administration/Sidebar.vue';
 
 <template>
     <div style="background: #fff;width:100%;height:100%">
-        <Sidebar class="box-shadow-2" style="width:292px;height:100%;float:left;margin-right: 8px;"></Sidebar>
-        <Header style="width:calc(100% - 300px);height:3rem;float:left;"></Header>
-        <Page style="width:calc(100% - 300px);height:calc(100% - 3rem);float:left;">
+        <Sidebar class="box-shadow" style="width:292px;height:100%;float:left;margin-right: 8px;"></Sidebar>
+        <Header style="width:calc(100% - 300px);height:4rem;float:left;"></Header>
+        <Page style="width:calc(100% - 300px);height:calc(100% - 4rem);float:left;">
             <slot></slot>
         </Page>
     </div>

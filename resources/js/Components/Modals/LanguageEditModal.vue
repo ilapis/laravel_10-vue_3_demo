@@ -29,7 +29,7 @@ const populateAndOpenModal = async () => {
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="populateAndOpenModal" label="Edit" />
+    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow" @click="populateAndOpenModal" label="Edit" />
     <ModalComponent
         :show="showModal"
         actionLabel="Update"
@@ -40,7 +40,6 @@ const populateAndOpenModal = async () => {
             :languageStore="languageStore"
             :form="form"
         />
-        <br/>
     </ModalComponent>
 </template>
 

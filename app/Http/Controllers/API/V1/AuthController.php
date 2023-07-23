@@ -20,7 +20,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $authData = $this->authService->loginUser($credentials);
-        //dd($authData, $credentials);
+
         if ($authData) {
             return response()->json([
                 'authorization' => array_merge(

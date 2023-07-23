@@ -15,7 +15,7 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, form
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow-6" @click="openModal" label="Add" />
+    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow" @click="openModal" label="Add" />
     <ModalComponent
         :show="showModal"
         actionLabel="Create"
@@ -26,7 +26,6 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, form
             :languageStore="languageStore"
             :form="form"
         />
-        <br/>
     </ModalComponent>
 </template>
 

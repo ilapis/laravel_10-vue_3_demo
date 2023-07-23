@@ -38,7 +38,7 @@ const destroy = () => {
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-danger height-12 ml-4 box-shadow-6" @click="openModal" label="Delete" />
+    <ButtonComponent class="btn btn-danger height-12 ml-4 box-shadow" @click="openModal" label="Delete" />
     <ModalComponent
         :show="showModal"
         actionLabel="Delete"

@@ -20,7 +20,7 @@ const login = async () => {
 
 <template>
     <AdministrationLogin>
-        <div class="box-shadow-2 mt-4 col-12 col-s-10 ml-s-1 col-m-8 ml-m-2 col-l-6 ml-l-3 col-xl-4 ml-xl-4 p-4">
+        <div class="box-shadow mt-4 col-12 col-s-10 ml-s-1 col-m-8 ml-m-2 col-l-6 ml-l-3 col-xl-4 ml-xl-4 p-4">
             <h2>Login</h2>
             <InputText
                 label="Email"

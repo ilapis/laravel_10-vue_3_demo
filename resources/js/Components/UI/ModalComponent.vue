@@ -18,7 +18,7 @@ function action(action) {
 <template>
     <template v-if="show">
         <div class="modal-backdrop">
-            <div class="modal box-shadow-2">
+            <div class="modal box-shadow">
                 <div class="modal-header w-full">
                     <slot name="header"></slot>
                     <CloseIcon class="modal-close-icon" @click="closeModal" />
@@ -49,18 +49,18 @@ function action(action) {
 }
 
 .modal-header, .modal-footer {
-    padding: 1rem;
+    padding: 1.5rem;
     text-indent: 0;
 }
 .modal-close-icon {
     float: right;
-    margin-right: 2rem;
+    margin-right: 3rem;
     cursor: pointer;
 }
 .modal-body {
     flex-grow: 1;
     overflow: auto;
-    padding: 0 1em; /* Adjust this value as needed */
+    padding: 0 1.5em; /* Adjust this value as needed */
 }
 .modal-backdrop {
     display: flex;

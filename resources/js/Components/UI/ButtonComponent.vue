@@ -24,7 +24,7 @@ const onClick = (event) => {
 </script>
 
 <template>
-    <button @click="onClick" class="btn button border-none box-shadow-6">{{ label }}
+    <button @click="onClick" class="btn border-none box-shadow">{{ label }}
         <slot></slot>
     </button>
 </template>

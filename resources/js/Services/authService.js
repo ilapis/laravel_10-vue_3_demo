@@ -13,9 +13,13 @@ class AuthService {
         if (response?.authorization?.token) {
             localStorage.setItem('token', response?.authorization?.token)
             if (response?.authorization?.abilities) {
-                localStorage.setItem('abilities', response?.authorization?.abilities)
+                localStorage.setItem('abilities', response.authorization.abilities)
             }
-            await this.router.push({name: 'admin-dashboard'})
+            if (response?.authorization?.expires_at) {
+                localStorage.setItem('token_expires_at', response.authorization.expires_at)
+            }
+            await this.router.push({name: 'admin-languages'})
+            //await this.router.push({name: 'admin-dashboard'})
         }
 
         return response;

@@ -22,7 +22,7 @@ const updateInputValue = (event) => {
 
 <template>
     <div class="w-full mt-4">
-        <label class="display-block">{{props.label}}</label>
+        <label class="block">{{props.label}}</label>
         <input type="password" :value="inputValue" @input="updateInputValue" autocomplete="off" class="w-full border-bottom" />
 
         <UnderlineComponent

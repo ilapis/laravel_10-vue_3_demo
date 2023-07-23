@@ -6,6 +6,9 @@ const http = axios.create({
         'Content-Type': 'application/json',
     },
     validateStatus: function (status) {
+        if (status === 401) {
+            //@TODO session check, redirect?
+        }
         return status >= 200 && status < 500; // Resolve only if the status code is less than 500
     }
     // other custom settings

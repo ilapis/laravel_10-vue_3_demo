@@ -22,7 +22,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="w-full display-block small-text">
+    <div class="w-full block small-text">
           <template v-if="props.errors">
             <span class="error" v-for="(error, index) in props.errors" :key="index">
                 {{error}}

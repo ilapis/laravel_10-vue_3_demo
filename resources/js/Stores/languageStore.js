@@ -26,47 +26,47 @@ export const useLanguageStore = defineStore('language-store', {
         },
 
         async create(form) {
-            this.errors = null;
 
             await http.post(`/api/v1/language`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
+                    this.errors = null;
                     this.refreshPage();
                 }
             });
         },
 
         async get(id) {
-            this.errors = null;
 
             return http.get(`/api/v1/language/${id}`).then((response) => {
+                this.errors = null;
                 return response.data.data;
             });
         },
 
         async update(id, form) {
-            this.errors = null;
 
             return http.put(`/api/v1/language/${id}`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
+                    this.errors = null;
                     this.refreshPage();
                 }
             });
         },
 
         async destroy(id) {
-            this.errors = null;
 
             return http.delete(`/api/v1/language/${id}`).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
+                    this.errors = null;
                     this.refreshPage();
                 }
             });
