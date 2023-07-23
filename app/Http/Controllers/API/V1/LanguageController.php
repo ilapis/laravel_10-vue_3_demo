@@ -22,7 +22,7 @@ class LanguageController extends Controller
 
     public function enabled(): Response
     {
-        return LanguageResource::collection($this->languageService->enabled());
+        return response(LanguageResource::collection($this->languageService->enabled()));
     }
 
     public function show(Language $language)

@@ -45,6 +45,16 @@ test('it gets language', function ($languageId) {
 
 })->group('language-tests')->depends('it create test_language');
 
+test('it gets enabled languages', function () {
+
+    $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . $this->token,
+    ])->get('/api/v1/language/enabled');
+
+    $this->assertEquals(200, $response->getStatusCode());
+
+})->group('language-tests');
+
 test('it updates language', function ($languageId) {
 
     $response = $this->withHeaders([
