@@ -42,7 +42,7 @@ export const useLanguageStore = defineStore('language-store', {
 
             return http.get(`/api/v1/language/${id}`).then((response) => {
                 this.errors = null;
-                return response.data.data;
+                return response.data;
             });
         },
 

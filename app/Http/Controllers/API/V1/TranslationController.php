@@ -20,9 +20,9 @@ class TranslationController extends Controller
 
     }
 
-    public function show(Translation $translation)
+    public function show(Translation $translation): Response
     {
-        return new TranslationResource($translation);
+        return response(new TranslationResource($translation));
     }
 
     public function index(Request $request): AnonymousResourceCollection

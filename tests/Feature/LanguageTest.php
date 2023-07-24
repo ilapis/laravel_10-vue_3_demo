@@ -37,7 +37,7 @@ test('it gets language', function ($languageId) {
         'Authorization' => 'Bearer ' . $this->token,
     ])->get('/api/v1/language/' . $languageId);
 
-    $data = json_decode($response->getContent(), true)['data'];
+    $data = json_decode($response->getContent(), true);
 
     $this->assertEquals($this->languageCode, $data['code']);
     $this->assertEquals($this->languageName, $data['name']);

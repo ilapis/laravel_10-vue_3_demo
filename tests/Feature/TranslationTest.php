@@ -36,7 +36,7 @@ test('it gets translation', function ($translationId) {
         'Authorization' => 'Bearer ' . $this->token,
     ])->get('/api/v1/translation/' . $translationId);
 
-    $data = json_decode($response->getContent(), true)['data'];
+    $data = json_decode($response->getContent(), true);
 
     $this->assertEquals($this->translationKey, $data['key']);
     $this->assertEquals($this->translationValue, $data['value']);
