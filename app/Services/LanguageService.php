@@ -11,7 +11,7 @@ class LanguageService
 {
     public function enabled(): Collection
     {
-        return Language::where('enabled', true)->get();
+        return Language::where('enabled', true)->filter()->get();
     }
 
     /**
@@ -19,7 +19,7 @@ class LanguageService
      */
     public function list(int $perPage = 15): LengthAwarePaginator
     {
-        return Language::orderBy('id', 'desc')->paginate($perPage);
+        return Language::orderBy('id', 'desc')->filter()->paginate($perPage);
     }
 
     public function create(LanguageDTO $languageDTO): Language
