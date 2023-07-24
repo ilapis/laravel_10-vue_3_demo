@@ -1,6 +1,4 @@
-import useHttp from '@/Helpers/useHttp.js';
-
-const { post } = useHttp();
+import http from "@/http.js";
 
 class AuthService {
     constructor(router) {
@@ -8,25 +6,26 @@ class AuthService {
     }
 
     async login(form) {
-        const response = await post('/api/v1/auth/login', form);
 
-        if (response?.authorization?.token) {
-            localStorage.setItem('token', response?.authorization?.token)
-            if (response?.authorization?.abilities) {
-                localStorage.setItem('abilities', response.authorization.abilities)
-            }
-            if (response?.authorization?.expires_at) {
-                localStorage.setItem('token_expires_at', response.authorization.expires_at)
-            }
-            await this.router.push({name: 'admin-languages'})
-            //await this.router.push({name: 'admin-dashboard'})
-        }
+        return http.post(`/api/v1/auth/login`, form).then((response) => {
 
-        return response;
+            if (response?.data?.authorization?.token) {
+                localStorage.setItem('token', response?.data?.authorization?.token)
+                if (response?.authorization?.data?.abilities) {
+                    localStorage.setItem('abilities', response.data?.authorization.abilities)
+                }
+                if (response?.data?.authorization?.expires_at) {
+                    localStorage.setItem('token_expires_at', response.data?.authorization.expires_at)
+                }
+                this.router.push({name: 'admin-languages'})
+            }
+
+            return response.data;
+        });
     }
 
     async logout() {
-        await post('/api/v1/auth/logout');
+        await http.post(`/api/v1/auth/logout`);
         localStorage.removeItem('token');
         this.router.push({ name: 'admin' });
     }

@@ -61,7 +61,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-e1beddf3.css",
+    "file": "assets/app-715b4c1c.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -82,9 +82,9 @@
       "assets/roboto-latin-400-normal-a9fdbefa.woff"
     ],
     "css": [
-      "assets/app-e1beddf3.css"
+      "assets/app-715b4c1c.css"
     ],
-    "file": "assets/app-46e2f69b.js",
+    "file": "assets/app-c81544d8.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

@@ -43,23 +43,26 @@ function action(action) {
     background: #ffffff;
     min-width: 480px;
     z-index:101;
-    display: flex;
+    display: block;
     flex-direction: column;
     overflow: hidden;
 }
 
-.modal-header, .modal-footer {
+.modal-header {
+    padding: 1.5rem 0;
+    text-indent: 0;
+}
+.modal-footer {
     padding: 1.5rem;
     text-indent: 0;
 }
 .modal-close-icon {
     float: right;
-    margin-right: 3rem;
+    margin-right: 1rem;
     cursor: pointer;
 }
 .modal-body {
     flex-grow: 1;
-    overflow: auto;
     padding: 0 1.5em; /* Adjust this value as needed */
 }
 .modal-backdrop {
