@@ -51,6 +51,10 @@ class RefreshTestDatabase extends Command
         $this->info('Importing structure into test database...');
         $this->importDatabaseStructure($testDbName);
 
+        // Grant access to the test database for the user
+        $this->info('Granting access to test database...');
+        $this->grantAccessToTestDatabase($testDbName);
+
         $this->info('Successfully refreshed test database.');
 
         return 0;
@@ -114,5 +118,19 @@ class RefreshTestDatabase extends Command
 
         // Delete the dump file
         @unlink($dumpFile);
+    }
+
+    /**
+     * Grant access to the test database for a user.
+     */
+    protected function grantAccessToTestDatabase(string $database): void
+    {
+        $username = env('DB_USERNAME');
+
+        $grantAccessStatement = "GRANT ALL PRIVILEGES ON $database.* TO '$username'@'%'";
+        DB::connection('mysql_root')->getPdo()->exec($grantAccessStatement);
+
+        $flushPrivilegesStatement = 'FLUSH PRIVILEGES';
+        DB::connection('mysql_root')->getPdo()->exec($flushPrivilegesStatement);
     }
 }
