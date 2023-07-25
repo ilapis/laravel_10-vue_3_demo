@@ -2,25 +2,23 @@
 import {onMounted, onUnmounted, ref} from "vue";
 import AdministrationLayout from '@/Layouts/Administration.vue';
 import { useLanguageStore } from '@/Stores/languageStore.js';
+import TableComponent from "@/Components/UI/TableComponent.vue";
 const languageStore = new useLanguageStore();
-
-const headers = ref([]);
 
 const updateLanguages = async (dataPromise) => {
     await dataPromise;
-    if (languageStore.collection.data.length > 0) {
-        headers.value = Object.keys(languageStore.collection.data[0]);
-        setTableBodyHeight();
-    }
+    //if (languageStore.collection.data.length > 0) {
+    //    setTableBodyHeight();
+    //}
 };
 
 const fetchLanguages = async () => {
     await updateLanguages(languageStore.fetchLanguages());
 };
 
-const setTableBodyHeight = () => {
-    document.getElementById("languages_table_body").style.height = window.innerHeight - 276 + "px";
-};
+//const setTableBodyHeight = () => {
+//    document.getElementById("languages_table_body").style.height = window.innerHeight - 276 + "px";
+//};
 
 const changePage = async (url) => {
     if (url) {
@@ -37,13 +35,44 @@ const decodeHtmlEntities = (str) => {
 };
 
 onMounted( () => {
-    window.addEventListener('resize', setTableBodyHeight);
     fetchLanguages();
 });
 
-onUnmounted( () => {
-    window.removeEventListener('resize', setTableBodyHeight);
-});
+const rowSettings = ref([
+    {
+        'column': 'id',
+        'width': '80px',
+    },
+    {
+        'column': 'code',
+    },
+    {
+        'column': 'name',
+    },
+    {
+        'column': 'enabled',
+        'width': '100px',
+    },
+    {
+        'column': 'created_at',
+    },
+    {
+        'column': 'updated_at',
+    },
+    {
+        'column': 'updated_at',
+    },
+    {
+        'type': 'component',
+        'width': '100px',
+        'component': 'LanguageEditModal'
+    },
+    {
+        'type': 'component',
+        'width': '135px',
+        'component': 'DeleteModal'
+    },
+]);
 </script>
 
 <template>
@@ -52,32 +81,11 @@ onUnmounted( () => {
             <LanguageCreateModal />
         </div>
         <div class="w-full" style="height:calc(100% - 8rem);">
-        <table class="w-full" style="height:calc(100% - 8rem);">
-            <thead>
-            <tr class="line-height-4rem text-indent-1rem text-align-left">
-                <template class=" height-12" v-for="(header, index) in headers" :key="header">
-                    <th>{{ header }}</th>
-                    <th v-if="(index+1) == headers.length" style="width:120px;padding:0 1rem;"></th>
-                    <th v-if="(index+1) == headers.length" style="width:120px;padding:0 1rem;"></th>
-                </template>
-            </tr>
-            </thead>
-            <tbody id='languages_table_body' class="w-full">
-            <tr class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey" v-for="row in languageStore.collection?.data" :key="row.id">
-                <template class=" height-12" v-for="(header, index) in headers" :key="header">
-                    <td>{{ row[header] }}</td>
-                    <template v-if="(index+1) == headers.length">
-                        <td style="width:120px;padding:0 1rem;">
-                            <LanguageEditModal :id="row.id" />
-                        </td>
-                        <td style="width:120px;padding:0 1rem;">
-                            <DeleteModal :service="languageStore" :id="row.id" />
-                        </td>
-                    </template>
-                </template>
-            </tr>
-            </tbody>
-        </table>
+            <TableComponent
+                :service="languageStore"
+                :rows="languageStore.collection?.data"
+                :rowSettings="rowSettings"
+            />
         </div>
         <div>
             <template v-for="link in languageStore.collection?.meta?.links" :key="link.label">

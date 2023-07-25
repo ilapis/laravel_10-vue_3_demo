@@ -710,6 +710,10 @@ body {
     padding: 0 var(--padding-4);
 }
 
+.pr-1 {
+    padding-right: 1rem;
+}
+
 .mt-4 {
     margin-top: var(--padding-4);
 }
@@ -858,7 +862,24 @@ input {
 }
 
 .error {
-    color: #750f13;
+    color: #ffffff;
+    background: #750f13;
+    position: relative;
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-left: -0.5rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+.no-error {
+    color: #000000;
+    background: #fff;
+    position: relative;
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-left: -0.5rem;
+    margin-top: 0.25rem;
+    display: block;
 }
 
 .btn:disabled {

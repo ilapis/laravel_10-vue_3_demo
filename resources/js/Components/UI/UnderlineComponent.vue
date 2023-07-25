@@ -29,7 +29,7 @@ const props = defineProps({
             </span>
           </template>
           <template v-else>
-            <span v-for="(text, index) in props.underlineText" :key="index">
+            <span class="no-error" v-for="(text, index) in props.underlineText" :key="index">
                 {{text}}
             </span>
           </template>

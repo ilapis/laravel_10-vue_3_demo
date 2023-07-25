@@ -12,6 +12,7 @@ import InputPassword from "@/Components/UI/InputPassword.vue";
 import InputCheckbox from "@/Components/UI/InputCheckbox.vue";
 import ButtonComponent from "@/Components/UI/ButtonComponent.vue";
 import ModalComponent from "@/Components/UI/ModalComponent.vue";
+import TableComponent from "@/Components/UI/TableComponent.vue";
 
 import LanguageForm from "@/Forms/LanguageForm.vue";
 
@@ -33,6 +34,7 @@ app.component('InputCheckbox', InputCheckbox);
 app.component('ButtonComponent', ButtonComponent);
 app.component('CloseIcon', CloseIcon);
 app.component('ModalComponent', ModalComponent);
+app.component('TableComponent', TableComponent);
 app.component('LanguageCreateModal', LanguageCreateModal);
 app.component('LanguageForm', LanguageForm);
 app.component('LanguageEditModal', LanguageEditModal);

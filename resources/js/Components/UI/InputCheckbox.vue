@@ -27,8 +27,8 @@ const updateInputValue = (event) => {
         <label class="float-left ml-4">{{props.label}}</label>
 
         <UnderlineComponent
-            :underlineText="underlineText"
-            :errors="errors"
+            :underlineText="props.underlineText"
+            :errors="props.errors"
         />
     </div>
 </template>

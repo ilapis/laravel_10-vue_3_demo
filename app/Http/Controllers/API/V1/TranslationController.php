@@ -31,7 +31,14 @@ class TranslationController extends Controller
 
         return TranslationResource::collection(
             $this->translationService->list($per_page)
-        );
+        )->additional([
+            'sortable' => ['id', 'language_id', 'key', 'name'],
+            'filterable' => [
+                'language_id' => ['exact'],
+                'code' => ['contains'],
+                'name' => ['contains'],
+            ],
+        ]);
     }
 
     public function store(Request $request, TranslationCreateRequest $translationCreateRequest): Response

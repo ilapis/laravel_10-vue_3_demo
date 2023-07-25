@@ -28,7 +28,7 @@ Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], 
     Route::get('/language/enabled', 'LanguageController@enabled');
 
     Route::middleware('auth.jwt')->group(function () {
-        //Route::middleware('auth.jwt')->group(function () {
+
         Route::resource('language', 'LanguageController')->only([
             'index', 'show', 'store', 'update', 'destroy',
         ]);

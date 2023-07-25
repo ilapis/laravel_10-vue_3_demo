@@ -46,6 +46,7 @@ function action(action) {
     display: block;
     flex-direction: column;
     overflow: hidden;
+    border-radius: 8px;
 }
 
 .modal-header {
@@ -58,8 +59,11 @@ function action(action) {
 }
 .modal-close-icon {
     float: right;
-    margin-right: 1rem;
     cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-right: 1.5rem;
 }
 .modal-body {
     flex-grow: 1;

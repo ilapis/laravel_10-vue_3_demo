@@ -26,8 +26,8 @@ const updateInputValue = (event) => {
         <input type="text" :value="inputValue" @input="updateInputValue" autocomplete="new-password" class="w-full border-bottom" />
 
         <UnderlineComponent
-            :underlineText="underlineText"
-            :errors="errors"
+            :underlineText="props.underlineText"
+            :errors="props.errors"
         />
     </div>
 </template>

@@ -19,7 +19,7 @@ class LanguageService
      */
     public function list(int $perPage = 15): LengthAwarePaginator
     {
-        return Language::orderBy('id', 'desc')->filter()->paginate($perPage);
+        return Language::orderBy('id', 'desc')->filter()->paginate($perPage)->withQueryString();;
     }
 
     public function create(LanguageDTO $languageDTO): Language

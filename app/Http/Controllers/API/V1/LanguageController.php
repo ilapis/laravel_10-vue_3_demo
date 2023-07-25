@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageCreateRequest;
 use App\Http\Requests\LanguageUpdateRequest;
 use App\Http\Resources\LanguageResource;
+use App\Http\Resources\LanguageResourceCollection;
 use App\Models\Language;
 use App\Services\LanguageService;
 use Illuminate\Http\Request;
@@ -36,7 +37,19 @@ class LanguageController extends Controller
 
         return LanguageResource::collection(
             $this->languageService->list($per_page)
-        );
+        )->additional([
+            'sortable' => ['id', 'code', 'name'],
+            'filterable' => [
+                'code' => ['exact'],
+                'name' => ['contains'],
+            ],
+        ]);
+    }
+
+    public function paged(Request $request): AnonymousResourceCollection
+    {
+        return //LanguageResource::collection(
+            $this->languageService->listPaged($request);
     }
 
     public function store(Request $request, LanguageCreateRequest $languageCreateRequest): Response

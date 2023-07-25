@@ -12,7 +12,6 @@ export const sharedInputProps = {
         default: null
     },
     modelValue: {
-        type: String,
-        default: ''
+        default: null
     }
 };
