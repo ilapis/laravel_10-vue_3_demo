@@ -56,7 +56,7 @@ let language = ref(getLanguage());
     <div>
         <InputSelect class="inline float-left ml-4" style="width:200px;" :options="languageStore.enabled" v-model="language" @change="loadLanguage(language)" identifier="code" display="name" />
 
-        <ButtonComponent label="Logout" @click="logout" class="inline btn btn-primary float-right mr-4 mt-4" />
+        <ButtonComponent label="logout" @click="logout" class="inline btn btn-primary float-right mr-4 mt-4" />
         <div class="inline line-height-3rem height-12 float-right mr-4 mt-4">{{ logoutTimer }}</div>
     </div>
 </template>

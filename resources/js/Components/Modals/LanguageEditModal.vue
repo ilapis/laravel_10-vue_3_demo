@@ -7,6 +7,7 @@ const languageStore = new useLanguageStore();
 
 const props = defineProps({
     id: Number,
+    service: Object,
 })
 
 let form = ref({

@@ -49,7 +49,7 @@ function generateRandomId() {
                 <template class=" height-12" v-for="(header, index) in rowSettings" :key="index">
                     <th :style="'width:'+`${header?.width}`+';'">
                         <template v-if="header.type !== 'component'">
-                        {{header?.column}}
+                        {{$t('table.' + (header?.title ?? header?.column))}}
                         </template>
                     </th>
                 </template>

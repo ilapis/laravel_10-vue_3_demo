@@ -6,7 +6,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div> {{ $t('qwerty.ccc22') }}
+    <div>
         <InputText
             label="Code"
             :underlineText="['The Code field is required.']"

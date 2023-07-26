@@ -24,7 +24,13 @@ const onClick = (event) => {
 </script>
 
 <template>
-    <button @click="onClick" class="btn border-none box-shadow">{{ label }}
+    <button @click="onClick" class="btn border-none box-shadow">
+        <template v-if="isNaN(label)">
+            {{$t('button.' + label.toLowerCase())}}
+        </template>
+        <template v-else>
+            {{label}}
+        </template>
         <slot></slot>
     </button>
 </template>

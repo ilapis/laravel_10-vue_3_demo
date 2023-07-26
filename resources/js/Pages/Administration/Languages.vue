@@ -31,7 +31,8 @@ const changePage = async (url) => {
 
 const decodeHtmlEntities = (str) => {
     let textArea = document.createElement('textarea');
-    textArea.innerHTML = str;
+    textArea.innerHTML = str.replace('&laquo;', '').replace('&raquo;', '').trim(' ');
+
     return textArea.value;
 };
 
@@ -46,9 +47,11 @@ const rowSettings = ref([
     },
     {
         'column': 'code',
+        'title': 'language_code',
     },
     {
         'column': 'name',
+        'title': 'language',
     },
     {
         'column': 'enabled',
@@ -56,9 +59,6 @@ const rowSettings = ref([
     },
     {
         'column': 'created_at',
-    },
-    {
-        'column': 'updated_at',
     },
     {
         'column': 'updated_at',
@@ -91,7 +91,12 @@ const rowSettings = ref([
         <div>
             <template v-for="link in languageStore.collection?.meta?.links" :key="link.label">
                 <ButtonComponent class="btn btn-pagination mt-1" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
-                    {{ decodeHtmlEntities(link.label) }}
+                    <template v-if="!isNaN(link.label)">
+                    {{ decodeHtmlEntities(link.label.toLowerCase()) }}
+                    </template>
+                    <template v-else>
+                    {{ $t('button.' + decodeHtmlEntities(link.label.toLowerCase())) }}
+                    </template>
                 </ButtonComponent>
             </template>
         </div>
