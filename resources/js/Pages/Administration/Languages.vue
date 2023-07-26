@@ -3,29 +3,19 @@ import {onMounted, onUnmounted, ref} from "vue";
 import AdministrationLayout from '@/Layouts/Administration.vue';
 import TableComponent from "@/Components/UI/TableComponent.vue";
 import { useLanguageStore } from '@/Stores/languageStore.js';
+import { languageTableSettings } from '@/TableSettings/languageTableSettings.js';
 
 const languageStore = new useLanguageStore();
 
-const updateLanguages = async (dataPromise) => {
-    await dataPromise;
-    //if (languageStore.collection.data.length > 0) {
-    //    setTableBodyHeight();
-    //}
-};
-
 const fetchLanguages = async () => {
-    await updateLanguages(languageStore.fetchLanguages());
+    await languageStore.fetchLanguages();
 };
-
-//const setTableBodyHeight = () => {
-//    document.getElementById("languages_table_body").style.height = window.innerHeight - 276 + "px";
-//};
 
 const changePage = async (url) => {
     if (url) {
         const urlParams = new URLSearchParams(new URL(url).search);
         const page = urlParams.get('page');
-        await updateLanguages(languageStore.fetchPage(page));
+        await languageStore.fetchPage(page);
     }
 };
 
@@ -39,41 +29,6 @@ const decodeHtmlEntities = (str) => {
 onMounted( () => {
     fetchLanguages();
 });
-
-const rowSettings = ref([
-    {
-        'column': 'id',
-        'width': '80px',
-    },
-    {
-        'column': 'code',
-        'title': 'language_code',
-    },
-    {
-        'column': 'name',
-        'title': 'language',
-    },
-    {
-        'column': 'enabled',
-        'width': '100px',
-    },
-    {
-        'column': 'created_at',
-    },
-    {
-        'column': 'updated_at',
-    },
-    {
-        'type': 'component',
-        'width': '100px',
-        'component': 'LanguageEditModal'
-    },
-    {
-        'type': 'component',
-        'width': '135px',
-        'component': 'DeleteModal'
-    },
-]);
 </script>
 
 <template>
@@ -85,7 +40,7 @@ const rowSettings = ref([
             <TableComponent
                 :service="languageStore"
                 :rows="languageStore.collection?.data"
-                :rowSettings="rowSettings"
+                :rowSettings="languageTableSettings"
             />
         </div>
         <div>

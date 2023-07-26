@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class LanguageDTO extends DataTransferObject
@@ -15,17 +15,13 @@ class LanguageDTO extends DataTransferObject
 
     public bool $enabled;
 
-    public static function fromRequest(Request $request, ?int $id = null): self
+    public static function fromRequest(FormRequest $request): self
     {
         $data = [
-            'name' => $request->input('name'),
-            'code' => $request->input('code'),
-            'enabled' => $request->input('enabled'),
+            'name' => $request->validated('name'),
+            'code' => $request->validated('code'),
+            'enabled' => $request->validated('enabled'),
         ];
-
-        if ($id !== null) {
-            $data['id'] = $id;
-        }
 
         return new self($data);
     }

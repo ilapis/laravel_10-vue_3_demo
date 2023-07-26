@@ -57,24 +57,24 @@ class TranslationController extends Controller
         ]);
     }
 
-    public function store(Request $request, TranslationCreateRequest $translationCreateRequest): Response
+    public function store(TranslationCreateRequest $translationCreateRequest): Response
     {
         $this->authorize('create', Translation::class);
 
         $translation = $this->translationService->create(
-            TranslationDTO::fromRequest($request)
+            TranslationDTO::fromRequest($translationCreateRequest)
         );
 
         return response(new TranslationResource($translation), 201);
     }
 
-    public function update(Request $request, Translation $translation, TranslationUpdateRequest $translationUpdateRequest): Response
+    public function update(Translation $translation, TranslationUpdateRequest $translationUpdateRequest): Response
     {
         $this->authorize('update', $translation);
 
         $translation = $this->translationService->update(
             $translation,
-            TranslationDTO::fromRequest($request, $translation->id)
+            TranslationDTO::fromRequest($translationUpdateRequest)
         );
 
         return response(new TranslationResource($translation));

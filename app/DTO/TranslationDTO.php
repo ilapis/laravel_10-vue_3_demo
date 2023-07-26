@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class TranslationDTO extends DataTransferObject
@@ -17,18 +17,14 @@ class TranslationDTO extends DataTransferObject
 
     public string $value;
 
-    public static function fromRequest(Request $request, ?int $id = null): self
+    public static function fromRequest(FormRequest $request): self
     {
         $data = [
-            'language_id' => $request->input('language_id'),
-            'group' => $request->input('group'),
-            'key' => $request->input('key'),
-            'value' => $request->input('value'),
+            'language_id' => $request->validated('language_id'),
+            'group' => $request->validated('group'),
+            'key' => $request->validated('key'),
+            'value' => $request->validated('value'),
         ];
-
-        if ($id !== null) {
-            $data['id'] = $id;
-        }
 
         return new self($data);
     }

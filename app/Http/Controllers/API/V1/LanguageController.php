@@ -46,24 +46,24 @@ class LanguageController extends Controller
         ]);
     }
 
-    public function store(Request $request, LanguageCreateRequest $languageCreateRequest): Response
+    public function store(LanguageCreateRequest $languageCreateRequest): Response
     {
         $this->authorize('create', Language::class);
 
         $language = $this->languageService->create(
-            LanguageDTO::fromRequest($request)
+            LanguageDTO::fromRequest($languageCreateRequest)
         );
 
         return response(new LanguageResource($language), 201);
     }
 
-    public function update(Request $request, Language $language, LanguageUpdateRequest $languageUpdateRequest): Response
+    public function update(Language $language, LanguageUpdateRequest $languageUpdateRequest): Response
     {
         $this->authorize('update', $language);
 
         $language = $this->languageService->update(
             $language,
-            LanguageDTO::fromRequest($request, $language->id)
+            LanguageDTO::fromRequest($languageUpdateRequest)
         );
 
         return response(new LanguageResource($language));
