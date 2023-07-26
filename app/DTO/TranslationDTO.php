@@ -11,6 +11,8 @@ class TranslationDTO extends DataTransferObject
 
     public string $language_id;
 
+    public string $group;
+
     public string $key;
 
     public string $value;
@@ -19,6 +21,7 @@ class TranslationDTO extends DataTransferObject
     {
         $data = [
             'language_id' => $request->input('language_id'),
+            'group' => $request->input('group'),
             'key' => $request->input('key'),
             'value' => $request->input('value'),
         ];
@@ -34,6 +37,7 @@ class TranslationDTO extends DataTransferObject
     {
         $data = [
             'language_id' => $this->language_id,
+            'group' => $this->group,
             'key' => $this->key,
             'value' => $this->value,
         ];

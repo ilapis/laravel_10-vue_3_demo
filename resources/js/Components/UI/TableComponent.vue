@@ -10,6 +10,10 @@ const props = defineProps({
         type: Object,
         default: {}
     },
+    service: {
+        type: Object,
+        default: null
+    },
 });
 
 const tableBodyId = ref("table_body_" + generateRandomId());
@@ -58,6 +62,7 @@ function generateRandomId() {
                         <component v-if="header?.type == 'component'"
                                    :is="header.component"
                                    :id="row.id"
+                                   :service="props.service"
                         />
                         <template v-else>
                             {{row[header.column]}}

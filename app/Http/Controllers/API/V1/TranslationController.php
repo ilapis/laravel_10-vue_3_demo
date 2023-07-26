@@ -25,6 +25,22 @@ class TranslationController extends Controller
         return response(new TranslationResource($translation));
     }
 
+    public function locale($language_code): Response
+    {
+        $translations = Translation::query()
+            ->whereHas('language', function ($query) use ($language_code) {
+                $query->where('code', $language_code);
+            })
+            ->get(['group', 'key', 'value'])
+            ->groupBy('group')
+            ->map(function ($groupItems) {
+                return $groupItems->pluck('value', 'key');
+            })
+            ->toArray();
+
+        return response($translations);
+    }
+
     public function index(Request $request): AnonymousResourceCollection
     {
         $per_page = filter_var($request->get('per_page', 10), FILTER_VALIDATE_INT, ['options' => ['default' => 10, 'min_range' => 1]]);
@@ -35,8 +51,8 @@ class TranslationController extends Controller
             'sortable' => ['id', 'language_id', 'key', 'name'],
             'filterable' => [
                 'language_id' => ['exact'],
-                'code' => ['contains'],
-                'name' => ['contains'],
+                'key' => ['contains'],
+                'value' => ['contains'],
             ],
         ]);
     }

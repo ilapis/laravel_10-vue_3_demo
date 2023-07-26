@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('language_id')->constrained()->onDelete('cascade');
+            $table->string('group');
             $table->string('key');
             $table->text('value');
             $table->timestamps();
-
-            $table->unique(['language_id', 'key']);
+            $table->unique(['language_id', 'group', 'key']);
         });
     }
 

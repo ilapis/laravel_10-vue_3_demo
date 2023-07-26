@@ -14,6 +14,7 @@ beforeEach(function () {
     $this->language = Language::firstOrCreate($this->languageData);
 
     $this->translationKey = 'key_test';
+    $this->translationGroup = 'group_test';
     $this->translationValue = 'value_test';
     $this->translationValueUpdated = 'value_updated';
 });
@@ -21,11 +22,13 @@ beforeEach(function () {
 test('it can create a translation', function () {
     $translation = Translation::create([
         'language_id' => $this->language->id,
+        'group' => $this->translationGroup,
         'key' => $this->translationKey,
         'value' => $this->translationValue,
     ]);
 
     expect($translation->language_id)->toBe($this->language->id);
+    expect($translation->group)->toBe($this->translationGroup);
     expect($translation->key)->toBe($this->translationKey);
     expect($translation->value)->toBe($this->translationValue);
 

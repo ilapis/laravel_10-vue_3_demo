@@ -6,6 +6,9 @@
     --text-indent: 0.5rem;
     --small-text-indent: 0.375rem;
     --padding-4: 1rem;
+    --margin-2: 0.5rem;
+    --margin-3: 0.75rem;
+    --margin-4: 1rem;
     --col-width-1: 8.33%;
     --col-width-2: 16.66%;
     --col-width-3: 25%;
@@ -715,15 +718,31 @@ body {
 }
 
 .mt-4 {
-    margin-top: var(--padding-4);
+    margin-top: var(--margin-4);
+}
+
+.mt-3 {
+    margin-top: var(--margin-3);
+}
+
+.my-2 {
+    margin: 0 var(--margin-2);
 }
 
 .mb-4 {
-    margin-bottom: var(--padding-4);
+    margin-bottom: var(--margin-4);
+}
+
+.absolute {
+    position: absolute;
 }
 
 .block {
     display: block;
+}
+
+.inline {
+    display: inline-block;
 }
 
 .border {

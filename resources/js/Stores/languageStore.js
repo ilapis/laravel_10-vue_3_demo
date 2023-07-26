@@ -4,6 +4,7 @@ import http from "@/http.js";
 export const useLanguageStore = defineStore('language-store', {
     state: () => ({
         collection: null,
+        enabled: null,
         errors: null,
         _query_parameter_page: 1,
     }),
@@ -11,6 +12,12 @@ export const useLanguageStore = defineStore('language-store', {
         async fetchLanguages() {
             await http.get(`/api/v1/language`).then((response) => {
                 this.collection = response.data;
+            });
+        },
+
+        async fetchEnabled() {
+            await http.get(`/api/v1/language/enabled`).then((response) => {
+                this.enabled = response.data;
             });
         },
 
@@ -34,6 +41,7 @@ export const useLanguageStore = defineStore('language-store', {
                 } else {
                     this.errors = null;
                     this.refreshPage();
+                    this.fetchEnabled();
                 }
             });
         },
@@ -55,6 +63,7 @@ export const useLanguageStore = defineStore('language-store', {
                 } else {
                     this.errors = null;
                     this.refreshPage();
+                    this.fetchEnabled();
                 }
             });
         },
@@ -68,6 +77,7 @@ export const useLanguageStore = defineStore('language-store', {
                 } else {
                     this.errors = null;
                     this.refreshPage();
+                    this.fetchEnabled();
                 }
             });
         },

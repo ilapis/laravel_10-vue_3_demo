@@ -46,12 +46,6 @@ class LanguageController extends Controller
         ]);
     }
 
-    public function paged(Request $request): AnonymousResourceCollection
-    {
-        return //LanguageResource::collection(
-            $this->languageService->listPaged($request);
-    }
-
     public function store(Request $request, LanguageCreateRequest $languageCreateRequest): Response
     {
         $this->authorize('create', Language::class);

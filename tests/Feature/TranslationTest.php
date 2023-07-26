@@ -7,6 +7,7 @@ beforeEach(function () {
     $this->languageId = App\Models\Language::first()->id;
     $this->translationId = null;
     $this->translationKey = 'test_key';
+    $this->translationGroup = 'group_test';
     $this->translationValue = 'test_value';
     $this->translationValueUpated = 'test_value_updated';
 });
@@ -17,12 +18,14 @@ test('it create test_translation', function () {
         'Authorization' => 'Bearer ' . $this->token,
     ])->post('/api/v1/translation', [
         'language_id' => $this->languageId,
+        'group' => $this->translationGroup,
         'key' => $this->translationKey,
         'value' => $this->translationValue,
     ]);
 
     $data = json_decode($response->getContent(), true);
 
+    $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
     $this->assertEquals($this->translationValue, $data['value']);
 
@@ -38,6 +41,7 @@ test('it gets translation', function ($translationId) {
 
     $data = json_decode($response->getContent(), true);
 
+    $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
     $this->assertEquals($this->translationValue, $data['value']);
 
@@ -49,12 +53,14 @@ test('it updates translation', function ($translationId) {
         'Authorization' => 'Bearer ' . $this->token,
     ])->put('/api/v1/translation/' . $translationId, [
         'language_id' => $this->languageId,
+        'group' => $this->translationGroup,
         'key' => $this->translationKey,
         'value' => $this->translationValueUpated,
     ]);
 
     $data = json_decode($response->getContent(), true);
 
+    $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
     $this->assertEquals($this->translationValueUpated, $data['value']);
 

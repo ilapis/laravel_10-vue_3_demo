@@ -4,7 +4,18 @@ import vue from '@vitejs/plugin-vue';
 import fs from 'fs';
 import path from 'path';
 
+//#========== laravel-vue-i18n ==========
+//Generate json for frontend from laravel php
+//https://github.com/xiCO2k/laravel-vue-i18n
+//import i18n from 'laravel-vue-i18n/vite';
+
 export default defineConfig({
+    define: {
+        // Vue I18n feature flags. Adjust according to your needs
+        '__VUE_I18N_FULL_INSTALL__': false,
+        '__VUE_I18N_LEGACY_API__': true,
+        '__INTLIFY_PROD_DEVTOOLS__': false,
+    },
     server: {
         host: 'localhost', // replace with your domain
         cors: {
@@ -20,6 +31,8 @@ export default defineConfig({
     },
     plugins: [
 		vue(),
+        //#========== laravel-vue-i18n ==========
+        //i18n(),
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,

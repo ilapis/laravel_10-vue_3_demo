@@ -1,8 +1,9 @@
 <script setup>
 import {onMounted, onUnmounted, ref} from "vue";
 import AdministrationLayout from '@/Layouts/Administration.vue';
-import { useLanguageStore } from '@/Stores/languageStore.js';
 import TableComponent from "@/Components/UI/TableComponent.vue";
+import { useLanguageStore } from '@/Stores/languageStore.js';
+
 const languageStore = new useLanguageStore();
 
 const updateLanguages = async (dataPromise) => {

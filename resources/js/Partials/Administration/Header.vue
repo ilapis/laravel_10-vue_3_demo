@@ -2,6 +2,11 @@
 import { useRouter } from 'vue-router';
 import AuthService from '@/Services/authService.js';
 import {onMounted, onUnmounted, ref} from "vue";
+//import axios from "axios";
+import { getLanguage, loadLanguage } from '@/utils.js';
+import { useLanguageStore } from '@/Stores/languageStore.js';
+
+const languageStore = new useLanguageStore();
 
 let timerInterval;
 let logoutTimer = ref('');
@@ -35,6 +40,7 @@ const calculateTimeLeft = () => {
 }
 
 onMounted(() => {
+    languageStore.fetchEnabled();
     calculateTimeLeft();
     timerInterval = setInterval(calculateTimeLeft, 1000);
 });
@@ -42,12 +48,16 @@ onMounted(() => {
 onUnmounted(() => {
     clearInterval(timerInterval);
 });
+
+let language = ref(getLanguage());
 </script>
 
 <template>
     <div>
-        <ButtonComponent label="Logout" @click="logout" class="btn btn-primary float-right mr-4 mt-4" />
-        <div class="line-height-3rem height-12 float-right mr-4 mt-4">{{ logoutTimer }}</div>
+        <InputSelect class="inline float-left ml-4" style="width:200px;" :options="languageStore.enabled" v-model="language" @change="loadLanguage(language)" identifier="code" display="name" />
+
+        <ButtonComponent label="Logout" @click="logout" class="inline btn btn-primary float-right mr-4 mt-4" />
+        <div class="inline line-height-3rem height-12 float-right mr-4 mt-4">{{ logoutTimer }}</div>
     </div>
 </template>
 

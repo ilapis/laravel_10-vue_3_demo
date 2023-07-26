@@ -13,5 +13,14 @@ export const sharedInputProps = {
     },
     modelValue: {
         default: null
+    },
+    options: {
+        default: {}
+    },
+    identifier: {
+        default: null,
+    },
+    display: {
+        type: String,
     }
 };

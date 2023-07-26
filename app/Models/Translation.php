@@ -13,6 +13,7 @@ class Translation extends Model
 
     protected $fillable = [
         'language_id',
+        'group',
         'key',
         'value',
     ];

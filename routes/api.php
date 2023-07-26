@@ -26,6 +26,7 @@ Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], 
     });
 
     Route::get('/language/enabled', 'LanguageController@enabled');
+    Route::get('translation/locale/{language_code}', 'TranslationController@locale')->name('language_locale_list');
 
     Route::middleware('auth.jwt')->group(function () {
 

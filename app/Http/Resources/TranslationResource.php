@@ -21,6 +21,7 @@ class TranslationResource extends JsonResource
         return [
             'id' => $this->id,
             'language_id' => $this->language_id,
+            'group' => $this->group,
             'key' => $this->key,
             'value' => $this->value,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i') : null,
