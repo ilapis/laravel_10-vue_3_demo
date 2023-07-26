@@ -50,8 +50,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="line-height-3rem w-full mt-4" ref="dropdownRef">
-        <div @click="toggleDropdown" class="border border-bottom" style="margin-top: -1px;">
+    <div class="select-wrapper line-height-3rem w-full mt-4" ref="dropdownRef">
+        <div @click="toggleDropdown" class="selection-display border border-bottom" style="margin-top: -1px;">
             {{displayRecord?.name}}
             <DownIcon v-if="!showDropdown" class="line-height-3rem float-right mt-3" />
             <UpIcon v-else class="line-height-3rem float-right mt-3" />
@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
             :errors="props.errors"
         />
 
-        <div v-if="showDropdown" class="w-full block box-shadow" style="width:232px;text-indent:1rem;max-height: 15rem;overflow: auto;margin-left: -1rem;position: sticky;">
+        <div v-if="showDropdown" class="select-content w-full block box-shadow" style="width:232px;text-indent:1rem;max-height: 15rem;overflow: auto;margin-left: -1rem;position: sticky;">
             <template v-for="(option, index) in props.options" :key="index">
                 <slot name="option" :option="option" :index="index">
                     <div

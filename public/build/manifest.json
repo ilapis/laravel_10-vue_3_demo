@@ -56,7 +56,7 @@
     "src": "node_modules/@fontsource/roboto/files/roboto-vietnamese-400-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-afe8e1c5.css",
+    "file": "assets/app-872c3c16.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -84,7 +84,7 @@
     "css": [
       "assets/app-93d9f989.css"
     ],
-    "file": "assets/app-d93b6112.js",
+    "file": "assets/app-dbaf436a.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
