@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use LaravelLegends\EloquentFilter\Concerns\HasFilter;
 use Illuminate\Database\Eloquent\Model;
+use LaravelLegends\EloquentFilter\Concerns\HasFilter;
 
 class Language extends Model
 {

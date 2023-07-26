@@ -3,11 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 class LanguageUpdateRequest extends BaseRequest
 {
     /**
-     * @return array<string, string>
+     * @return array<string, array<int,Unique|string>|string>
      */
     public function rules(): array
     {

@@ -15,7 +15,7 @@ beforeEach(function () {
 test('it create test_translation', function () {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ])->post('/api/v1/translation', [
         'language_id' => $this->languageId,
         'group' => $this->translationGroup,
@@ -23,7 +23,7 @@ test('it create test_translation', function () {
         'value' => $this->translationValue,
     ]);
 
-    $data = json_decode($response->getContent(), true);
+    $data = json_decode($response->getContent(), true)['data'];
 
     $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
@@ -36,10 +36,10 @@ test('it create test_translation', function () {
 test('it gets translation', function ($translationId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->get('/api/v1/translation/' . $translationId);
+        'Authorization' => 'Bearer '.$this->token,
+    ])->get('/api/v1/translation/'.$translationId);
 
-    $data = json_decode($response->getContent(), true);
+    $data = json_decode($response->getContent(), true)['data'];
 
     $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
@@ -50,15 +50,15 @@ test('it gets translation', function ($translationId) {
 test('it updates translation', function ($translationId) {
 
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->put('/api/v1/translation/' . $translationId, [
+        'Authorization' => 'Bearer '.$this->token,
+    ])->put('/api/v1/translation/'.$translationId, [
         'language_id' => $this->languageId,
         'group' => $this->translationGroup,
         'key' => $this->translationKey,
         'value' => $this->translationValueUpated,
     ]);
 
-    $data = json_decode($response->getContent(), true);
+    $data = json_decode($response->getContent(), true)['data'];
 
     $this->assertEquals($this->translationGroup, $data['group']);
     $this->assertEquals($this->translationKey, $data['key']);
@@ -70,7 +70,7 @@ test('it updates translation', function ($translationId) {
 
 test('it get translations', function () {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ])->get('/api/v1/translation');
 
     $data = json_decode($response->getContent(), true);
@@ -90,8 +90,8 @@ test('it get translations', function () {
 
 test('it delete translation', function ($translationId) {
     $response = $this->withHeaders([
-        'Authorization' => 'Bearer ' . $this->token,
-    ])->delete('/api/v1/translation/' . $translationId);
+        'Authorization' => 'Bearer '.$this->token,
+    ])->delete('/api/v1/translation/'.$translationId);
 
     $this->assertEquals(204, $response->getStatusCode());
 

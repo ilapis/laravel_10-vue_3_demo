@@ -9,6 +9,7 @@ use App\Http\Requests\TranslationUpdateRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
 use App\Services\TranslationService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -20,12 +21,12 @@ class TranslationController extends Controller
 
     }
 
-    public function show(Translation $translation): Response
+    public function show(Translation $translation): TranslationResource
     {
-        return response(new TranslationResource($translation));
+        return new TranslationResource($translation);
     }
 
-    public function locale($language_code): Response
+    public function locale(string $language_code): Response
     {
         $translations = Translation::query()
             ->whereHas('language', function ($query) use ($language_code) {
@@ -57,7 +58,7 @@ class TranslationController extends Controller
         ]);
     }
 
-    public function store(TranslationCreateRequest $translationCreateRequest): Response
+    public function store(TranslationCreateRequest $translationCreateRequest): JsonResponse
     {
         $this->authorize('create', Translation::class);
 
@@ -65,10 +66,10 @@ class TranslationController extends Controller
             TranslationDTO::fromRequest($translationCreateRequest)
         );
 
-        return response(new TranslationResource($translation), 201);
+        return (new TranslationResource($translation))->response()->setStatusCode(201);
     }
 
-    public function update(Translation $translation, TranslationUpdateRequest $translationUpdateRequest): Response
+    public function update(Translation $translation, TranslationUpdateRequest $translationUpdateRequest): TranslationResource
     {
         $this->authorize('update', $translation);
 
@@ -77,7 +78,7 @@ class TranslationController extends Controller
             TranslationDTO::fromRequest($translationUpdateRequest)
         );
 
-        return response(new TranslationResource($translation));
+        return new TranslationResource($translation);
     }
 
     public function destroy(Translation $translation): Response

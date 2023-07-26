@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageCreateRequest;
 use App\Http\Requests\LanguageUpdateRequest;
 use App\Http\Resources\LanguageResource;
-use App\Http\Resources\LanguageResourceCollection;
 use App\Models\Language;
 use App\Services\LanguageService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -21,14 +21,14 @@ class LanguageController extends Controller
 
     }
 
-    public function enabled(): Response
+    public function enabled(): AnonymousResourceCollection
     {
-        return response(LanguageResource::collection($this->languageService->enabled()));
+        return LanguageResource::collection($this->languageService->enabled());
     }
 
-    public function show(Language $language): Response
+    public function show(Language $language): LanguageResource
     {
-        return response(new LanguageResource($language));
+        return new LanguageResource($language);
     }
 
     public function index(Request $request): AnonymousResourceCollection
@@ -46,7 +46,7 @@ class LanguageController extends Controller
         ]);
     }
 
-    public function store(LanguageCreateRequest $languageCreateRequest): Response
+    public function store(LanguageCreateRequest $languageCreateRequest): JsonResponse
     {
         $this->authorize('create', Language::class);
 
@@ -54,10 +54,10 @@ class LanguageController extends Controller
             LanguageDTO::fromRequest($languageCreateRequest)
         );
 
-        return response(new LanguageResource($language), 201);
+        return (new LanguageResource($language))->response()->setStatusCode(201);
     }
 
-    public function update(Language $language, LanguageUpdateRequest $languageUpdateRequest): Response
+    public function update(Language $language, LanguageUpdateRequest $languageUpdateRequest): LanguageResource
     {
         $this->authorize('update', $language);
 
@@ -66,7 +66,7 @@ class LanguageController extends Controller
             LanguageDTO::fromRequest($languageUpdateRequest)
         );
 
-        return response(new LanguageResource($language));
+        return new LanguageResource($language);
     }
 
     public function destroy(Language $language): Response

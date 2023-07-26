@@ -38,7 +38,7 @@ test('it can update a language', function ($languageId) {
 
     return $languageId;
 
-})->depends('it can create a language',);
+})->depends('it can create a language');
 
 test('it can delete a language', function ($languageId) {
 
@@ -50,4 +50,4 @@ test('it can delete a language', function ($languageId) {
 
     expect($deletedLanguage)->toBeNull();
 
-})->depends('it can update a language',);;
+})->depends('it can update a language');

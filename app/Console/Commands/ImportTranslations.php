@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use App\Models\Language;
 use App\Models\Translation;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 
 class ImportTranslations extends Command
@@ -33,8 +33,9 @@ class ImportTranslations extends Command
     {
         $filePath = $this->argument('file');
 
-        if (!file_exists($filePath) || !is_readable($filePath)) {
-            $this->error("The file does not exist or is not readable.");
+        if (! file_exists($filePath) || ! is_readable($filePath)) {
+            $this->error('The file does not exist or is not readable.');
+
             return;
         }
 
@@ -64,6 +65,6 @@ class ImportTranslations extends Command
             }
         });
 
-        $this->info("Import completed successfully.");
+        $this->info('Import completed successfully.');
     }
 }

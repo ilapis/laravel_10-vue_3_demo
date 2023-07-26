@@ -62,6 +62,8 @@ class RefreshTestDatabase extends Command
 
     /**
      * Export the structure of the original database, excluding specified tables.
+     *
+     * @param  string[]  $excludeTables
      */
     protected function exportDatabaseStructure(string $database, array $excludeTables): void
     {

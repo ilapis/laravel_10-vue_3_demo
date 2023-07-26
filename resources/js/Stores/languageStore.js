@@ -17,7 +17,7 @@ export const useLanguageStore = defineStore('language-store', {
 
         async fetchEnabled() {
             await http.get(`/api/v1/language/enabled`).then((response) => {
-                this.enabled = response.data;
+                this.enabled = response.data.data;
             });
         },
 
@@ -50,7 +50,7 @@ export const useLanguageStore = defineStore('language-store', {
 
             return http.get(`/api/v1/language/${id}`).then((response) => {
                 this.errors = null;
-                return response.data;
+                return response.data.data;
             });
         },
 

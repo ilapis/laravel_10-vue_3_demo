@@ -26,6 +26,9 @@ class LanguageDTO extends DataTransferObject
         return new self($data);
     }
 
+    /**
+     * @return array<string, int|string|bool>
+     */
     public function getAttributes(): array
     {
         $data = [
