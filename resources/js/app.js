@@ -21,9 +21,13 @@ import InputSelect from "@/Components/UI/InputSelect.vue";
 import ButtonComponent from "@/Components/UI/ButtonComponent.vue";
 import ModalComponent from "@/Components/UI/ModalComponent.vue";
 import TableComponent from "@/Components/UI/TableComponent.vue";
+import TablePaginationComponent from "@/Components/UI/TablePaginationComponent.vue";
 import LanguageForm from "@/Forms/LanguageForm.vue";
+import TranslationForm from "@/Forms/TranslationForm.vue";
 import LanguageCreateModal from "@/Components/Modals/LanguageCreateModal.vue";
 import LanguageEditModal from "@/Components/Modals/LanguageEditModal.vue";
+import TranslationCreateModal from "@/Components/Modals/TranslationCreateModal.vue";
+import TranslationEditModal from "@/Components/Modals/TranslationEditModal.vue";
 import DeleteModal from "@/Components/Modals/DeleteModal.vue";
 
 const pinia = createPinia()
@@ -54,7 +58,11 @@ app.component('UpIcon', UpIcon);
 app.component('DownIcon', DownIcon);
 app.component('ModalComponent', ModalComponent);
 app.component('TableComponent', TableComponent);
+app.component('TablePaginationComponent', TablePaginationComponent);
 app.component('LanguageCreateModal', LanguageCreateModal);
+app.component('TranslationCreateModal', TranslationCreateModal);
+app.component('TranslationEditModal', TranslationEditModal);
 app.component('LanguageForm', LanguageForm);
+app.component('TranslationForm', TranslationForm);
 app.component('LanguageEditModal', LanguageEditModal);
 app.component('DeleteModal', DeleteModal);

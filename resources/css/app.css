@@ -710,8 +710,12 @@ body {
     padding: var(--padding-4);
 }
 
-.py-4 {
+.px-4 {
     padding: 0 var(--padding-4);
+}
+
+.py-4 {
+    padding: var(--padding-4) 0;
 }
 
 .pr-1 {
@@ -844,6 +848,9 @@ input {
 }
 .bg-primary .select-content {
     background: #ffffff;
+    color: #000000;
+}
+.bg-primary .select-content:hover {
     color: #000000;
 }
 

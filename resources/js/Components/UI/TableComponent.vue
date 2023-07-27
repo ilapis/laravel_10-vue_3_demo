@@ -21,7 +21,7 @@ const tableBodyId = ref("table_body_" + generateRandomId());
 const setTableBodyHeight = () => {
     const tableBody = document.getElementById(tableBodyId.value);
     if (tableBody) {
-        tableBody.style.height = window.innerHeight - 276 + "px";
+        tableBody.style.height = window.innerHeight - 286 + "px";
     }
 };
 onMounted( () => {

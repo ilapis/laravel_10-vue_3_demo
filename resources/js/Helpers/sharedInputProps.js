@@ -1,26 +1,26 @@
 export const sharedInputProps = {
     label: {
         type: String,
-        default: ''
+        default: '',
     },
     underlineText: {
         type: Array,
-        default: ['']
+        default: [''],
     },
     errors: {
         type: Array,
-        default: null
+        default: null,
     },
     modelValue: {
-        default: null
+        default: null,
     },
     options: {
-        default: {}
+        default: null,
     },
     identifier: {
         default: null,
     },
     display: {
         type: String,
-    }
+    },
 };

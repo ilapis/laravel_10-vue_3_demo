@@ -5,6 +5,9 @@ lt,table,language,Kalba
 lt,table,enabled,Įjungta
 lt,table,created_at,Sukurta
 lt,table,updated_at,Atnaujinta
+lt,table,group,Grupė
+lt,table,key,Raktas
+lt,table,value,Reikšmė
 lt,button,login,Prisijungti
 lt,button,logout,Atsijungti
 lt,button,delete,Ištrinti

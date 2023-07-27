@@ -5,6 +5,9 @@ en,table,language,Language
 en,table,enabled,Enabled
 en,table,created_at,Created
 en,table,updated_at,Updated
+en,table,group,Group
+en,table,key,Key
+en,table,value,Value
 en,button,login,Login
 en,button,logout,Logout
 en,button,delete,Delete
