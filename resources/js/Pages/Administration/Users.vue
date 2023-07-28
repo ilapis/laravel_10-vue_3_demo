@@ -13,19 +13,25 @@ onMounted( async () => {
 </script>
 
 <template>
-    <AdministrationLayout>
-        <div class="w-full mt-4 height-12">
-            <UserCreateModal />
-        </div>
-        <div class="w-full" style="height:calc(100% - 8rem);">
-            <TableComponent
-                :service="userStore"
-                :rows="userStore.collection?.data"
-                :rowSettings="userTableSettings"
-            />
-        </div>
-        <TablePaginationComponent :links="userStore.collection?.meta?.links" :service="userStore" />
-    </AdministrationLayout>
+  <AdministrationLayout>
+    <div class="w-full mt-4 height-12">
+      <UserCreateModal />
+    </div>
+    <div
+      class="w-full"
+      style="height:calc(100% - 8rem);"
+    >
+      <TableComponent
+        :service="userStore"
+        :rows="userStore.collection?.data"
+        :row-settings="userTableSettings"
+      />
+    </div>
+    <TablePaginationComponent
+      :links="userStore.collection?.meta?.links"
+      :service="userStore"
+    />
+  </AdministrationLayout>
 </template>
 
 <style scoped>

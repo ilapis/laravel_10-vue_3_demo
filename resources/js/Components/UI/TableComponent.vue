@@ -41,38 +41,59 @@ function generateRandomId() {
 
 
 <template>
-    <div class="w-full" style="height:calc(100% - 8rem);">
-
-        <table class="w-full" style="height:calc(100% - 8rem);">
-            <thead>
-            <tr class="line-height-4rem text-indent-1rem text-align-left">
-                <template class=" height-12" v-for="(header, index) in rowSettings" :key="index">
-                    <th :style="'width:'+`${header?.width}`+';'">
-                        <template v-if="header.type !== 'component'">
-                        {{$t('table.' + (header?.title ?? header?.column))}}
-                        </template>
-                    </th>
-                </template>
-            </tr>
-            </thead>
-            <tbody :id="tableBodyId" class="w-full">
-            <tr class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey" v-for="row in rows" :key="row.id">
-                <template class=" height-12" v-for="(header, index) in rowSettings" :key="header">
-                    <td :style="'width:'+`${header?.width}`+';'">
-                        <component v-if="header?.type == 'component'"
-                                   :is="header.component"
-                                   :id="row.id"
-                                   :service="props.service"
-                        />
-                        <template v-else>
-                            {{row[header.column]}}
-                        </template>
-                    </td>
-                </template>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div
+    class="w-full"
+    style="height:calc(100% - 8rem);"
+  >
+    <table
+      class="w-full"
+      style="height:calc(100% - 8rem);"
+    >
+      <thead>
+        <tr class="line-height-4rem text-indent-1rem text-align-left">
+          <template
+            v-for="(header, index) in rowSettings"
+            :key="index"
+            class=" height-12"
+          >
+            <th :style="'width:'+`${header?.width}`+';'">
+              <template v-if="header.type !== 'component'">
+                {{ $t('table.' + (header?.title ?? header?.column)) }}
+              </template>
+            </th>
+          </template>
+        </tr>
+      </thead>
+      <tbody
+        :id="tableBodyId"
+        class="w-full"
+      >
+        <tr
+          v-for="row in rows"
+          :key="row.id"
+          class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey"
+        >
+          <template
+            v-for="(header, index) in rowSettings"
+            :key="header"
+            class=" height-12"
+          >
+            <td :style="'width:'+`${header?.width}`+';'">
+              <component
+                :is="header.component"
+                v-if="header?.type == 'component'"
+                :id="row.id"
+                :service="props.service"
+              />
+              <template v-else>
+                {{ row[header.column] }}
+              </template>
+            </td>
+          </template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped>

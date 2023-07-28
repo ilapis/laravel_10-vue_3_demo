@@ -46,14 +46,17 @@ const destroy = () => {
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-danger height-12 ml-4 box-shadow" @click="openModal" label="Delete" />
-    <ModalComponent
-        :show="showModal"
-        actionLabel="Delete"
-        @update:show="showModal = $event"
-        @update:action="doModalAction($event)" >
-
-    </ModalComponent>
+  <ButtonComponent
+    class="btn btn-danger height-12 ml-4 box-shadow"
+    label="Delete"
+    @click="openModal"
+  />
+  <ModalComponent
+    :show="showModal"
+    action-label="Delete"
+    @update:show="showModal = $event"
+    @update:action="doModalAction($event)"
+  />
 </template>
 
 <style scoped>

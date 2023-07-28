@@ -17,25 +17,36 @@ function action(action) {
 </script>
 
 <template>
-    <template v-if="show">
-        <div class="modal-backdrop">
-            <div class="modal box-shadow">
-                <div class="modal-header w-full">
-                    <slot name="header"></slot>
-                    <CloseIcon class="modal-close-icon box-shadow" @click="closeModal" />
-                </div>
-                <div class="modal-body">
-                    <slot></slot>
-                </div>
-                <div class="modal-footer height-12">
-                    <slot name="footer">
-                        <ButtonComponent label="Cancel" class="btn-default float-left" @click="action('cancel')" />
-                        <ButtonComponent :label="actionLabel" class="btn-primary float-right" @click="action('action')" />
-                    </slot>
-                </div>
-            </div>
+  <template v-if="show">
+    <div class="modal-backdrop">
+      <div class="modal box-shadow">
+        <div class="modal-header w-full">
+          <slot name="header" />
+          <CloseIcon
+            class="modal-close-icon box-shadow"
+            @click="closeModal"
+          />
         </div>
-    </template>
+        <div class="modal-body">
+          <slot />
+        </div>
+        <div class="modal-footer height-12">
+          <slot name="footer">
+            <ButtonComponent
+              label="Cancel"
+              class="btn-default float-left"
+              @click="action('cancel')"
+            />
+            <ButtonComponent
+              :label="actionLabel"
+              class="btn-primary float-right"
+              @click="action('action')"
+            />
+          </slot>
+        </div>
+      </div>
+    </div>
+  </template>
 </template>
 
 <style scoped>

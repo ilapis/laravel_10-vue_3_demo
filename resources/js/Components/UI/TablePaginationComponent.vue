@@ -26,18 +26,26 @@ const decodeHtmlEntities = (str) => {
 </script>
 
 <template>
-    <div class="pagination mt-3 py-4 bg-primary">
-        <template v-for="(link, index) in links" :key="index">
-            <button class="btn btn-pagination mt-1 border-none box-shadow" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
-                <template v-if="!isNaN(link.label)">
-                    {{ decodeHtmlEntities(link.label.toLowerCase()) }}
-                </template>
-                <template v-else>
-                    {{ $t('button.' + decodeHtmlEntities(link.label.toLowerCase())) }}
-                </template>
-            </button>
+  <div class="pagination mt-3 py-4 bg-primary">
+    <template
+      v-for="(link, index) in links"
+      :key="index"
+    >
+      <button
+        class="btn btn-pagination mt-1 border-none box-shadow"
+        :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`"
+        :disabled="!link.url"
+        @click="changePage(link.url)"
+      >
+        <template v-if="!isNaN(link.label)">
+          {{ decodeHtmlEntities(link.label.toLowerCase()) }}
         </template>
-    </div>
+        <template v-else>
+          {{ $t('button.' + decodeHtmlEntities(link.label.toLowerCase())) }}
+        </template>
+      </button>
+    </template>
+  </div>
 </template>
 
 <style scoped>

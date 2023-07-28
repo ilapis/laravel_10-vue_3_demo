@@ -19,19 +19,25 @@ onMounted( async () => {
 </script>
 
 <template>
-    <AdministrationLayout>
-        <div class="w-full mt-4 height-12">
-            <TranslationCreateModal />
-        </div>
-        <div class="w-full" style="height:calc(100% - 8rem);">
-            <TableComponent
-                :service="translationStore"
-                :rows="translationStore.collection?.data"
-                :rowSettings="translationTableSettings"
-            />
-        </div>
-        <TablePaginationComponent :links="translationStore.collection?.meta?.links" :service="translationStore" />
-    </AdministrationLayout>
+  <AdministrationLayout>
+    <div class="w-full mt-4 height-12">
+      <TranslationCreateModal />
+    </div>
+    <div
+      class="w-full"
+      style="height:calc(100% - 8rem);"
+    >
+      <TableComponent
+        :service="translationStore"
+        :rows="translationStore.collection?.data"
+        :row-settings="translationTableSettings"
+      />
+    </div>
+    <TablePaginationComponent
+      :links="translationStore.collection?.meta?.links"
+      :service="translationStore"
+    />
+  </AdministrationLayout>
 </template>
 
 <style scoped>

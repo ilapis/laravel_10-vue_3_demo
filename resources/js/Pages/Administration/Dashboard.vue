@@ -3,9 +3,9 @@ import AdministrationLayout from '@/Layouts/Administration.vue';
 </script>
 
 <template>
-    <AdministrationLayout>
-        Dashboard
-    </AdministrationLayout>
+  <AdministrationLayout>
+    Dashboard
+  </AdministrationLayout>
 </template>
 
 <style scoped>

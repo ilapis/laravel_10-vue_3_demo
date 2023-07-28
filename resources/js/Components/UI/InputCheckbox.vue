@@ -21,14 +21,23 @@ const updateInputValue = (event) => {
 </script>
 
 <template>
-    <div class="w-full mt-4 indent-0">
-        <input v-if="inputValue" type="checkbox" checked @change="updateInputValue"/>
-        <input v-else type="checkbox" @change="updateInputValue"/>
-        <label class="float-left ml-4">{{props.label}}</label>
+  <div class="w-full mt-4 indent-0">
+    <input
+      v-if="inputValue"
+      type="checkbox"
+      checked
+      @change="updateInputValue"
+    >
+    <input
+      v-else
+      type="checkbox"
+      @change="updateInputValue"
+    >
+    <label class="float-left ml-4">{{ props.label }}</label>
 
-        <UnderlineComponent
-            :underlineText="props.underlineText"
-            :errors="props.errors"
-        />
-    </div>
+    <UnderlineComponent
+      :underline-text="props.underlineText"
+      :errors="props.errors"
+    />
+  </div>
 </template>

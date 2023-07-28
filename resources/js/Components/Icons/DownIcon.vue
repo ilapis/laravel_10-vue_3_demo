@@ -3,14 +3,19 @@
 </script>
 
 <template>
-    <svg height="24px"
-         id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"
-         viewBox="0 0 512 512"
-         width="24px"
-         xml:space="preserve"
-         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 "/>
-    </svg>
+  <svg
+    id="Layer_1"
+    height="24px"
+    style="enable-background:new 0 0 512 512;"
+    version="1.1"
+    viewBox="0 0 512 512"
+    width="24px"
+    xml:space="preserve"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+    <polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 " />
+  </svg>
 </template>
 
 <style scoped>

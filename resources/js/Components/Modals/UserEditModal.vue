@@ -40,19 +40,23 @@ const populateAndOpenModal = async () => {
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow" @click="populateAndOpenModal" label="Edit" />
-    <ModalComponent
-        :show="showModal"
-        actionLabel="Update"
-        @update:show="showModal = $event"
-        @update:action="doModalAction($event)" >
-
-        <UserForm
-            :userStore="userStore"
-            :abilitiesStore="abilitiesStore"
-            :form="userStore.getForm()"
-        />
-    </ModalComponent>
+  <ButtonComponent
+    class="btn btn-primary height-12 ml-4 box-shadow"
+    label="Edit"
+    @click="populateAndOpenModal"
+  />
+  <ModalComponent
+    :show="showModal"
+    action-label="Update"
+    @update:show="showModal = $event"
+    @update:action="doModalAction($event)"
+  >
+    <UserForm
+      :user-store="userStore"
+      :abilities-store="abilitiesStore"
+      :form="userStore.getForm()"
+    />
+  </ModalComponent>
 </template>
 
 <style scoped>

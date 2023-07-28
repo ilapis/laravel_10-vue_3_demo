@@ -22,16 +22,24 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="w-full block small-text">
-          <template v-if="props.errors">
-            <span class="error" v-for="(error, index) in props.errors" :key="index">
-                {{error}}
-            </span>
-          </template>
-          <template v-else>
-            <span class="no-error" v-for="(text, index) in props.underlineText" :key="index">
-                {{text}}
-            </span>
-          </template>
-    </div>
+  <div class="w-full block small-text">
+    <template v-if="props.errors">
+      <span
+        v-for="(error, index) in props.errors"
+        :key="index"
+        class="error"
+      >
+        {{ error }}
+      </span>
+    </template>
+    <template v-else>
+      <span
+        v-for="(text, index) in props.underlineText"
+        :key="index"
+        class="no-error"
+      >
+        {{ text }}
+      </span>
+    </template>
+  </div>
 </template>

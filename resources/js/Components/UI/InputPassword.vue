@@ -21,13 +21,19 @@ const updateInputValue = (event) => {
 </script>
 
 <template>
-    <div class="w-full mt-4">
-        <label class="block">{{props.label}}</label>
-        <input type="password" :value="inputValue" @input="updateInputValue" autocomplete="off" class="w-full border-bottom" />
+  <div class="w-full mt-4">
+    <label class="block">{{ props.label }}</label>
+    <input
+      type="password"
+      :value="inputValue"
+      autocomplete="off"
+      class="w-full border-bottom"
+      @input="updateInputValue"
+    >
 
-        <UnderlineComponent
-            :underlineText="props.underlineText"
-            :errors="props.errors"
-        />
-    </div>
+    <UnderlineComponent
+      :underline-text="props.underlineText"
+      :errors="props.errors"
+    />
+  </div>
 </template>

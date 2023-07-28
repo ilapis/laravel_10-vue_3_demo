@@ -19,18 +19,22 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, () =
 </script>
 
 <template>
-    <ButtonComponent class="btn btn-primary height-12 ml-4 box-shadow" @click="openModal" label="Add" />
-    <ModalComponent
-        :show="showModal"
-        actionLabel="Create"
-        @update:show="showModal = $event"
-        @update:action="doModalAction($event)" >
-
-        <LanguageForm
-            :languageStore="languageStore"
-            :form="languageStore.getForm()"
-        />
-    </ModalComponent>
+  <ButtonComponent
+    class="btn btn-primary height-12 ml-4 box-shadow"
+    label="Add"
+    @click="openModal"
+  />
+  <ModalComponent
+    :show="showModal"
+    action-label="Create"
+    @update:show="showModal = $event"
+    @update:action="doModalAction($event)"
+  >
+    <LanguageForm
+      :language-store="languageStore"
+      :form="languageStore.getForm()"
+    />
+  </ModalComponent>
 </template>
 
 <style scoped>

@@ -54,39 +54,64 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="select-wrapper line-height-3rem w-full mt-4 position-relative" ref="dropdownRef">
+  <div
+    ref="dropdownRef"
+    class="select-wrapper line-height-3rem w-full mt-4 position-relative"
+  >
+    <label
+      v-if="props.label"
+      class="float-left"
+    >{{ props.label }}</label>
 
-        <label v-if="props.label" class="float-left">{{props.label}}</label>
-
-        <div @click="toggleDropdown" class="selection-display border border-bottom">
-            <template v-if="displayRecord">
-                {{displayRecord[props.display]}}
-            </template>
-            <template v-else>
-                {{$t('Select option')}}
-            </template>
-            <DownIcon v-if="!showDropdown" class="line-height-3rem float-right mt-3" />
-            <UpIcon v-else class="line-height-3rem float-right mt-3" />
-        </div>
-
-        <UnderlineComponent
-            :underlineText="props.underlineText"
-            :errors="props.errors"
-        />
-
-        <div v-if="showDropdown" class="select-content block box-shadow position-absolute w-100" >
-            <template v-for="(option, index) in props.options" :key="index">
-                <slot name="option" :option="option" :index="index">
-                    <div
-                        @click="updateInputValue(option[props.identifier])"
-                        class="line-height-3rem bg-hover-grey"
-                        :class="`${(props.modelValue === option[props.identifier]) ? 'btn-primary ' : '' }`">
-                        {{option[props.display] ?? option}}
-                    </div>
-                </slot>
-            </template>
-        </div>
+    <div
+      class="selection-display border border-bottom"
+      @click="toggleDropdown"
+    >
+      <template v-if="displayRecord">
+        {{ displayRecord[props.display] }}
+      </template>
+      <template v-else>
+        {{ $t('Select option') }}
+      </template>
+      <DownIcon
+        v-if="!showDropdown"
+        class="line-height-3rem float-right mt-3"
+      />
+      <UpIcon
+        v-else
+        class="line-height-3rem float-right mt-3"
+      />
     </div>
+
+    <UnderlineComponent
+      :underline-text="props.underlineText"
+      :errors="props.errors"
+    />
+
+    <div
+      v-if="showDropdown"
+      class="select-content block box-shadow position-absolute w-100"
+    >
+      <template
+        v-for="(option, index) in props.options"
+        :key="index"
+      >
+        <slot
+          name="option"
+          :option="option"
+          :index="index"
+        >
+          <div
+            class="line-height-3rem bg-hover-grey"
+            :class="`${(props.modelValue === option[props.identifier]) ? 'btn-primary ' : '' }`"
+            @click="updateInputValue(option[props.identifier])"
+          >
+            {{ option[props.display] ?? option }}
+          </div>
+        </slot>
+      </template>
+    </div>
+  </div>
 </template>
 
 <style setup>

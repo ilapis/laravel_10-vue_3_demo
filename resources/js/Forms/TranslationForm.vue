@@ -19,37 +19,38 @@ const props = defineProps({
 </script>
 
 <template>
-        <div>
-            <br/>
-            <InputSelect
-                class="mt-4"
-                label="Language"
-                :options="languageStore?.collection?.data"
-                v-model="form.language_id"
-                identifier="id" display="name"
-            />
+  <div>
+    <br>
+    <InputSelect
+      v-model="form.language_id"
+      class="mt-4"
+      label="Language"
+      :options="languageStore?.collection?.data"
+      identifier="id"
+      display="name"
+    />
 
-            <InputText
-                label="Group"
-                :underlineText="['The group field is required.']"
-                :errors="translationStore?.errors?.group"
-                v-model="form.group"
-            />
+    <InputText
+      v-model="form.group"
+      label="Group"
+      :underline-text="['The group field is required.']"
+      :errors="translationStore?.errors?.group"
+    />
 
-            <InputText
-                label="Key"
-                :underlineText="['The key field is required.']"
-                :errors="translationStore?.errors?.key"
-                v-model="form.key"
-            />
+    <InputText
+      v-model="form.key"
+      label="Key"
+      :underline-text="['The key field is required.']"
+      :errors="translationStore?.errors?.key"
+    />
 
-            <InputText
-                label="Value"
-                :underlineText="['The value field is required.']"
-                :errors="translationStore?.errors?.name"
-                v-model="form.value"
-            />
-        </div>
+    <InputText
+      v-model="form.value"
+      label="Value"
+      :underline-text="['The value field is required.']"
+      :errors="translationStore?.errors?.name"
+    />
+  </div>
 </template>
 
 <style scoped>

@@ -11,7 +11,7 @@ export default markRaw({
 </script>
 
 <template>
-    <slot></slot>
+  <slot />
 </template>
 
 <style scoped>

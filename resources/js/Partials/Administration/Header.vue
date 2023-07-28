@@ -53,18 +53,29 @@ let language = ref(getLanguage());
 </script>
 
 <template>
-    <div>
-        <div class="inline float-left ml-4 bg-primary" style="width:200px;">
-        <InputSelect :options="languageStore.enabled"
-                     v-model="language"
-                     @change="loadLanguage(language)"
-                     identifier="code"
-                     display="name" />
-        </div>
-
-        <ButtonComponent label="logout" @click="logout" class="inline btn btn-primary float-right mr-4 mt-4" />
-        <div class="logout-timer inline line-height-3rem height-12 float-right mr-4 mt-4">{{ logoutTimer }}</div>
+  <div>
+    <div
+      class="inline float-left ml-4 bg-primary"
+      style="width:200px;"
+    >
+      <InputSelect
+        v-model="language"
+        :options="languageStore.enabled"
+        identifier="code"
+        display="name"
+        @change="loadLanguage(language)"
+      />
     </div>
+
+    <ButtonComponent
+      label="logout"
+      class="inline btn btn-primary float-right mr-4 mt-4"
+      @click="logout"
+    />
+    <div class="logout-timer inline line-height-3rem height-12 float-right mr-4 mt-4">
+      {{ logoutTimer }}
+    </div>
+  </div>
 </template>
 
 <style scoped>

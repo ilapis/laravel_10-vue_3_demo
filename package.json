@@ -9,6 +9,8 @@
     "devDependencies": {
         "@tkskto/vue-component-analyzer": "^0.8.0",
         "axios": "^1.4.0",
+        "eslint": "^8.46.0",
+        "eslint-plugin-vue": "^9.15.1",
         "laravel-vite-plugin": "^0.7.5",
         "vite": "^4.0.0"
     },

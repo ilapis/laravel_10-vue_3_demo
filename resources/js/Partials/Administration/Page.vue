@@ -2,9 +2,9 @@
 </script>
 
 <template>
-    <div>
-        <slot></slot>
-    </div>
+  <div>
+    <slot />
+  </div>
 </template>
 
 <style scoped>
