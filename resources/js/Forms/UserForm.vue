@@ -1,40 +1,19 @@
 <script setup>
-import {onMounted, reactive, ref, watchEffect} from "vue";
-import { defineProps, defineEmits } from "vue"
+import {onMounted, reactive} from "vue";
 
-const props = defineProps({
-    userStore: {
-        type: Object,
-        default: () => ({})
-    },
-    abilitiesStore: {
-        type: Object,
-        default: () => ({})
-    },
-    form: {
-        type: Object,
-        default: () => ({})
-    },
-})
+import { useUserStore } from '@/Stores/userStore.js';
+import { useAbilitiesStore } from '@/Stores/abilitiesStore.js';
+const userStore = new useUserStore();
+const abilitiesStore = new useAbilitiesStore();
 
-const emit = defineEmits(['update:form'])
-
-let localForm = ref({ ...props.form })
-
-watchEffect(() => {
-    localForm.value = { ...props.form }
-})
-
-watchEffect(() => {
-    emit('update:form', localForm.value)
-})
-
+let localForm = userStore.getForm();
 let groupedAbilities = reactive({});
 let userAbilities = reactive([]);
 
 onMounted(() => {
+    abilitiesStore.fetchCollection();
     // Group abilities
-    for (let ability of props.abilitiesStore.collection) {
+    for (let ability of abilitiesStore.collection) {
         let split = ability.name.split('_');
         if (split[split.length - 1] === 'user') {
             userAbilities.push(ability);
@@ -64,17 +43,16 @@ const capitalize = (string) => {
 }
 
 const toggleAbility = (ability) => {
-    const index = localForm.value.abilities.indexOf(ability);
+    const index = localForm.abilities.indexOf(ability);
     if (index === -1) {
-        localForm.value.abilities.push(ability);
+        localForm.abilities.push(ability);
     } else {
-        localForm.value.abilities.splice(index, 1);
+        localForm.abilities.splice(index, 1);
     }
-    emit('update:form', localForm.value);
 }
 
 const isSelected = (ability) => {
-    return localForm.value.abilities.includes(ability);
+    return localForm.abilities.includes(ability);
 }
 </script>
 

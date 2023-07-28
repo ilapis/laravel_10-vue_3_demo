@@ -1,30 +1,16 @@
 <script setup>
-import { ref, watchEffect, onMounted } from 'vue'
+import { onMounted } from 'vue'
+import { useTranslationStore } from '@/Stores/translationStore.js'
 import { useLanguageStore } from '@/Stores/languageStore.js'
-import { defineProps, defineEmits } from "vue"
 
+const translationStore = new useTranslationStore();
 const languageStore = new useLanguageStore()
 
 onMounted(async () => {
     await languageStore.fetchCollection()
 })
 
-const props = defineProps({
-    translationStore: { type: Object, default: () => ({}) },
-    form: { type: Object, default: () => ({}) },
-})
-
-const emit = defineEmits(['update:form'])
-
-let localForm = ref({ ...props.form })
-
-watchEffect(() => {
-    localForm.value = { ...props.form }
-})
-
-watchEffect(() => {
-    emit('update:form', localForm.value)
-})
+let localForm = translationStore.getForm();
 </script>
 
 <template>

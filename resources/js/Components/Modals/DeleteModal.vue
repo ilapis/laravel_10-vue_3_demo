@@ -33,7 +33,7 @@ const props = defineProps({
         default: null
     },
     service:{
-        type: Number,
+        type: Object,
         default: null
     },
 })

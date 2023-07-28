@@ -19,7 +19,7 @@ const props = defineProps({
         default: null
     },
     service:{
-        type: Number,
+        type: Object,
         default: null
     },
 })
@@ -50,11 +50,7 @@ const populateAndOpenModal = async () => {
     @update:show="showModal = $event"
     @update:action="doModalAction($event)"
   >
-    <TranslationForm
-      :translation-store="translationStore"
-      :form="translationStore.getForm()"
-      @update:form="translationStore.setForm($event)"
-    />
+    <TranslationForm />
   </ModalComponent>
 </template>
 

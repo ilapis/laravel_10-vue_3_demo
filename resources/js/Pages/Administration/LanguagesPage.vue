@@ -28,6 +28,7 @@ onMounted( async () => {
       />
     </div>
     <TablePaginationComponent
+      v-if="languageStore.collection?.meta?.links"
       :links="languageStore.collection?.meta?.links"
       :service="languageStore"
     />

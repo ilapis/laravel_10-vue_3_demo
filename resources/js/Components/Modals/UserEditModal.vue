@@ -7,14 +7,10 @@ export default markRaw({
 </script>
 
 <script setup>
-import { useUserStore } from '@/Stores/userStore.js';
-import { useAbilitiesStore } from '@/Stores/abilitiesStore.js';
 import userForm from '@/FormsDefaults/userForm.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
-import {onMounted} from "vue";
-
+import { useUserStore } from '@/Stores/userStore.js';
 const userStore = new useUserStore();
-const abilitiesStore = new useAbilitiesStore();
 
 userStore.setForm(userForm);
 
@@ -24,14 +20,10 @@ const props = defineProps({
         default: null
     },
     service:{
-        type: Number,
+        type: Object,
         default: null
     },
 })
-
-onMounted( async () => {
-    await abilitiesStore.fetchCollection();
-});
 
 const { showModal, openModal, doModalAction } = useModalForm(userStore, () => userStore.update(props.id, userStore.getForm()));
 
@@ -57,12 +49,7 @@ const populateAndOpenModal = async () => {
     @update:show="showModal = $event"
     @update:action="doModalAction($event)"
   >
-    <UserForm
-      :user-store="userStore"
-      :abilities-store="abilitiesStore"
-      :form="userStore.getForm()"
-      @update:form="userStore.setForm($event)"
-    />
+    <UserForm />
   </ModalComponent>
 </template>
 

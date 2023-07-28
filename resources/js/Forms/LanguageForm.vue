@@ -1,23 +1,8 @@
 <script setup>
-import { ref } from 'vue'
-import { defineProps, defineEmits, watchEffect } from "vue";
+import { useLanguageStore } from '@/Stores/languageStore.js';
+const languageStore = new useLanguageStore();
 
-const props = defineProps({
-    languageStore: { type: Object, default: () => ({}) },
-    form: { type: Object, default: () => ({}) },
-});
-
-const emit = defineEmits(['update:form'])
-
-let localForm = ref({ ...props.form })
-
-watchEffect(() => {
-    localForm.value = { ...props.form }
-})
-
-watchEffect(() => {
-    emit('update:form', localForm.value)
-})
+let localForm = languageStore.getForm();
 </script>
 
 <template>

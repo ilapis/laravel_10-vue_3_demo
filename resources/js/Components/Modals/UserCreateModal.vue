@@ -29,7 +29,7 @@ const { showModal, openModal, doModalAction } = useModalForm(userStore, () => us
   <ButtonComponent
     class="btn btn-primary height-12 ml-4 box-shadow"
     label="Add"
-    @click="openModal"
+    @click="openModal(true)"
   />
   <ModalComponent
     :show="showModal"
@@ -37,12 +37,7 @@ const { showModal, openModal, doModalAction } = useModalForm(userStore, () => us
     @update:show="showModal = $event"
     @update:action="doModalAction($event)"
   >
-    <UserForm
-      v-model:form="userStore._form"
-      :user-store="userStore"
-      :abilities-store="abilitiesStore"
-      @update:form="userStore.setForm($event)"
-    />
+    <UserForm />
   </ModalComponent>
 </template>
 
