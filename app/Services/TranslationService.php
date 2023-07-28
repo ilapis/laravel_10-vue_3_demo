@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DTO\TranslationDTO;
+use App\Data\TranslationData;
 use App\Models\Translation;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -16,15 +16,15 @@ class TranslationService
         return Translation::orderBy('id', 'desc')->filter()->paginate($perPage)->withQueryString();
     }
 
-    public function create(TranslationDTO $dto): Translation
+    public function create(TranslationData $dto): Translation
     {
-        return Translation::create($dto->getAttributes());
+        return Translation::create($dto->toArray());
     }
 
-    public function update(Translation $translation, TranslationDTO $dto): Translation
+    public function update(Translation $translation, TranslationData $dto): Translation
     {
-        $translation->update($dto->getAttributes());
+        $translation->update($dto->toArray());
 
-        return $translation;
+        return $translation->fresh();
     }
 }

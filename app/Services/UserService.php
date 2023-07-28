@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
-use App\DTO\UserDTO;
+use App\Data\UserData;
 use App\Models\User;
 use App\Models\Ability;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
@@ -18,11 +17,11 @@ class UserService
         return User::orderBy('id', 'desc')->with('abilities')->filter()->paginate($perPage)->withQueryString();
     }
 
-    public function create(UserDTO $userDTO): User
+    public function create(UserData $userData): User
     {
-        $user = User::create($userDTO->getAttributes());
+        $user = User::create($userData->toArray());
 
-        $abilities = $userDTO->abilities;
+        $abilities = $userData->abilities;
 
         // If no abilities provided, use default
         if (empty($abilities)) {
@@ -38,11 +37,11 @@ class UserService
         return $user;
     }
 
-    public function update(User $user, UserDTO $userDTO): User
+    public function update(User $user, UserData $userData): User
     {
-        $user->update($userDTO->getAttributes());
+        $user->update($userData->toArray());
 
-        $abilities = $userDTO->abilities;
+        $abilities = $userData->abilities;
 
         // If no abilities provided, do not change existing abilities
         if (!empty($abilities)) {
@@ -53,6 +52,6 @@ class UserService
             $user->abilities()->sync($abilityModels);
         }
 
-        return $user;
+        return $user->fresh();
     }
 }

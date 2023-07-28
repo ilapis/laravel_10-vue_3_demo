@@ -1,6 +1,7 @@
 import {ref} from 'vue';
 
-export function useModalForm(store, initForm, actionMethod) {
+export function useModalForm(store, actionMethod) {
+//export function useModalForm(store, initForm, actionMethod) {
     const showModal = ref(false);
 
     const hideModal = () => {
@@ -17,7 +18,8 @@ export function useModalForm(store, initForm, actionMethod) {
         if (action === 'cancel') hideModal();
         if (action === 'action') {
             try {
-                await actionMethod(initForm);
+                await actionMethod();
+                //await actionMethod(initForm);
                 if (!store?.errors) {
                     hideModal();
                 }

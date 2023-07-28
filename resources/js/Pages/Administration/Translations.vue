@@ -8,12 +8,13 @@ import TranslationCreateModal from "@/Components/Modals/TranslationCreateModal.v
 
 const translationStore = new useTranslationStore();
 
-const fetchTranslations = async () => {
-    await translationStore.fetchTranslations();
-};
+//const fetchTranslations = async () => {
+//    await translationStore.fetchCollection();
+//};
 
-onMounted( () => {
-    fetchTranslations();
+onMounted( async () => {
+    //fetchTranslations();
+    await translationStore.fetchCollection();
 });
 </script>
 

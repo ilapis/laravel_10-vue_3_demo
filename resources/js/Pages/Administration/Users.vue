@@ -8,7 +8,7 @@ import {userTableSettings} from "@/TableSettings/userTableSettings.js";
 const userStore = new useUserStore();
 
 onMounted( async () => {
-    await userStore.fetchUsers();
+    await userStore.fetchCollection();
 });
 </script>
 

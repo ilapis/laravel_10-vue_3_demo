@@ -14,7 +14,7 @@ onMounted( async () => {
     await abilitiesStore.fetchCollection();
 });
 
-const { showModal, openModal, doModalAction } = useModalForm(userStore, userStore.getForm(), () => userStore.create(userStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(userStore, () => userStore.create(userStore.getForm()));
 </script>
 
 <template>

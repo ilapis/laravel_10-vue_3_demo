@@ -13,7 +13,7 @@ export const useTranslationStore = defineStore('translation-store', {
 
         ...formMethods,
 
-        async fetchTranslations() {
+        async fetchCollection() {
             await http.get(`/api/v1/translation`).then((response) => {
                 this.collection = response.data;
             });

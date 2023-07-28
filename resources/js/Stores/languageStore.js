@@ -13,7 +13,7 @@ export const useLanguageStore = defineStore('language-store', {
 
         ...formMethods,
 
-        async fetchLanguages() {
+        async fetchCollection() {
             await http.get(`/api/v1/language`).then((response) => {
                 this.collection = response.data;
             });

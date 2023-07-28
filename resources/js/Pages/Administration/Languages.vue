@@ -7,12 +7,13 @@ import { languageTableSettings } from '@/TableSettings/languageTableSettings.js'
 
 const languageStore = new useLanguageStore();
 
-const fetchLanguages = async () => {
-    await languageStore.fetchLanguages();
-};
+//const fetchLanguages = async () => {
+//    await languageStore.fetchCollection();
+//};
 
-onMounted( () => {
-    fetchLanguages();
+onMounted( async () => {
+    //fetchLanguages();
+    await languageStore.fetchCollection();
 });
 </script>
 

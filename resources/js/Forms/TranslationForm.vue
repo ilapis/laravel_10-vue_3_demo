@@ -4,12 +4,13 @@ import {useLanguageStore} from '@/Stores/languageStore.js';
 
 const languageStore = new useLanguageStore();
 
-const fetchLanguages = async () => {
-    await languageStore.fetchLanguages();
-};
+//const fetchLanguages = async () => {
+//    await languageStore.fetchCollection();
+//};
 
-onMounted(() => {
-    fetchLanguages();
+onMounted(async () => {
+    //fetchLanguages();
+    await languageStore.fetchCollection();
 });
 const props = defineProps({
     translationStore: Object,

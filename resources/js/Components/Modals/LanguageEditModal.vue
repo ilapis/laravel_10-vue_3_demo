@@ -1,6 +1,7 @@
 <script setup>
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
+import languageForm from '@/FormsDefaults/languageForm.js';
 
 const languageStore = new useLanguageStore();
 
@@ -9,13 +10,9 @@ const props = defineProps({
     service: Object,
 })
 
-languageStore.setForm({
-    code: '',
-    name: '',
-    enabled: false
-});
+languageStore.setForm(languageForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(languageStore, languageStore.getForm(), () => languageStore.update(props.id, languageStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(languageStore, () => languageStore.update(props.id, languageStore.getForm()));
 
 const populateAndOpenModal = async () => {
     try {

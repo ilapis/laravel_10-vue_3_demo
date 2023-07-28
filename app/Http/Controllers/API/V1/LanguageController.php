@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\DTO\LanguageDTO;
+use App\Data\LanguageData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageCreateRequest;
 use App\Http\Requests\LanguageUpdateRequest;
@@ -50,9 +50,9 @@ class LanguageController extends Controller
     {
         $this->authorize('create', Language::class);
 
-        $language = $this->languageService->create(
-            LanguageDTO::fromRequest($languageCreateRequest)
-        );
+        $languageData = new LanguageData($languageCreateRequest->validated());
+
+        $language = $this->languageService->create($languageData);
 
         return (new LanguageResource($language))->response()->setStatusCode(201);
     }
@@ -61,9 +61,11 @@ class LanguageController extends Controller
     {
         $this->authorize('update', $language);
 
+        $languageData = new LanguageData($languageUpdateRequest->validated());
+
         $language = $this->languageService->update(
             $language,
-            LanguageDTO::fromRequest($languageUpdateRequest)
+            $languageData
         );
 
         return new LanguageResource($language);

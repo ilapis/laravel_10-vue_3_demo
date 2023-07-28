@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\DTO\LanguageDTO;
+use App\Data\LanguageData;
+//use App\DTO\LanguageDTO;
 use App\Models\Language;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,15 +23,15 @@ class LanguageService
         return Language::orderBy('id', 'desc')->filter()->paginate($perPage)->withQueryString();
     }
 
-    public function create(LanguageDTO $languageDTO): Language
+    public function create(LanguageData $languageData): Language
     {
-        return Language::create($languageDTO->getAttributes());
+        return Language::create($languageData->toArray());
     }
 
-    public function update(Language $language, LanguageDTO $languageDTO): Language
+    public function update(Language $language, LanguageData $languageData): Language
     {
-        $language->update($languageDTO->getAttributes());
+        $language->update($languageData->toArray());
 
-        return $language;
+        return $language->fresh();
     }
 }

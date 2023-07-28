@@ -19,7 +19,7 @@ onMounted( async () => {
     await abilitiesStore.fetchCollection();
 });
 
-const { showModal, openModal, doModalAction } = useModalForm(userStore, userStore.getForm(), () => userStore.update(props.id, userStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(userStore, () => userStore.update(props.id, userStore.getForm()));
 
 const populateAndOpenModal = async () => {
     try {

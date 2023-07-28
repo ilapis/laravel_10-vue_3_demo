@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\DTO\UserDTO;
+use App\Data\UserData;
+//use App\DTO\UserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
@@ -41,24 +42,26 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(UserCreateRequest $userCreateRequest): JsonResponse
+    public function store(UserCreateRequest $request): JsonResponse
     {
         $this->authorize('create', User::class);
 
-        $user = $this->userService->create(
-            UserDTO::fromRequest($userCreateRequest)
-        );
+        $userData = new UserData($request->validated());
+
+        $user = $this->userService->create($userData);
 
         return (new UserResource($user))->response()->setStatusCode(201);
     }
 
-    public function update(User $user, UserUpdateRequest $userUpdateRequest): UserResource
+    public function update(User $user, UserUpdateRequest $request): UserResource
     {
         $this->authorize('update', $user);
 
+        $userData = new UserData($request->validated());
+
         $user = $this->userService->update(
             $user,
-            UserDTO::fromRequest($userUpdateRequest)
+            $userData
         );
 
         return new UserResource($user);

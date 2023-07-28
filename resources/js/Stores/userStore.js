@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user-store', {
 
         ...formMethods,
 
-        async fetchUsers() {
+        async fetchCollection() {
             await http.get(`/api/v1/user`).then((response) => {
                 this.collection = response.data;
             });

@@ -9,7 +9,7 @@ const languageStore = new useLanguageStore();
 
 translationStore.setForm(translationForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(translationStore, translationStore.getForm(), () => translationStore.create(translationStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(translationStore, () => translationStore.create(translationStore.getForm()));
 </script>
 
 <template>

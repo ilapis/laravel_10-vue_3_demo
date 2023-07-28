@@ -1,16 +1,13 @@
 <script setup>
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
+import languageForm from '@/FormsDefaults/languageForm.js';
 
 const languageStore = new useLanguageStore();
 
-languageStore.setForm({
-    code: '',
-    name: '',
-    enabled: false
-});
+languageStore.setForm(languageForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(languageStore, languageStore.getForm(), () => languageStore.create(languageStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(languageStore, () => languageStore.create(languageStore.getForm()));
 </script>
 
 <template>

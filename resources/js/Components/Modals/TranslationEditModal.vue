@@ -12,12 +12,10 @@ const props = defineProps({
 
 translationStore.setForm(translationForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(translationStore, translationStore.getForm(), () => translationStore.update(props.id, translationStore.getForm()));
+const { showModal, openModal, doModalAction } = useModalForm(translationStore, () => translationStore.update(props.id, translationStore.getForm()));
 
 const populateAndOpenModal = async () => {
     try {
-        //const { language_id, group, key, value } = await translationStore.get(props.id);
-        //translationStore.updateForm({ language_id, group, key, value });
         translationStore.updateForm(await translationStore.get(props.id));
         openModal();
     } catch (error) {

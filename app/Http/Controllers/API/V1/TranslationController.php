@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\DTO\TranslationDTO;
+use App\Data\TranslationData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationCreateRequest;
 use App\Http\Requests\TranslationUpdateRequest;
@@ -58,24 +58,26 @@ class TranslationController extends Controller
         ]);
     }
 
-    public function store(TranslationCreateRequest $translationCreateRequest): JsonResponse
+    public function store(TranslationCreateRequest $request): JsonResponse
     {
         $this->authorize('create', Translation::class);
 
-        $translation = $this->translationService->create(
-            TranslationDTO::fromRequest($translationCreateRequest)
-        );
+        $translationData = new TranslationData($request->validated());
+
+        $translation = $this->translationService->create($translationData);
 
         return (new TranslationResource($translation))->response()->setStatusCode(201);
     }
 
-    public function update(Translation $translation, TranslationUpdateRequest $translationUpdateRequest): TranslationResource
+    public function update(Translation $translation, TranslationUpdateRequest $request): TranslationResource
     {
         $this->authorize('update', $translation);
 
+        $translationData = new TranslationData($request->validated());
+
         $translation = $this->translationService->update(
             $translation,
-            TranslationDTO::fromRequest($translationUpdateRequest)
+            $translationData
         );
 
         return new TranslationResource($translation);
