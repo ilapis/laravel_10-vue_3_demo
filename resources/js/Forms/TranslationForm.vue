@@ -12,7 +12,6 @@ onMounted(() => {
     fetchLanguages();
 });
 const props = defineProps({
-    //languageStore: Object,
     translationStore: Object,
     form: Object,
 })

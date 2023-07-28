@@ -26,7 +26,7 @@ const decodeHtmlEntities = (str) => {
 </script>
 
 <template>
-    <div class="pagination mt-3 py-4 bg-primary" style="border-left: 1px solid #ffffff;">
+    <div class="pagination mt-3 py-4 bg-primary">
         <template v-for="(link, index) in links" :key="index">
             <button class="btn btn-pagination mt-1 border-none box-shadow" :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`" @click="changePage(link.url)" :disabled="!link.url">
                 <template v-if="!isNaN(link.label)">

@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\User
+ * @mixin \App\Models\Ablities
  */
-class UserResource extends JsonResource
+class AbilitiesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,10 +20,6 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'abilities' => $this->abilities->pluck('name'),
-            'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i') : null,
-            'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i') : null,
         ];
     }
 }

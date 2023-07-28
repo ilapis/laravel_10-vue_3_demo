@@ -101,6 +101,9 @@ onBeforeUnmount(() => {
 .w-100 {
     width: 100%;
 }
+.select-wrapper {
+    text-indent: 0;
+}
 .select-content {
     text-indent: 1rem;
     max-height: 15rem;

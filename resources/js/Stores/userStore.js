@@ -2,10 +2,9 @@ import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
 
-export const useTranslationStore = defineStore('translation-store', {
+export const useUserStore = defineStore('user-store', {
     state: () => ({
         collection: null,
-        enabled: null,
         errors: null,
         _query_parameter_page: 1,
     }),
@@ -13,15 +12,15 @@ export const useTranslationStore = defineStore('translation-store', {
 
         ...formMethods,
 
-        async fetchTranslations() {
-            await http.get(`/api/v1/translation`).then((response) => {
+        async fetchUsers() {
+            await http.get(`/api/v1/user`).then((response) => {
                 this.collection = response.data;
             });
         },
 
         async fetchPage(page) {
             this._query_parameter_page = page;
-            await http.get(`/api/v1/translation?page=${page}`).then((response) => {
+            await http.get(`/api/v1/user?page=${page}`).then((response) => {
                 this.collection = response.data;
             });
         },
@@ -32,7 +31,7 @@ export const useTranslationStore = defineStore('translation-store', {
 
         async create(form) {
 
-            await http.post(`/api/v1/translation`, form).then((response) => {
+            await http.post(`/api/v1/user`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
@@ -45,7 +44,7 @@ export const useTranslationStore = defineStore('translation-store', {
 
         async get(id) {
 
-            return http.get(`/api/v1/translation/${id}`).then((response) => {
+            return http.get(`/api/v1/user/${id}`).then((response) => {
                 this.errors = null;
                 return response.data.data;
             });
@@ -53,7 +52,7 @@ export const useTranslationStore = defineStore('translation-store', {
 
         async update(id, form) {
 
-            return http.put(`/api/v1/translation/${id}`, form).then((response) => {
+            return http.put(`/api/v1/user/${id}`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
@@ -66,7 +65,7 @@ export const useTranslationStore = defineStore('translation-store', {
 
         async destroy(id) {
 
-            return http.delete(`/api/v1/translation/${id}`).then((response) => {
+            return http.delete(`/api/v1/user/${id}`).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;

@@ -3,9 +3,11 @@
     "type": "module",
     "scripts": {
         "dev": "vite --host --no-open",
-        "build": "vite build"
+        "build": "vite build",
+        "vca": "vca --dir ./resources/js"
     },
     "devDependencies": {
+        "@tkskto/vue-component-analyzer": "^0.8.0",
         "axios": "^1.4.0",
         "laravel-vite-plugin": "^0.7.5",
         "vite": "^4.0.0"

@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use LaravelLegends\EloquentFilter\Concerns\HasFilter;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasFilter;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +44,11 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function abilities()
+    {
+        return $this->belongsToMany(Ability::class);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

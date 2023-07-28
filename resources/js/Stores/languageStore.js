@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import http from "@/http.js";
+import {formMethods} from '@/Helpers/formMethods.js';
 
 export const useLanguageStore = defineStore('language-store', {
     state: () => ({
@@ -9,6 +10,9 @@ export const useLanguageStore = defineStore('language-store', {
         _query_parameter_page: 1,
     }),
     actions: {
+
+        ...formMethods,
+
         async fetchLanguages() {
             await http.get(`/api/v1/language`).then((response) => {
                 this.collection = response.data;

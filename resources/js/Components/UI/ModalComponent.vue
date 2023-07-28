@@ -8,7 +8,8 @@ const props = defineProps({
 const emit = defineEmits(['update:show', 'update:action'])
 
 function closeModal() {
-    emit('update:show', false)
+    //emit('update:show', false);
+    emit('update:action', 'cancel');
 }
 function action(action) {
     emit('update:action', action)
@@ -21,7 +22,7 @@ function action(action) {
             <div class="modal box-shadow">
                 <div class="modal-header w-full">
                     <slot name="header"></slot>
-                    <CloseIcon class="modal-close-icon" @click="closeModal" />
+                    <CloseIcon class="modal-close-icon box-shadow" @click="closeModal" />
                 </div>
                 <div class="modal-body">
                     <slot></slot>
@@ -56,11 +57,11 @@ function action(action) {
 .modal-footer {
     padding: 1.5rem;
     text-indent: 0;
+    clear:both;
 }
 .modal-close-icon {
     float: right;
     cursor: pointer;
-    border: 1px solid gray;
     border-radius: 8px;
     padding: 0.5rem;
     margin-right: 1.5rem;
@@ -78,7 +79,13 @@ function action(action) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
+
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 </style>

@@ -32,10 +32,8 @@ class ListDBConnections extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $connections = config('database.connections');
         foreach ($connections as $name => $details) {

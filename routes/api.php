@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Ability;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,14 @@ Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API\V1'], 
 
         Route::resource('translation', 'TranslationController')->only([
             'index', 'show', 'store', 'update', 'destroy',
+        ]);
+
+        Route::resource('user', 'UserController')->only([
+            'index', 'show', 'store', 'update', 'destroy',
+        ]);
+
+        Route::resource('abilities', 'AbilityController')->only([
+            'index',
         ]);
     });
 });

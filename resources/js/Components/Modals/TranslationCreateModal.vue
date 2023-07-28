@@ -2,19 +2,14 @@
 import { useTranslationStore } from '@/Stores/translationStore.js';
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
-import {onMounted, ref} from "vue";
+import translationForm from '@/FormsDefaults/translationForm.js';
 
 const translationStore = new useTranslationStore();
 const languageStore = new useLanguageStore();
 
-let form = ref({
-    language_id: null,
-    group: '',
-    key: '',
-    value: '',
-});
+translationStore.setForm(translationForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(translationStore, form, (form) => translationStore.create(form.value));
+const { showModal, openModal, doModalAction } = useModalForm(translationStore, translationStore.getForm(), () => translationStore.create(translationStore.getForm()));
 </script>
 
 <template>
@@ -27,7 +22,7 @@ const { showModal, openModal, doModalAction } = useModalForm(translationStore, f
 
         <TranslationForm
             :translationStore="translationStore"
-            :form="form"
+            :form="translationStore.getForm()"
         />
     </ModalComponent>
 </template>

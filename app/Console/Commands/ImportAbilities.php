@@ -2,31 +2,27 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Language;
-use App\Models\Translation;
+use App\Models\Ability;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 
-class ImportTranslations extends Command
+class ImportAbilities extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'import:translations {file}';
+    protected $signature = 'import:abilities {file}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Import translations from a CSV file';
+    protected $description = 'Import abilities from a CSV file';
 
-    /**
-     * Execute the console command.
-     */
     public function handle(): void
     {
         $filePath = $this->argument('file');
@@ -46,20 +42,10 @@ class ImportTranslations extends Command
 
         DB::transaction(function () use ($records) {
             foreach ($records as $record) {
-                $language = Language::firstWhere('code', $record['language']);
-
-                if ($language) {
-                    Translation::updateOrCreate(
-                        [
-                            'language_id' => $language->id,
-                            'group' => $record['group'],
-                            'key' => $record['key'],
-                        ],
-                        ['value' => $record['value']]
-                    );
-                } else {
-                    $this->error("Import failed: Language with code {$record['language']} does not exist.");
-                }
+                Ability::updateOrCreate(
+                    ['name' => $record['name']],
+                    ['name' => $record['name']]
+                );
             }
         });
 

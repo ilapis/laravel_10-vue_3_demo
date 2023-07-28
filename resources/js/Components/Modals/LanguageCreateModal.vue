@@ -1,17 +1,16 @@
 <script setup>
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
-import {ref} from "vue";
 
 const languageStore = new useLanguageStore();
 
-let form = ref({
+languageStore.setForm({
     code: '',
     name: '',
     enabled: false
 });
 
-const { showModal, openModal, doModalAction } = useModalForm(languageStore, form, (form) => languageStore.create(form.value));
+const { showModal, openModal, doModalAction } = useModalForm(languageStore, languageStore.getForm(), () => languageStore.create(languageStore.getForm()));
 </script>
 
 <template>
@@ -24,7 +23,7 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, form
 
         <LanguageForm
             :languageStore="languageStore"
-            :form="form"
+            :form="languageStore.getForm()"
         />
     </ModalComponent>
 </template>

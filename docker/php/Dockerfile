@@ -44,11 +44,17 @@ RUN apk del -f .build-deps
 
 # Configure Xdebug
 RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.mode=develop,debug,coverage" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.log=/var/www/html/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.client_host=php" >> /usr/local/etc/php/conf.d/xdebug.ini \
-#    && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.client_port=9001" >> /usr/local/etc/php/conf.d/xdebug.ini
+    && echo "xdebug.mode=develop,coverage" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.log=/var/www/html/storage/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+# Create a group and user
+RUN addgroup -g 1000 appgroup && adduser -u 1000 -G appgroup -s /bin/sh -D appuser
+# Tell docker that all future commands should run as the appuser user
+#USER appuser
+#USER root
+RUN apk add --update sudo
+RUN echo "appuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/appuser
+USER appuser
 
 #COPY docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf

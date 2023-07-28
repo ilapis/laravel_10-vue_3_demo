@@ -1,0 +1,12 @@
+name
+registered_user
+administrator_user
+can_create_language
+can_update_language
+can_delete_language
+can_create_translation
+can_update_translation
+can_delete_translation
+can_create_user
+can_update_user
+can_delete_user

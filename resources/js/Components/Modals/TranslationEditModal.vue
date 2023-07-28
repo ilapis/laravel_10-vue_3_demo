@@ -1,7 +1,7 @@
 <script setup>
 import { useTranslationStore } from '@/Stores/translationStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
-import {ref} from "vue";
+import translationForm from '@/FormsDefaults/translationForm.js';
 
 const translationStore = new useTranslationStore();
 
@@ -10,19 +10,15 @@ const props = defineProps({
     service: Object,
 })
 
-let form = ref({
-    language_id: null,
-    group: '',
-    key: '',
-    value: '',
-});
+translationStore.setForm(translationForm);
 
-const { showModal, openModal, doModalAction } = useModalForm(translationStore, form, (form) => translationStore.update(props.id, form.value));
+const { showModal, openModal, doModalAction } = useModalForm(translationStore, translationStore.getForm(), () => translationStore.update(props.id, translationStore.getForm()));
 
 const populateAndOpenModal = async () => {
     try {
-        const { language_id, group, key, value } = await translationStore.get(props.id);
-        form.value = { language_id, group, key, value };
+        //const { language_id, group, key, value } = await translationStore.get(props.id);
+        //translationStore.updateForm({ language_id, group, key, value });
+        translationStore.updateForm(await translationStore.get(props.id));
         openModal();
     } catch (error) {
         console.error(error);
@@ -40,7 +36,7 @@ const populateAndOpenModal = async () => {
 
         <TranslationForm
             :translationStore="translationStore"
-            :form="form"
+            :form="translationStore.getForm()"
         />
     </ModalComponent>
 </template>

@@ -1,5 +1,7 @@
 language,group,key,value
 en,table,id,Id
+en,table,name,Name
+en,table,email,Email
 en,table,language_code,Code
 en,table,language,Language
 en,table,enabled,Enabled
@@ -22,3 +24,10 @@ en,button,download,Download
 en,button,export,Export
 en,button,next,Next
 en,button,previous,Previous
+en,menu,languages,Languages
+en,menu,translations,Translations
+en,menu,users,Users
+en,ability,view,View
+en,ability,create,Create
+en,ability,update,Update
+en,ability,delete,Delete

@@ -1,5 +1,7 @@
 language,group,key,value
 lt,table,id,Id
+lt,table,name,Vardas
+lt,table,email,El. paštas
 lt,table,language_code,Kodas
 lt,table,language,Kalba
 lt,table,enabled,Įjungta
@@ -22,3 +24,10 @@ lt,button,download,Parsisiųsti
 lt,button,export,Eksportuoti
 lt,button,next,Pirmyn
 lt,button,previous,Atgal
+lt,menu,languages,Kalbos
+lt,menu,translations,Vertimai
+lt,menu,users,Vartotojai
+lt,ability,view,Peržiūrėti
+lt,ability,create,Sukurti
+lt,ability,update,Atnaujinti
+lt,ability,delete,Ištrinti
