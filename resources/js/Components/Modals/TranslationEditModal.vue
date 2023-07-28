@@ -1,3 +1,11 @@
+<script>
+import {markRaw} from "vue";
+
+export default markRaw({
+    name: 'TranslationEditModal'
+});
+</script>
+
 <script setup>
 import { useTranslationStore } from '@/Stores/translationStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';

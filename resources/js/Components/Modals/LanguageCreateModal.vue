@@ -1,3 +1,11 @@
+<script>
+import {markRaw} from "vue";
+
+export default markRaw({
+    name: 'LanguageCreateModal'
+});
+</script>
+
 <script setup>
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';

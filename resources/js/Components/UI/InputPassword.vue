@@ -2,7 +2,7 @@
 import {markRaw} from "vue";
 
 export default markRaw({
-    name: 'InputText'
+    name: 'InputPassword'
 });
 </script>
 

@@ -1,3 +1,11 @@
+<script>
+import {markRaw} from "vue";
+
+export default markRaw({
+    name: 'DeleteModal'
+});
+</script>
+
 <script setup>
 
 import {ref} from "vue";

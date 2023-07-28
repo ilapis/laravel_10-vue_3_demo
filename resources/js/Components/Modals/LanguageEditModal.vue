@@ -1,3 +1,11 @@
+<script>
+import {markRaw} from "vue";
+
+export default markRaw({
+    name: 'LanguageEditModal'
+});
+</script>
+
 <script setup>
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
@@ -16,8 +24,7 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, () =
 
 const populateAndOpenModal = async () => {
     try {
-        const { code, name, enabled } = await languageStore.get(props.id);
-        languageStore.updateForm({ code, name, enabled })
+        languageStore.updateForm(await languageStore.get(props.id))
         openModal();
     } catch (error) {
         console.error(error);

@@ -1,3 +1,11 @@
+<script>
+import {markRaw} from "vue";
+
+export default markRaw({
+    name: 'UserEditModal'
+});
+</script>
+
 <script setup>
 import { useUserStore } from '@/Stores/userStore.js';
 import { useAbilitiesStore } from '@/Stores/abilitiesStore.js';

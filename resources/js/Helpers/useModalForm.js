@@ -1,7 +1,7 @@
 import {ref} from 'vue';
 
 export function useModalForm(store, actionMethod) {
-//export function useModalForm(store, initForm, actionMethod) {
+
     const showModal = ref(false);
 
     const hideModal = () => {
@@ -9,9 +9,13 @@ export function useModalForm(store, actionMethod) {
         store.errors = null;
         store.resetForm();
     }
-    const openModal = () => {
+
+    const openModal = (clean = false) => {
         showModal.value = true;
         store.errors = null;
+        if (clean) {
+            store.resetForm();
+        }
     }
 
     const doModalAction = async (action) => {
@@ -19,7 +23,6 @@ export function useModalForm(store, actionMethod) {
         if (action === 'action') {
             try {
                 await actionMethod();
-                //await actionMethod(initForm);
                 if (!store?.errors) {
                     hideModal();
                 }
