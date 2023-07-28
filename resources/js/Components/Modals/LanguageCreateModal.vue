@@ -33,6 +33,7 @@ const { showModal, openModal, doModalAction } = useModalForm(languageStore, () =
     <LanguageForm
       :language-store="languageStore"
       :form="languageStore.getForm()"
+      @update:form="languageStore.setForm($event)"
     />
   </ModalComponent>
 </template>

@@ -47,6 +47,7 @@ const populateAndOpenModal = async () => {
     <TranslationForm
       :translation-store="translationStore"
       :form="translationStore.getForm()"
+      @update:form="translationStore.setForm($event)"
     />
   </ModalComponent>
 </template>

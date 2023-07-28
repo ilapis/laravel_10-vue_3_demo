@@ -1,5 +1,6 @@
 <script setup>
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, ref, watchEffect} from "vue";
+import { defineProps, defineEmits } from "vue"
 
 const props = defineProps({
     userStore: {
@@ -14,6 +15,18 @@ const props = defineProps({
         type: Object,
         default: () => ({})
     },
+})
+
+const emit = defineEmits(['update:form'])
+
+let localForm = ref({ ...props.form })
+
+watchEffect(() => {
+    localForm.value = { ...props.form }
+})
+
+watchEffect(() => {
+    emit('update:form', localForm.value)
 })
 
 let groupedAbilities = reactive({});
@@ -50,21 +63,18 @@ const capitalize = (string) => {
     return capitalizedFirst + rest;
 }
 
-const emit = defineEmits(['update:form'])
-
 const toggleAbility = (ability) => {
-    const formCopy = JSON.parse(JSON.stringify(props.form));
-    const index = formCopy.abilities.indexOf(ability);
+    const index = localForm.value.abilities.indexOf(ability);
     if (index === -1) {
-        formCopy.abilities.push(ability);
+        localForm.value.abilities.push(ability);
     } else {
-        formCopy.abilities.splice(index, 1);
+        localForm.value.abilities.splice(index, 1);
     }
-    emit('update:form', formCopy);
+    emit('update:form', localForm.value);
 }
 
 const isSelected = (ability) => {
-    return props.form.abilities.includes(ability);
+    return localForm.value.abilities.includes(ability);
 }
 </script>
 
@@ -73,33 +83,34 @@ const isSelected = (ability) => {
     <br>
     <div class="col-6 float-left">
       <InputText
-        v-model="form.name"
+        v-model="localForm.name"
         label="Name"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.name"
       />
 
       <InputText
-        v-model="form.email"
+        v-model="localForm.email"
         label="Email"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.email"
       />
 
       <InputText
-        v-model="form.password"
+        v-model="localForm.password"
         label="Password"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.password"
       />
 
       <InputText
-        v-model="form.password_confirmation"
+        v-model="localForm.password_confirmation"
         label="Password confirmation"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.password_confirmation"
       />
     </div>
+
     <div class="col-6 float-left text-indent-1rem">
       <h3>User Abilities</h3>
       <div

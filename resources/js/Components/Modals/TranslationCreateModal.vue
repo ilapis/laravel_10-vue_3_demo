@@ -35,6 +35,7 @@ const { showModal, openModal, doModalAction } = useModalForm(translationStore, (
     <TranslationForm
       :translation-store="translationStore"
       :form="translationStore.getForm()"
+      @update:form="translationStore.setForm($event)"
     />
   </ModalComponent>
 </template>

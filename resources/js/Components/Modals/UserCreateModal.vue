@@ -41,6 +41,7 @@ const { showModal, openModal, doModalAction } = useModalForm(userStore, () => us
       v-model:form="userStore._form"
       :user-store="userStore"
       :abilities-store="abilitiesStore"
+      @update:form="userStore.setForm($event)"
     />
   </ModalComponent>
 </template>

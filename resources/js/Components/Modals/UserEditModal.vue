@@ -55,6 +55,7 @@ const populateAndOpenModal = async () => {
       :user-store="userStore"
       :abilities-store="abilitiesStore"
       :form="userStore.getForm()"
+      @update:form="userStore.setForm($event)"
     />
   </ModalComponent>
 </template>

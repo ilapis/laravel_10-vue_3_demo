@@ -1,20 +1,29 @@
 <script setup>
-import {onMounted} from "vue";
-import {useLanguageStore} from '@/Stores/languageStore.js';
+import { ref, watchEffect, onMounted } from 'vue'
+import { useLanguageStore } from '@/Stores/languageStore.js'
+import { defineProps, defineEmits } from "vue"
 
-const languageStore = new useLanguageStore();
-
-//const fetchLanguages = async () => {
-//    await languageStore.fetchCollection();
-//};
+const languageStore = new useLanguageStore()
 
 onMounted(async () => {
-    //fetchLanguages();
-    await languageStore.fetchCollection();
-});
+    await languageStore.fetchCollection()
+})
+
 const props = defineProps({
-    translationStore: Object,
-    form: Object,
+    translationStore: { type: Object, default: () => ({}) },
+    form: { type: Object, default: () => ({}) },
+})
+
+const emit = defineEmits(['update:form'])
+
+let localForm = ref({ ...props.form })
+
+watchEffect(() => {
+    localForm.value = { ...props.form }
+})
+
+watchEffect(() => {
+    emit('update:form', localForm.value)
 })
 </script>
 
@@ -22,7 +31,7 @@ const props = defineProps({
   <div>
     <br>
     <InputSelect
-      v-model="form.language_id"
+      v-model="localForm.language_id"
       class="mt-4"
       label="Language"
       :options="languageStore?.collection?.data"
@@ -31,24 +40,24 @@ const props = defineProps({
     />
 
     <InputText
-      v-model="form.group"
+      v-model="localForm.group"
       label="Group"
       :underline-text="['The group field is required.']"
       :errors="translationStore?.errors?.group"
     />
 
     <InputText
-      v-model="form.key"
+      v-model="localForm.key"
       label="Key"
       :underline-text="['The key field is required.']"
       :errors="translationStore?.errors?.key"
     />
 
     <InputText
-      v-model="form.value"
+      v-model="localForm.value"
       label="Value"
       :underline-text="['The value field is required.']"
-      :errors="translationStore?.errors?.name"
+      :errors="translationStore?.errors?.value"
     />
   </div>
 </template>

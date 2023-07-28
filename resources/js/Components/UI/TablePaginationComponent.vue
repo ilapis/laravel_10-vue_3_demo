@@ -1,6 +1,7 @@
 <script setup>
 const props = defineProps({
     links: {
+        type: Object,
         required: true,
     },
     service: {
