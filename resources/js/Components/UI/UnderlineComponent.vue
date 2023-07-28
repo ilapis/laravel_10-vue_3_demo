@@ -12,7 +12,7 @@ import { defineProps } from "vue";
 const props = defineProps({
     underlineText: {
         type: Array,
-        default: ''
+        default: null
     },
     errors: {
         type: Array,

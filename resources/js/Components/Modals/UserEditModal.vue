@@ -19,8 +19,14 @@ const abilitiesStore = new useAbilitiesStore();
 userStore.setForm(userForm);
 
 const props = defineProps({
-    id: Number,
-    service: Object,
+    id: {
+        type: Number,
+        default: null
+    },
+    service:{
+        type: Number,
+        default: null
+    },
 })
 
 onMounted( async () => {

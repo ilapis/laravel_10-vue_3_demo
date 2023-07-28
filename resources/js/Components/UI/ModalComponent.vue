@@ -1,14 +1,22 @@
 <script setup>
 const props = defineProps({
-    show: Boolean,
-    actionLabel: String,
-    headTitle: String,
+    show: {
+        type: Boolean,
+        default: false
+    },
+    actionLabel: {
+        type: String,
+        default: 'submit',
+    },
+    headTitle: {
+        type: String,
+        default: '',
+    },
 })
 
 const emit = defineEmits(['update:show', 'update:action'])
 
 function closeModal() {
-    //emit('update:show', false);
     emit('update:action', 'cancel');
 }
 function action(action) {
@@ -17,7 +25,7 @@ function action(action) {
 </script>
 
 <template>
-  <template v-if="show">
+  <template v-if="props.show">
     <div class="modal-backdrop">
       <div class="modal box-shadow">
         <div class="modal-header w-full">
@@ -38,7 +46,7 @@ function action(action) {
               @click="action('cancel')"
             />
             <ButtonComponent
-              :label="actionLabel"
+              :label="props.actionLabel"
               class="btn-primary float-right"
               @click="action('action')"
             />

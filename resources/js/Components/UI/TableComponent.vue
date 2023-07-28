@@ -4,11 +4,11 @@ import {onMounted, onUnmounted, ref} from "vue";
 const props = defineProps({
     rows: {
         type: Object,
-        default: {}
+        default: null
     },
     rowSettings: {
         type: Object,
-        default: {}
+        default: null
     },
     service: {
         type: Object,
@@ -54,9 +54,11 @@ function generateRandomId() {
           <template
             v-for="(header, index) in rowSettings"
             :key="index"
-            class=" height-12"
           >
-            <th :style="'width:'+`${header?.width}`+';'">
+            <th
+              class="height-12"
+              :style="'width:'+`${header?.width}`+';'"
+            >
               <template v-if="header.type !== 'component'">
                 {{ $t('table.' + (header?.title ?? header?.column)) }}
               </template>
@@ -75,10 +77,12 @@ function generateRandomId() {
         >
           <template
             v-for="(header, index) in rowSettings"
-            :key="header"
-            class=" height-12"
+            :key="index"
           >
-            <td :style="'width:'+`${header?.width}`+';'">
+            <td
+              class=" height-12"
+              :style="'width:'+`${header?.width}`+';'"
+            >
               <component
                 :is="header.component"
                 v-if="header?.type == 'component'"

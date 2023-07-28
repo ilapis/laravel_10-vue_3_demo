@@ -28,8 +28,14 @@ const doModalAction = (action) => {
 }
 
 const props = defineProps({
-    id: Number,
-    service: Object,
+    id: {
+        type: Number,
+        default: null
+    },
+    service:{
+        type: Number,
+        default: null
+    },
 })
 
 const hideModal = async () => {

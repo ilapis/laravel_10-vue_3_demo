@@ -14,8 +14,14 @@ import translationForm from '@/FormsDefaults/translationForm.js';
 const translationStore = new useTranslationStore();
 
 const props = defineProps({
-    id: Number,
-    service: Object,
+    id: {
+        type: Number,
+        default: null
+    },
+    service:{
+        type: Number,
+        default: null
+    },
 })
 
 translationStore.setForm(translationForm);

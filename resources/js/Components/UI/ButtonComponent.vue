@@ -29,10 +29,10 @@ const onClick = (event) => {
     @click="onClick"
   >
     <template v-if="isNaN(label)">
-      {{ $t('button.' + label.toLowerCase()) }}
+      {{ $t('button.' + props.label.toLowerCase()) }}
     </template>
     <template v-else>
-      {{ label }}
+      {{ props.label }}
     </template>
     <slot />
   </button>

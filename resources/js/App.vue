@@ -7,7 +7,6 @@ export default {
 </script>
 
 <script setup>
-  import {ref} from "vue";
   import "@fontsource/roboto";
 </script>
 

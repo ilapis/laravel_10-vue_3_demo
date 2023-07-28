@@ -14,8 +14,14 @@ import languageForm from '@/FormsDefaults/languageForm.js';
 const languageStore = new useLanguageStore();
 
 const props = defineProps({
-    id: Number,
-    service: Object,
+    id: {
+        type: Number,
+        default: null
+    },
+    service:{
+        type: Number,
+        default: null
+    },
 })
 
 languageStore.setForm(languageForm);
