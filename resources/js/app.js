@@ -39,7 +39,8 @@ const app = createApp(App);
 const currentLanguage = getLanguage();
 const i18n = createI18n({
     locale: currentLanguage,
-    fallbackLocale: currentLanguage
+    fallbackLocale: currentLanguage,
+    silentTranslationWarn: true // Suppress warnings about missing translations
 });
 window.i18n = i18n;
 loadLanguage(currentLanguage);
