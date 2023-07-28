@@ -1,18 +1,13 @@
 <script setup>
 import {onMounted} from "vue";
-import AdministrationLayout from '@/Layouts/Administration.vue';
+import AdministrationLayout from '@/Layouts/AdministrationLayout.vue';
 import TableComponent from "@/Components/UI/TableComponent.vue";
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { languageTableSettings } from '@/TableSettings/languageTableSettings.js';
 
 const languageStore = new useLanguageStore();
 
-//const fetchLanguages = async () => {
-//    await languageStore.fetchCollection();
-//};
-
 onMounted( async () => {
-    //fetchLanguages();
     await languageStore.fetchCollection();
 });
 </script>

@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/Pages/Homepage.vue';
-import AdministrationLogin from '@/Pages/Administration/Login.vue';
-import AdministrationDashboard from '@/Pages/Administration/Dashboard.vue';
-import AdministrationLanguages from '@/Pages/Administration/Languages.vue';
-import AdministrationTranslations from '@/Pages/Administration/Translations.vue';
-import AdministrationUsers from '@/Pages/Administration/Users.vue';
+import HomepagePage from '@/Pages/HomepagePage.vue';
+import AdministrationLogin from '@/Pages/Administration/LoginPage.vue';
+import AdministrationDashboard from '@/Pages/Administration/DashboardPage.vue';
+import AdministrationLanguages from '@/Pages/Administration/LanguagesPage.vue';
+import AdministrationTranslations from '@/Pages/Administration/TranslationsPage.vue';
+import AdministrationUsers from '@/Pages/Administration/UsersPage.vue';
 
 const routes = [
-    { name: 'homepage', path: '/', component: Home },
+    { name: 'homepage', path: '/', component: HomepagePage },
     { name: 'admin', path: '/admin', component: AdministrationLogin },
     { name: 'admin-dashboard', path: '/admin/dashboard', component: AdministrationDashboard },
     { name: 'admin-languages', path: '/admin/languages', component: AdministrationLanguages },

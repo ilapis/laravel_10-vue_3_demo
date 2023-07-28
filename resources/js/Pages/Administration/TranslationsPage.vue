@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted} from "vue";
-import AdministrationLayout from '@/Layouts/Administration.vue';
+import AdministrationLayout from '@/Layouts/AdministrationLayout.vue';
 import TableComponent from "@/Components/UI/TableComponent.vue";
 import { useTranslationStore } from '@/Stores/translationStore.js';
 import { translationTableSettings } from '@/TableSettings/translationTableSettings.js';
@@ -8,12 +8,7 @@ import TranslationCreateModal from "@/Components/Modals/TranslationCreateModal.v
 
 const translationStore = new useTranslationStore();
 
-//const fetchTranslations = async () => {
-//    await translationStore.fetchCollection();
-//};
-
 onMounted( async () => {
-    //fetchTranslations();
     await translationStore.fetchCollection();
 });
 </script>

@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted} from "vue";
-import AdministrationLayout from '@/Layouts/Administration.vue';
+import AdministrationLayout from '@/Layouts/AdministrationLayout.vue';
 import TableComponent from "@/Components/UI/TableComponent.vue";
 import { useUserStore } from '@/Stores/userStore.js';
 import {userTableSettings} from "@/TableSettings/userTableSettings.js";

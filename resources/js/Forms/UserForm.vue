@@ -2,9 +2,18 @@
 import {onMounted, reactive} from "vue";
 
 const props = defineProps({
-    userStore: Object,
-    abilitiesStore: Object,
-    form: Object,
+    userStore: {
+        type: Object,
+        default: () => ({})
+    },
+    abilitiesStore: {
+        type: Object,
+        default: () => ({})
+    },
+    form: {
+        type: Object,
+        default: () => ({})
+    },
 })
 
 let groupedAbilities = reactive({});
@@ -41,13 +50,17 @@ const capitalize = (string) => {
     return capitalizedFirst + rest;
 }
 
+const emit = defineEmits(['update:form'])
+
 const toggleAbility = (ability) => {
-    const index = props.form.abilities.indexOf(ability);
+    const formCopy = JSON.parse(JSON.stringify(props.form));
+    const index = formCopy.abilities.indexOf(ability);
     if (index === -1) {
-        props.form.abilities.push(ability);
+        formCopy.abilities.push(ability);
     } else {
-        props.form.abilities.splice(index, 1);
+        formCopy.abilities.splice(index, 1);
     }
+    emit('update:form', formCopy);
 }
 
 const isSelected = (ability) => {

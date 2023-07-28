@@ -17,12 +17,16 @@ export function getLanguage() {
     try {
         language = localStorage.getItem('language');
         if (language) return language;
-    } catch (e) {}
+    } catch (e) {
+        console.error('Failed to get language in localStorage', e);
+    }
 
     try {
         language = getCookie('language');
         if (language) return language;
-    } catch (e) {}
+    } catch (e) {
+        console.error('Failed to get language in cookie', e);
+    }
 
     return import.meta.env.VITE_APP_DEFAULT_LANGUAGE;
 }

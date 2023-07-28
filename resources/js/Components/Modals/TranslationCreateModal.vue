@@ -8,12 +8,12 @@ export default markRaw({
 
 <script setup>
 import { useTranslationStore } from '@/Stores/translationStore.js';
-import { useLanguageStore } from '@/Stores/languageStore.js';
+//import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
 import translationForm from '@/FormsDefaults/translationForm.js';
 
 const translationStore = new useTranslationStore();
-const languageStore = new useLanguageStore();
+//const languageStore = new useLanguageStore();
 
 translationStore.setForm(translationForm);
 

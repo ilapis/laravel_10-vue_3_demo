@@ -2,7 +2,6 @@
 import { useRouter } from 'vue-router';
 import AuthService from '@/Services/authService.js';
 import {onMounted, onUnmounted, ref} from "vue";
-//import axios from "axios";
 import { getLanguage, loadLanguage } from '@/utils.js';
 import { useLanguageStore } from '@/Stores/languageStore.js';
 
