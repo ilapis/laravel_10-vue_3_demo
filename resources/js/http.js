@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getLanguage, loadLanguage } from '@/utils.js';
 
 const http = axios.create({
     //baseURL: 'https://localhost',
@@ -23,6 +24,10 @@ http.interceptors.request.use(function (config) {
     const token = localStorage.getItem('token');
     if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    const language = getLanguage();
+    if (language) {
+        config.headers['Accept-Language'] = `${language}`;
     }
 
     return config;
