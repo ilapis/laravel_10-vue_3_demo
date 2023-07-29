@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\Filesystem;
 
 class GenerateJsonRules extends Command
@@ -30,7 +29,8 @@ class GenerateJsonRules extends Command
         $requestPath = app_path('Http/Requests');
 
         if (! $files->isDirectory($requestPath)) {
-            $this->error('Directory ' . $requestPath . ' does not exist.');
+            $this->error('Directory '.$requestPath.' does not exist.');
+
             return 1;
         }
 
@@ -40,7 +40,8 @@ class GenerateJsonRules extends Command
             $className = $this->getClassNameFromFile($file);
 
             if (! class_exists($className)) {
-                $this->error('Class ' . $className . ' does not exist.');
+                $this->error('Class '.$className.' does not exist.');
+
                 continue;
             }
 
@@ -57,7 +58,7 @@ class GenerateJsonRules extends Command
                     mkdir($publicPath, 0777, true);
                 }
 
-                $fileName = $publicPath . '/' . class_basename($className) . '.json';
+                $fileName = $publicPath.'/'.class_basename($className).'.json';
                 file_put_contents($fileName, $json);
             }
         }
@@ -79,6 +80,6 @@ class GenerateJsonRules extends Command
 
         $class = trim(str_replace([$file->getPath(), '.php', '/'], ['', '', '\\'], $file->getPathname()), '\\');
 
-        return $namespace . '\\' . $class;
+        return $namespace.'\\'.$class;
     }
 }

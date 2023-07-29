@@ -30,18 +30,21 @@ class AssignAbility extends Command
         $user = User::find($userId);
         $ability = Ability::find($abilityId);
 
-        if (!$user) {
+        if (! $user) {
             $this->error("User with ID $userId not found.");
+
             return;
         }
 
-        if (!$ability) {
+        if (! $ability) {
             $this->error("Ability with ID $abilityId not found.");
+
             return;
         }
 
         if ($user->abilities->contains($ability)) {
             $this->info("User {$user->name} already has ability {$ability->name}.");
+
             return;
         }
 

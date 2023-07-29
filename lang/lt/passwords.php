@@ -17,6 +17,6 @@ return [
     'sent' => 'El. pašto adresu išsiuntėme slaptažodžio atkūrimo nuorodą.',
     'throttled' => 'Prašome palaukti prieš bandant iš naujo.',
     'token' => 'Šis slaptažodžio atkūrimo raktas yra neteisingas.',
-    'user' => "Negalime rasti vartotojo su tokiu el. pašto adresu.",
+    'user' => 'Negalime rasti vartotojo su tokiu el. pašto adresu.',
 
 ];

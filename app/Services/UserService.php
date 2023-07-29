@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Data\UserData;
-use App\Models\User;
 use App\Models\Ability;
+use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class UserService
@@ -44,7 +44,7 @@ class UserService
         $abilities = $userData->abilities;
 
         // If no abilities provided, do not change existing abilities
-        if (!empty($abilities)) {
+        if (! empty($abilities)) {
             // Get ability models from ability names
             $abilityModels = Ability::whereIn('name', $abilities)->get();
 

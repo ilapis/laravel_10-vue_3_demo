@@ -20,8 +20,8 @@ class UserUpdateRequest extends BaseRequest
         }
 
         return [
-            'name' => 'required|string|max:255|unique:users,name,' . $id,
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'name' => 'required|string|max:255|unique:users,name,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'password' => 'sometimes|required_with:password_confirmation|string|min:8|confirmed',
             'password_confirmation' => 'sometimes|string|min:8',
             'abilities' => 'required|array',
