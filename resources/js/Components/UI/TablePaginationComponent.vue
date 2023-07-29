@@ -39,15 +39,15 @@ const decodeHtmlEntities = (str) => {
         :disabled="!link.url"
         @click="changePage(link.url)"
       >
-          <template v-if="link.label.indexOf('&amp;laquo;') !== -1">
-              {{$t('button.previous')}}
-          </template>
-          <template v-else-if="link.label.indexOf('&amp;raquo;') !== -1">
-              {{$t('button.next')}}
-          </template>
-          <template v-else>
-              {{ decodeHtmlEntities(link.label) }}
-          </template>
+        <template v-if="link.label.indexOf('&amp;laquo;') !== -1">
+          {{ $t('button.previous') }}
+        </template>
+        <template v-else-if="link.label.indexOf('&amp;raquo;') !== -1">
+          {{ $t('button.next') }}
+        </template>
+        <template v-else>
+          {{ decodeHtmlEntities(link.label) }}
+        </template>
       </button>
     </template>
   </div>

@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
 <template>
   <div
     ref="dropdownRef"
-    class="select-wrapper line-height-3rem w-full mt-4 position-relative"
+    class="select-wrapper w-full mt-4 position-relative"
   >
     <label
       v-if="props.label"
@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
     >{{ props.label }}</label>
 
     <div
-      class="selection-display border border-bottom"
+      class="selection-display line-height-3rem border border-bottom"
       @click="toggleDropdown"
     >
       <template v-if="displayRecord">
@@ -90,7 +90,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="showDropdown"
-      class="select-content block box-shadow position-absolute w-100"
+      class="select-content line-height-3rem block box-shadow position-absolute w-100"
     >
       <template
         v-for="(option, index) in props.options"

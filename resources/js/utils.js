@@ -46,10 +46,18 @@ export function setLanguage(language) {
 }
 
 export function loadLanguage(language) {
+    const app = document.querySelector('#app');
+    const displayStyle = window.getComputedStyle(app).display;
+
     axios.get(`/api/v1/translation/locale/${language}`).then((messages) => {
         window.i18n.global.setLocaleMessage(language, messages.data);
         window.i18n.global.locale = language;
 
         setLanguage(language);
+
+        if (displayStyle === "none") {
+            app.style.display = 'block';
+        }
+
     });
 }

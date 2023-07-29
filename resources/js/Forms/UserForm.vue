@@ -3,6 +3,7 @@ import {onMounted, reactive} from "vue";
 
 import { useUserStore } from '@/Stores/userStore.js';
 import { useAbilitiesStore } from '@/Stores/abilitiesStore.js';
+import InputCheckbox from "@/Components/UI/InputCheckbox.vue";
 const userStore = new useUserStore();
 const abilitiesStore = new useAbilitiesStore();
 
@@ -43,6 +44,7 @@ const capitalize = (string) => {
 }
 
 const toggleAbility = (ability) => {
+    console.log(ability);
     const index = localForm.abilities.indexOf(ability);
     if (index === -1) {
         localForm.abilities.push(ability);
@@ -96,14 +98,12 @@ const isSelected = (ability) => {
         :key="ability.id"
         class="block ml-4"
       >
-        <input
-          type="checkbox"
-          name="abilities[]"
-          :value="ability.name"
+        <InputCheckbox
+          v-model="localForm.abilities[ability.name]"
+          :label="ability.name"
           :checked="isSelected(ability.name)"
-          @change="toggleAbility(ability.name)"
-        >
-        {{ ability.name }}
+          @update:model-value="toggleAbility(ability.name)"
+        />
       </div>
       <template
         v-for="(types, type) in groupedAbilities"
@@ -111,18 +111,16 @@ const isSelected = (ability) => {
       >
         <h3>{{ capitalize(type) }}</h3>
         <div
-          v-for="(ability, activity) in types"
+          v-for="ability in types"
           :key="ability.id"
           class="block ml-4"
         >
-          <input
-            type="checkbox"
-            name="abilities[]"
-            :value="ability.name"
+          <InputCheckbox
+            v-model="localForm.abilities[ability.name]"
+            :label="ability.name"
             :checked="isSelected(ability.name)"
-            @change="toggleAbility(ability.name)"
-          >
-          {{ $t('ability.' + activity) }}
+            @update:model-value="toggleAbility(ability.name)"
+          />
         </div>
       </template>
     </div>

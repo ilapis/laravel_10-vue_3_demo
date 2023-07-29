@@ -23,4 +23,8 @@ export const sharedInputProps = {
     display: {
         type: String,
     },
+    checked: {
+        type: Boolean,
+        default: false,
+    },
 };

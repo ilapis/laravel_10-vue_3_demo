@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getLanguage, loadLanguage } from '@/utils.js';
+import { getLanguage } from '@/utils.js';
 
 const http = axios.create({
     //baseURL: 'https://localhost',

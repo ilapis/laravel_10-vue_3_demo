@@ -23,6 +23,8 @@ let localForm = translationStore.getForm();
       :options="languageStore?.collection?.data"
       identifier="id"
       display="name"
+      :underline-text="['The language field is required.']"
+      :errors="translationStore?.errors?.language_id"
     />
 
     <InputText
