@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use LaravelLegends\EloquentFilter\Concerns\HasFilter;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -45,7 +46,10 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
-    public function abilities()
+    /**
+     * The abilities that belong to the user.
+     */
+    public function abilities(): BelongsToMany
     {
         return $this->belongsToMany(Ability::class);
     }

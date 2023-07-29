@@ -14,8 +14,14 @@ class UserData extends DataTransferObject
 
     public ?string $password;
 
+    /**
+     * @var array<string>|null
+     */
     public ?array $abilities;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         $data = parent::toArray();

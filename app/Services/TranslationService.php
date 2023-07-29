@@ -21,7 +21,7 @@ class TranslationService
         return Translation::create($dto->toArray());
     }
 
-    public function update(Translation $translation, TranslationData $dto): Translation
+    public function update(Translation $translation, TranslationData $dto): ?Translation
     {
         $translation->update($dto->toArray());
 

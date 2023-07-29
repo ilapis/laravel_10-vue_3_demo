@@ -28,7 +28,7 @@ class LanguageService
         return Language::create($languageData->toArray());
     }
 
-    public function update(Language $language, LanguageData $languageData): Language
+    public function update(Language $language, LanguageData $languageData): ?Language
     {
         $language->update($languageData->toArray());
 

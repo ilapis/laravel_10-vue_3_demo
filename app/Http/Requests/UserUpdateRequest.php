@@ -9,7 +9,15 @@ class UserUpdateRequest extends BaseRequest
      */
     public function rules(): array
     {
-        $id = $this->route('user')->id; // Fetch the ID from the route parameters.
+        $user = $this->route('user');
+
+        if (is_object($user) && property_exists($user, 'id')) {
+            $id = $user->id;
+        } else {
+            // Handle the case where user is not an object or doesn't have an id property.
+            // For example, you could throw an exception:
+            throw new \RuntimeException('Invalid user route parameter');
+        }
 
         return [
             'name' => 'required|string|max:255|unique:users,name,' . $id,

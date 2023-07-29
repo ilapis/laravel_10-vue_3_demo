@@ -37,7 +37,7 @@ class UserService
         return $user;
     }
 
-    public function update(User $user, UserData $userData): User
+    public function update(User $user, UserData $userData): ?User
     {
         $user->update($userData->toArray());
 

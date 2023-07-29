@@ -4,11 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ability extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array<string>
+     */
     protected $dates = ['deleted_at'];
 
     /**
@@ -20,7 +26,10 @@ class Ability extends Model
         'name',
     ];
 
-    public function users()
+    /**
+     * The users that belong to the ability.
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\Ablities
+ * @mixin \App\Models\Ability
  */
 class AbilitiesResource extends JsonResource
 {
