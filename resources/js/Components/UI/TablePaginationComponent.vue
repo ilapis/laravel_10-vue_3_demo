@@ -20,7 +20,8 @@ const changePage = async (url) => {
 
 const decodeHtmlEntities = (str) => {
     let textArea = document.createElement('textarea');
-    textArea.innerHTML = str.replace('&laquo;', '').replace('&raquo;', '').trim(' ');
+    //TODO check and replace
+    textArea.innerHTML = str;//.replace('&laquo;', '').replace('&raquo;', '').trim(' ');
 
     return textArea.value;
 };
@@ -38,12 +39,15 @@ const decodeHtmlEntities = (str) => {
         :disabled="!link.url"
         @click="changePage(link.url)"
       >
-        <template v-if="!isNaN(link.label)">
-          {{ decodeHtmlEntities(link.label.toLowerCase()) }}
-        </template>
-        <template v-else>
-          {{ $t('button.' + decodeHtmlEntities(link.label.toLowerCase())) }}
-        </template>
+          <template v-if="link.label.indexOf('&amp;laquo;') !== -1">
+              {{$t('button.previous')}}
+          </template>
+          <template v-else-if="link.label.indexOf('&amp;raquo;') !== -1">
+              {{$t('button.next')}}
+          </template>
+          <template v-else>
+              {{ decodeHtmlEntities(link.label) }}
+          </template>
       </button>
     </template>
   </div>
