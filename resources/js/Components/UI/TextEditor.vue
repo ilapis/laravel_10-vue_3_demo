@@ -14,7 +14,7 @@ export default markRaw({
 </script>
 
 <script setup>
-import {defineProps, defineEmits, ref, onMounted, watch, nextTick} from "vue";
+import {defineProps, defineEmits, ref} from "vue";
 import { sharedInputProps } from '@/Helpers/sharedInputProps.js';
 
 const props = defineProps(sharedInputProps);
@@ -36,15 +36,20 @@ const onEditorReady = (editor) => {
 </script>
 
 <template>
-    <label
-        v-if="props.label"
-        class="float-left"
-    >{{ $t(props.label) }}</label>
+  <label
+    v-if="props.label"
+    class="float-left"
+  >{{ $t(props.label) }}</label>
 
-    <UnderlineComponent
-        :underline-text="props.underlineText"
-        :errors="props.errors"
-    />
+  <UnderlineComponent
+    :underline-text="props.underlineText"
+    :errors="props.errors"
+  />
 
-    <QuillEditor ref="quill" @ready="onEditorReady" @textChange="updateInputValue" theme="snow" />
+  <QuillEditor
+    ref="quill"
+    theme="snow"
+    @ready="onEditorReady"
+    @text-change="updateInputValue"
+  />
 </template>

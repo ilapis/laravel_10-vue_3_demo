@@ -5,7 +5,7 @@ import ArticleForm from "@/Forms/ArticleForm.vue";
 
 <template>
   <AdministrationLayout>
-      <ArticleForm />
+    <ArticleForm />
   </AdministrationLayout>
 </template>
 

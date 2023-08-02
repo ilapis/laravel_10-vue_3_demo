@@ -18,25 +18,29 @@ const navigateToCreateArticle = () => {
 </script>
 
 <template>
-    <AdministrationLayout>
-        <div class="w-full mt-4 height-12">
-            <ButtonComponent class="btn-primary height-12 ml-4" @click="navigateToCreateArticle" label="create"/>
-        </div>
-        <div
-            class="w-full one-table-page"
-        >
-            <TableComponent
-                :service="articleStore"
-                :rows="articleStore.collection?.data"
-                :row-settings="articleTableSettings"
-            />
-        </div>
-        <TablePaginationComponent
-            v-if="articleStore.collection?.meta?.links"
-            :links="articleStore.collection?.meta?.links"
-            :service="articleStore"
-        />
-    </AdministrationLayout>
+  <AdministrationLayout>
+    <div class="w-full mt-4 height-12">
+      <ButtonComponent
+        class="btn-primary height-12 ml-4"
+        label="create"
+        @click="navigateToCreateArticle"
+      />
+    </div>
+    <div
+      class="w-full one-table-page"
+    >
+      <TableComponent
+        :service="articleStore"
+        :rows="articleStore.collection?.data"
+        :row-settings="articleTableSettings"
+      />
+    </div>
+    <TablePaginationComponent
+      v-if="articleStore.collection?.meta?.links"
+      :links="articleStore.collection?.meta?.links"
+      :service="articleStore"
+    />
+  </AdministrationLayout>
 </template>
 
 <style scoped>

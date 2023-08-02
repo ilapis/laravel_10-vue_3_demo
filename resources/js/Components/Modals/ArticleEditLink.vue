@@ -7,7 +7,7 @@ export default markRaw({
 </script>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from "vue";
 import { useRouter } from 'vue-router';
 const router = useRouter(); // getting router instance
 
@@ -22,8 +22,6 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['click']);
-
 const navigateToEditArticle = (id) => {
     router.push({ name: 'admin-article-edit', params: { id } });
 }
@@ -32,9 +30,9 @@ const navigateToEditArticle = (id) => {
 <template>
   <button
     class="btn btn-primary border-none height-12 box-shadow ml-4"
-    @click="navigateToEditArticle(id)"
+    @click="navigateToEditArticle(props.id)"
   >
-      {{ $t('button.edit') }}
+    {{ $t('button.edit') }}
     <slot />
   </button>
 </template>

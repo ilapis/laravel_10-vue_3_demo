@@ -9,7 +9,7 @@ const id = route.params.id;
 
 <template>
   <AdministrationLayout>
-      <ArticleForm :id="id" />
+    <ArticleForm :id="id" />
   </AdministrationLayout>
 </template>
 

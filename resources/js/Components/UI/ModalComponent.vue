@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, onUnmounted, ref, watch, watchEffect} from "vue";
+import {onMounted, onUnmounted, ref, watch} from "vue";
 
 const props = defineProps({
     show: {
@@ -58,7 +58,7 @@ onUnmounted( () => {
     window.removeEventListener('resize', setModalBodyHeight);
 });
 
-watch(() => props.show, (newVal, oldVal) => {
+watch(() => props.show, (newVal) => {
     if (newVal) {
         setTimeout(setModalBodyHeight, 100);
     }
@@ -72,7 +72,10 @@ function generateRandomId() {
 <template>
   <template v-if="show">
     <div class="modal-backdrop">
-      <div :id="modalId" class="modal box-shadow">
+      <div
+        :id="modalId"
+        class="modal box-shadow"
+      >
         <div class="modal-header w-full">
           <slot name="header" />
           <CloseIcon
@@ -80,7 +83,10 @@ function generateRandomId() {
             @click="closeModal"
           />
         </div>
-        <div :id="modalBodyId" class="modal-body">
+        <div
+          :id="modalBodyId"
+          class="modal-body"
+        >
           <slot />
         </div>
         <div class="modal-footer height-12">

@@ -48,48 +48,58 @@ const submitForm = async (id) => {
 </script>
 
 <template>
-  <div v-if="localForm" class="p-4" >
+  <div
+    v-if="localForm"
+    class="p-4"
+  >
     <div class="w-full height-12">
-        <ButtonComponent :label="`${props.id ? 'Update' : 'Create'}`" class="btn-primary height-12" @click="submitForm(props.id)" />
+      <ButtonComponent
+        :label="`${props.id ? 'Update' : 'Create'}`"
+        class="btn-primary height-12"
+        @click="submitForm(props.id)"
+      />
     </div>
     <div class="page-content">
-        <InputSelect style="max-width:200px;float:left;margin-right:1rem;"
-          v-model="localForm.language_id"
-          class="mt-4"
-          label="table.language"
-          :options="languageStore?.collection?.data"
-          identifier="id"
-          display="name"
-          :underline-text="['The language field is required.']"
-          :errors="articleStore?.errors?.language_id"
-        />
+      <InputSelect
+        v-model="localForm.language_id"
+        style="max-width:200px;float:left;margin-right:1rem;"
+        class="mt-4"
+        label="table.language"
+        :options="languageStore?.collection?.data"
+        identifier="id"
+        display="name"
+        :underline-text="['The language field is required.']"
+        :errors="articleStore?.errors?.language_id"
+      />
 
-        <InputSelect style="max-width:400px;float:left;"
-          v-model="localForm.user_id"
-          class="mt-4"
-          label="table.user"
-          :options="userStore.enabled"
-          identifier="id"
-          display="name"
-          :underline-text="['The user field is required.']"
-          :errors="articleStore?.errors?.user_id"
-        />
+      <InputSelect
+        v-model="localForm.user_id"
+        style="max-width:400px;float:left;"
+        class="mt-4"
+        label="table.user"
+        :options="userStore.enabled"
+        identifier="id"
+        display="name"
+        :underline-text="['The user field is required.']"
+        :errors="articleStore?.errors?.user_id"
+      />
 
-        <InputText style="clear:both;"
-          v-model="localForm.title"
-          label="table.title"
-          :underline-text="['The group field is required.']"
-          :errors="articleStore?.errors?.title"
-        />
+      <InputText
+        v-model="localForm.title"
+        style="clear:both;"
+        label="table.title"
+        :underline-text="['The group field is required.']"
+        :errors="articleStore?.errors?.title"
+      />
 
-        <div class="mt-4">
-            <TextEditor
-                v-model="localForm.text"
-                label="table.text"
-                :underline-text="['The text field is required.']"
-                :errors="articleStore?.errors?.text"
-            />
-        </div>
+      <div class="mt-4">
+        <TextEditor
+          v-model="localForm.text"
+          label="table.text"
+          :underline-text="['The text field is required.']"
+          :errors="articleStore?.errors?.text"
+        />
+      </div>
     </div>
   </div>
 </template>
