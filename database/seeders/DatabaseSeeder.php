@@ -68,11 +68,17 @@ class DatabaseSeeder extends Seeder
 
     private function seedMasterAccount(): void
     {
-        \App\Models\User::factory()->create([
+        $user = \App\Models\User::factory()->create([
             'name' => env('MASTER_NAME'),
             'email' => env('MASTER_EMAIL'),
             'password' => env('MASTER_PASSWORD'),
         ]);
+
+        // Create a new ability if it doesn't exist
+        $ability = \App\Models\Ability::firstOrCreate(['name' => '*']);
+
+        // Attach the ability to the user
+        $user->abilities()->syncWithoutDetaching([$ability->id]);
     }
 
     private function seedLanguage(): void

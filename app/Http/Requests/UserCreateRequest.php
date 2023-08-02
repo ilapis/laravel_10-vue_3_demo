@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 class UserCreateRequest extends BaseRequest
 {
+    public function permissions(): array
+    {
+        return ['can_create_user'];
+    }
+
     /**
      * @return array<string, string>
      */

@@ -110,7 +110,12 @@ class AuthService
             }
         }
 
-        $newToken = $user->createToken($user->name, ['*'], now()->addHours(8));
+        $abilities = $user->load('abilities')->abilities()->pluck('name')->toArray();
+        if (in_array('*', $abilities) || in_array('user_administrator', $abilities)) {
+            $newToken = $user->createToken($user->name, ['*', 'user_administrator'], now()->addHours(8));
+        } else {
+            $newToken = $user->createToken($user->name, $abilities, now()->addHours(8));
+        }
 
         return $this->returnToken($newToken->accessToken);
     }

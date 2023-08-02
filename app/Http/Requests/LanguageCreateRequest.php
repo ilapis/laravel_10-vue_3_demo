@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 class LanguageCreateRequest extends BaseRequest
 {
+    public function permissions(): array
+    {
+        return ['can_create_language'];
+    }
+
     /**
      * @return array<string, string>
      */

@@ -6,6 +6,11 @@ use Illuminate\Validation\Rule;
 
 class TranslationCreateRequest extends BaseRequest
 {
+    public function permissions(): array
+    {
+        return ['can_create_translation'];
+    }
+
     /**
      * @return array<string, mixed>
      */

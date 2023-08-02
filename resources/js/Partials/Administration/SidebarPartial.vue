@@ -8,6 +8,11 @@
       style="height:6rem;"
     />
     <div class="has-router width-full block line-height-3rem text-indent-1rem">
+      <RouterLink :to="{ name: 'admin-articles'}">
+        {{ $t('menu.articles') }}
+      </RouterLink>
+    </div>
+    <div class="has-router width-full block line-height-3rem text-indent-1rem">
       <RouterLink :to="{ name: 'admin-languages'}">
         {{ $t('menu.languages') }}
       </RouterLink>

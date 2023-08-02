@@ -7,6 +7,11 @@ use Illuminate\Validation\Rules\Unique;
 
 class LanguageUpdateRequest extends BaseRequest
 {
+    public function permissions(): array
+    {
+        return ['can_update_language'];
+    }
+
     /**
      * @return array<string, array<int,Unique|string>|string>
      */

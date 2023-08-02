@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 class UserUpdateRequest extends BaseRequest
 {
+    public function permissions(): array
+    {
+        return ['can_update_user'];
+    }
+
     /**
      * @return array<string, string>
      */
@@ -11,13 +16,11 @@ class UserUpdateRequest extends BaseRequest
     {
         $user = $this->route('user');
 
-        if (is_object($user) && property_exists($user, 'id')) {
-            $id = $user->id;
-        } else {
-            // Handle the case where user is not an object or doesn't have an id property.
-            // For example, you could throw an exception:
+        if (!($user instanceof \App\Models\User)) {
             throw new \RuntimeException('Invalid user route parameter');
         }
+
+        $id = $user->id;
 
         return [
             'name' => 'required|string|max:255|unique:users,name,'.$id,

@@ -1,14 +1,10 @@
-//#========== laravel-vue-i18n ==========
-//Generate json for frontend from laravel php
-//import { i18nVue } from 'laravel-vue-i18n';
-
 import './bootstrap';
 import {createApp} from 'vue';
 import App from './App.vue';
 import router from './router.js';
 import {createPinia} from 'pinia';
-import { createI18n } from 'vue-i18n';
-import { getLanguage, loadLanguage } from './utils';
+import {createI18n} from 'vue-i18n';
+import {getLanguage, loadLanguage} from './utils';
 
 import CloseIcon from "@/Components/Icons/CloseIcon.vue";
 import DownIcon from "@/Components/Icons/DownIcon.vue";
@@ -30,6 +26,7 @@ import LanguageEditModal from "@/Components/Modals/LanguageEditModal.vue";
 import TranslationCreateModal from "@/Components/Modals/TranslationCreateModal.vue";
 import TranslationEditModal from "@/Components/Modals/TranslationEditModal.vue";
 import UserCreateModal from "@/Components/Modals/UserCreateModal.vue";
+import ArticleEditLink from "@/Components/Modals/ArticleEditLink.vue";
 import UserEditModal from "@/Components/Modals/UserEditModal.vue";
 import DeleteModal from "@/Components/Modals/DeleteModal.vue";
 
@@ -73,3 +70,4 @@ app.component('TranslationForm', TranslationForm);
 app.component('UserForm', UserForm);
 app.component('LanguageEditModal', LanguageEditModal);
 app.component('DeleteModal', DeleteModal);
+app.component('ArticleEditLink', ArticleEditLink);

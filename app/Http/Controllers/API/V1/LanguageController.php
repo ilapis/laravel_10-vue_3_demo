@@ -48,8 +48,6 @@ class LanguageController extends Controller
 
     public function store(LanguageCreateRequest $languageCreateRequest): JsonResponse
     {
-        $this->authorize('create', Language::class);
-
         $languageData = new LanguageData($languageCreateRequest->validated());
 
         $language = $this->languageService->create($languageData);
@@ -59,8 +57,6 @@ class LanguageController extends Controller
 
     public function update(Language $language, LanguageUpdateRequest $languageUpdateRequest): LanguageResource
     {
-        $this->authorize('update', $language);
-
         $languageData = new LanguageData($languageUpdateRequest->validated());
 
         $language = $this->languageService->update(

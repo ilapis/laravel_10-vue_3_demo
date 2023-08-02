@@ -18,8 +18,7 @@ onMounted( async () => {
       <UserCreateModal />
     </div>
     <div
-      class="w-full"
-      style="height:calc(100% - 8rem);"
+      class="w-full one-table-page"
     >
       <TableComponent
         :service="userStore"

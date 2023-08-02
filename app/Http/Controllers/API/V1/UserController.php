@@ -22,6 +22,13 @@ class UserController extends Controller
 
     }
 
+    public function enabled(): AnonymousResourceCollection
+    {
+        $this->authorize('view', User::class);
+
+        return UserResource::collection($this->userService->enabled());
+    }
+
     public function show(User $user): UserResource
     {
         return new UserResource($user);

@@ -20,7 +20,7 @@ const updateInputValue = (event) => {
 
 <template>
   <div class="w-full mt-4">
-    <label class="block">{{ props.label }}</label>
+    <label class="block">{{ $t(props.label) }}</label>
     <input
       type="text"
       :value="props.modelValue"

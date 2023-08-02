@@ -1,4 +1,6 @@
 <script setup>
+import {onMounted, onUnmounted, ref, watch, watchEffect} from "vue";
+
 const props = defineProps({
     show: {
         type: Boolean,
@@ -22,12 +24,55 @@ function closeModal() {
 function action(action) {
     emit('update:action', action)
 }
+
+const modalBodyId = ref("modal_body_" + generateRandomId());
+const modalId = ref("modal_" + generateRandomId());
+
+const setModalBodyHeight = () => {
+    const modal = document.getElementById(modalId.value);
+    const modalBody = document.getElementById(modalBodyId.value);
+    if (modal && modalBody) {
+        // Check if the modal's height is too large
+        let windowHeight = window.innerHeight;
+        if (modal.offsetHeight > windowHeight) {
+            // Reduce the modal's height to fit within the window
+            let newHeight = windowHeight * 0.9;  // 90% of the window's height
+            modal.style.height = newHeight + "px";
+
+            // Reduce the modal body's height accordingly
+            //let headerFooterHeight = modal.offsetHeight - modalBody.offsetHeight;
+            //modalBody.style.height = (newHeight - headerFooterHeight - 0) + "px";
+        }
+        if (modalBody.offsetHeight > modal.offsetHeight) {
+            modalBody.style.height = (modal.offsetHeight - 96 - 96) + 'px';
+        }
+    }
+};
+
+onMounted( () => {
+    setModalBodyHeight();
+    window.addEventListener('resize', setModalBodyHeight);
+});
+
+onUnmounted( () => {
+    window.removeEventListener('resize', setModalBodyHeight);
+});
+
+watch(() => props.show, (newVal, oldVal) => {
+    if (newVal) {
+        setTimeout(setModalBodyHeight, 100);
+    }
+}, { immediate: false });
+// Function to generate a random ID
+function generateRandomId() {
+    return Math.random().toString(36).substr(2, 9);
+}
 </script>
 
 <template>
-  <template v-if="props.show">
+  <template v-if="show">
     <div class="modal-backdrop">
-      <div class="modal box-shadow">
+      <div :id="modalId" class="modal box-shadow">
         <div class="modal-header w-full">
           <slot name="header" />
           <CloseIcon
@@ -35,7 +80,7 @@ function action(action) {
             @click="closeModal"
           />
         </div>
-        <div class="modal-body">
+        <div :id="modalBodyId" class="modal-body">
           <slot />
         </div>
         <div class="modal-footer height-12">
@@ -46,7 +91,7 @@ function action(action) {
               @click="action('cancel')"
             />
             <ButtonComponent
-              :label="props.actionLabel"
+              :label="actionLabel"
               class="btn-primary float-right"
               @click="action('action')"
             />
@@ -62,18 +107,21 @@ function action(action) {
     position: absolute;
     background: #ffffff;
     min-width: 480px;
+    max-height:90%;
     z-index:101;
     display: block;
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
     border-radius: 8px;
 }
 
 .modal-header {
+    height: 3rem;
     padding: 1.5rem 0;
     text-indent: 0;
 }
 .modal-footer {
+    height: 3rem;
     padding: 1.5rem;
     text-indent: 0;
     clear:both;
@@ -84,10 +132,16 @@ function action(action) {
     border-radius: 8px;
     padding: 0.5rem;
     margin-right: 1.5rem;
+    position: relative;
 }
 .modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
     flex-grow: 1;
-    padding: 0 1.5em; /* Adjust this value as needed */
+    margin-left: 1rem;
+    width: calc(100% - 4rem);
+    margin-top: -2rem;
+    padding: 0 1rem;
 }
 .modal-backdrop {
     display: flex;

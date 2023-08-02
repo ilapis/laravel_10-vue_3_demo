@@ -8,9 +8,31 @@ use Illuminate\Validation\ValidationException;
 
 class BaseRequest extends FormRequest
 {
+    /**
+     * @return array<string>
+     */
+    public function permissions(): array
+    {
+        return ['*']; //default All
+    }
+
+    protected function allow(): bool
+    {
+
+        if ($user = $this->user()) {
+            $loaded = $user->load('abilities');
+
+            $allAbilities = array_merge(['*', ...$this->permissions()]);
+
+            return in_array('*', $this->permissions()) || $loaded->abilities->whereIn('name', $allAbilities)->isNotEmpty();
+        }
+
+        return true;
+    }
+
     public function authorize(): bool
     {
-        return true;
+        return $this->allow();
     }
 
     /**

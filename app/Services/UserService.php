@@ -6,9 +6,16 @@ use App\Data\UserData;
 use App\Models\Ability;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
+    public function enabled(): Collection
+    {
+        return User::all();
+        //return User::where('enabled', true)->filter()->get();//@TODO
+    }
+
     /**
      * @return LengthAwarePaginator<User>
      */
@@ -25,7 +32,7 @@ class UserService
 
         // If no abilities provided, use default
         if (empty($abilities)) {
-            $abilities = ['registered_user'];
+            $abilities = ['user_registered'];
         }
 
         // Get ability models from ability names

@@ -14,6 +14,9 @@ export const sharedInputProps = {
     modelValue: {
         default: null,
     },
+    value: {
+        default: null,
+    },
     options: {
         default: null,
     },

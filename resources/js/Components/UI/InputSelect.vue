@@ -61,7 +61,7 @@ onBeforeUnmount(() => {
     <label
       v-if="props.label"
       class="float-left"
-    >{{ props.label }}</label>
+    >{{ $t(props.label) }}</label>
 
     <div
       class="selection-display line-height-3rem border border-bottom"
@@ -130,12 +130,14 @@ onBeforeUnmount(() => {
     text-indent: 0;
 }
 .select-content {
-    text-indent: 1rem;
+    text-indent: 0.5rem;
     max-height: 15rem;
     overflow: auto;
-    width:calc(100% + 2rem);
-    margin-left: -1rem;
+    width: calc(100% + 1rem);
     z-index: 100;
+    margin: 0 -0.5rem;
+    position: absolute;
+    top: 79px;
 }
 .selection-display {
     margin-top: -1px;

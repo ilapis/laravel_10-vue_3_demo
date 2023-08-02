@@ -2,10 +2,9 @@ import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
 
-export const useUserStore = defineStore('user-store', {
+export const useArticleStore = defineStore('article-store', {
     state: () => ({
         collection: null,
-        enabled: null,
         errors: null,
         _query_parameter_page: 1,
     }),
@@ -14,20 +13,15 @@ export const useUserStore = defineStore('user-store', {
         ...formMethods,
 
         async fetchCollection() {
-            await http.get(`/api/v1/user`).then((response) => {
+            await http.get(`/api/v1/article`).then((response) => {
+                this.errors = null;
                 this.collection = response.data;
-            });
-        },
-
-        async fetchEnabled() {
-            await http.get(`/api/v1/user/enabled`).then((response) => {
-                this.enabled = response.data.data;
             });
         },
 
         async fetchPage(page) {
             this._query_parameter_page = page;
-            await http.get(`/api/v1/user?page=${page}`).then((response) => {
+            await http.get(`/api/v1/article?page=${page}`).then((response) => {
                 this.collection = response.data;
             });
         },
@@ -38,7 +32,7 @@ export const useUserStore = defineStore('user-store', {
 
         async create(form) {
 
-            return http.post(`/api/v1/user`, form).then((response) => {
+            return http.post(`/api/v1/article`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
@@ -51,7 +45,7 @@ export const useUserStore = defineStore('user-store', {
 
         async get(id) {
 
-            return http.get(`/api/v1/user/${id}`).then((response) => {
+            return http.get(`/api/v1/article/${id}`).then((response) => {
                 this.errors = null;
                 return response.data.data;
             });
@@ -59,7 +53,7 @@ export const useUserStore = defineStore('user-store', {
 
         async update(id, form) {
 
-            return http.put(`/api/v1/user/${id}`, form).then((response) => {
+            return http.put(`/api/v1/article/${id}`, form).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
@@ -72,7 +66,7 @@ export const useUserStore = defineStore('user-store', {
 
         async destroy(id) {
 
-            return http.delete(`/api/v1/user/${id}`).then((response) => {
+            return http.delete(`/api/v1/article/${id}`).then((response) => {
 
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;

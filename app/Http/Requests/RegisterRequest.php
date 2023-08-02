@@ -4,9 +4,6 @@ namespace App\Http\Requests;
 
 class RegisterRequest extends BaseRequest
 {
-    /**
-     * @return array<string, string>
-     */
     public function rules(): array
     {
         return [

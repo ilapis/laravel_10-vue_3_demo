@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,6 +46,23 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            if ($user->articles()->count() > 0) {
+                return false;
+            }
+        });
+    }
+
+    /**
+     * The articles that belong to the user.
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
 
     /**
      * The abilities that belong to the user.

@@ -10,6 +10,11 @@ en,table,updated_at,Updated
 en,table,group,Group
 en,table,key,Key
 en,table,value,Value
+en,table,title,Title
+en,table,text,Text
+en,table,user,User
+en,table,user_id,User
+en,table,author,Author
 en,button,login,Login
 en,button,logout,Logout
 en,button,delete,Delete
@@ -24,6 +29,7 @@ en,button,download,Download
 en,button,export,Export
 en,button,next,Next
 en,button,previous,Previous
+en,menu,articles,Articles
 en,menu,languages,Languages
 en,menu,translations,Translations
 en,menu,users,Users

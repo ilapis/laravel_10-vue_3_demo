@@ -42,12 +42,10 @@ function generateRandomId() {
 
 <template>
   <div
-    class="w-full"
-    style="height:calc(100% - 8rem);"
+    class="w-full table-height"
   >
     <table
-      class="w-full"
-      style="height:calc(100% - 8rem);"
+      class="w-full table-height"
     >
       <thead>
         <tr class="line-height-4rem text-indent-1rem text-align-left">
@@ -101,5 +99,7 @@ function generateRandomId() {
 </template>
 
 <style scoped>
-
+.table-height {
+    height:calc(100% - 8rem);
+}
 </style>

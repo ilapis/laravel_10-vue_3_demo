@@ -66,11 +66,11 @@ div {
     background: #fff;
 }
 
-body {
+body, .ql-container {
     padding: 0;
     margin: 0;
-    font-family: var(--main-font);
-    font-size: var(--main-font-size);
+    font-family: var(--main-font) !important;;
+    font-size: var(--main-font-size) !important;
 }
 
 /* Base grid */
@@ -797,6 +797,7 @@ input {
     font-family: var(--main-font);
     font-size: var(--small-font-size);
     text-indent: 0;
+    line-height: 2rem;
 }
 
 .checkbox-underline {
@@ -831,12 +832,11 @@ input {
 .bg-hover-grey:hover {
     background: #cccccc;
 }
-/*
-.bg-primary:hover {
-    background: #ffffff;
-    border: 1px solid #0039a6 !important;
+.select-content .bg-hover-grey:hover {
+    background: #0039a6;
+    color: #ffffff;
 }
-*/
+
 .bg-primary {
     background: #0039a6;
 }
@@ -881,6 +881,10 @@ input {
 
 .float-right {
     float: right;
+}
+
+.one-table-page {
+    height:calc(100% - 9.375rem);
 }
 
 .height-12 {

@@ -3,6 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import fs from 'fs';
 import path from 'path';
+import { visualizer } from "rollup-plugin-visualizer";
 
 //#========== laravel-vue-i18n ==========
 //Generate json for frontend from laravel php
@@ -33,6 +34,13 @@ export default defineConfig({
 		vue(),
         //#========== laravel-vue-i18n ==========
         //i18n(),
+        visualizer({
+            filename: './report.html',
+            //open: true,
+            gzipSize: true,
+            brotliSize: true,
+            // Other options...
+        }),
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,

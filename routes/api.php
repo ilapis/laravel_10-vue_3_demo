@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ Route::middleware('locale')->group(function () {
             });
         });
 
-        Route::get('/language/enabled', 'LanguageController@enabled');
+        Route::get('language/enabled', 'LanguageController@enabled');
         Route::get('translation/locale/{language_code}', 'TranslationController@locale')->name('language_locale_list');
 
         Route::middleware('auth.jwt')->group(function () {
@@ -38,12 +39,17 @@ Route::middleware('locale')->group(function () {
                 'index', 'show', 'store', 'update', 'destroy',
             ]);
 
+            Route::get('user/enabled', [App\Http\Controllers\API\V1\UserController::class, 'enabled']);
             Route::resource('user', 'UserController')->only([
                 'index', 'show', 'store', 'update', 'destroy',
             ]);
 
             Route::resource('abilities', 'AbilityController')->only([
                 'index',
+            ]);
+
+            Route::resource('article', 'ArticleController')->only([
+                'index', 'show', 'store', 'update', 'destroy',
             ]);
         });
     });

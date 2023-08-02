@@ -22,7 +22,7 @@ import SidebarPartial from '@/Partials/Administration/SidebarPartial.vue';
       class="bg-primary box-shadow"
       style="position:relative;width:calc(100% - 301px);height:5rem;float:left;"
     />
-    <PagePartial style="width:calc(100% - 300px);height:calc(100% - 6.375rem);float:left;">
+    <PagePartial style="width:calc(100% - 300px);height:calc(100% - 5rem);float:left;overflow:auto;">
       <slot />
     </PagePartial>
   </div>

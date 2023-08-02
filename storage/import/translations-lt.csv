@@ -10,6 +10,11 @@ lt,table,updated_at,Atnaujinta
 lt,table,group,Grupė
 lt,table,key,Raktas
 lt,table,value,Reikšmė
+lt,table,title,Titulinis
+lt,table,text,Tekstas
+lt,table,user,Vartotojas
+lt,table,user_id,Vartotojas
+lt,table,author,Autorius
 lt,button,login,Prisijungti
 lt,button,logout,Atsijungti
 lt,button,delete,Ištrinti
@@ -24,6 +29,7 @@ lt,button,download,Parsisiųsti
 lt,button,export,Eksportuoti
 lt,button,next,Sekantis
 lt,button,previous,Atgal
+lt,menu,articles,Straipsniai
 lt,menu,languages,Kalbos
 lt,menu,translations,Vertimai
 lt,menu,users,Vartotojai
