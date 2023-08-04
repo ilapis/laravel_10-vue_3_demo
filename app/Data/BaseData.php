@@ -9,10 +9,23 @@ use JsonSerializable;
 
 abstract class BaseData implements Arrayable, Jsonable, JsonSerializable
 {
-    public function __construct(private Request $request)
+    public function __construct(?Request $request = null, array $data = [])
     {
-        $data = $this->request->all();
+        if ($request !== null) {
+            $this->source = $request->all();
+        } elseif (!empty($data)) {
+            $this->source = $data;
+        } else {
+            throw new \InvalidArgumentException(
+                'Constructor expects an instance of Illuminate\Http\Request or an associative array.'
+            );
+        }
 
+        $this->fillProperties($this->source);
+    }
+
+    protected function fillProperties(array $data): void
+    {
         $properties = get_class_vars(static::class);
 
         foreach ($properties as $property => $value) {

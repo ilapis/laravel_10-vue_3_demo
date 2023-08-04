@@ -2,12 +2,8 @@
 
 namespace App\Data;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-class LanguageData extends DataTransferObject
+class LanguageData  extends BaseData
 {
-    public ?int $id;
-
     public string $code;
 
     public string $name;

@@ -6,6 +6,7 @@ use App\Data\LanguageData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageCreateRequest;
 use App\Http\Requests\LanguageUpdateRequest;
+use App\Http\Requests\LanguageDeleteRequest;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
 use App\Services\LanguageService;
@@ -46,32 +47,19 @@ class LanguageController extends Controller
         ]);
     }
 
-    public function store(LanguageCreateRequest $languageCreateRequest): JsonResponse
+    public function store(LanguageCreateRequest $createRequest, LanguageData $languageData): JsonResponse
     {
-        $languageData = new LanguageData($languageCreateRequest->validated());
-
-        $language = $this->languageService->create($languageData);
-
-        return (new LanguageResource($language))->response()->setStatusCode(201);
+        return (new LanguageResource($this->languageService->create($languageData)))->response()->setStatusCode(201);
     }
 
-    public function update(Language $language, LanguageUpdateRequest $languageUpdateRequest): LanguageResource
+    public function update(LanguageUpdateRequest $updateRequest, Language $language, LanguageData $languageData): LanguageResource
     {
-        $languageData = new LanguageData($languageUpdateRequest->validated());
-
-        $language = $this->languageService->update(
-            $language,
-            $languageData
-        );
-
-        return new LanguageResource($language);
+        return new LanguageResource($this->languageService->update($language, $languageData));
     }
 
-    public function destroy(Language $language): Response
+    public function destroy(LanguageDeleteRequest $deleteRequest, Language $language): Response
     {
-        $this->authorize('delete', $language);
-
-        $language->delete();
+        $this->languageService->delete($language);
 
         return response(null, 204);  // 204 status code indicates successful deletion with no content in the response
     }
