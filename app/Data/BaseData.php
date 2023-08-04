@@ -32,7 +32,7 @@ abstract class BaseData implements Arrayable, Jsonable, JsonSerializable
             if (array_key_exists($property, $data)) {
                 $this->{$property} = $data[$property];
             } else {
-                if ($this->{$property} === null) {
+                if (!isset($this->{$property})) {
                     unset($this->{$property});
                 }
             }

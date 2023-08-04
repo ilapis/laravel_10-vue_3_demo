@@ -6,9 +6,11 @@ use App\Data\TranslationData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationCreateRequest;
 use App\Http\Requests\TranslationUpdateRequest;
+use App\Http\Requests\TranslationDeleteRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
 use App\Services\TranslationService;
+use App\Traits\PerPage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -16,6 +18,8 @@ use Illuminate\Http\Response;
 
 class TranslationController extends Controller
 {
+    use PerPage;
+
     public function __construct(private TranslationService $translationService)
     {
 
@@ -28,26 +32,13 @@ class TranslationController extends Controller
 
     public function locale(string $language_code): Response
     {
-        $translations = Translation::query()
-            ->whereHas('language', function ($query) use ($language_code) {
-                $query->where('code', $language_code);
-            })
-            ->get(['group', 'key', 'value'])
-            ->groupBy('group')
-            ->map(function ($groupItems) {
-                return $groupItems->pluck('value', 'key');
-            })
-            ->toArray();
-
-        return response($translations);
+        return response($this->translationService->locale($language_code));
     }
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $per_page = filter_var($request->get('per_page', 10), FILTER_VALIDATE_INT, ['options' => ['default' => 10, 'min_range' => 1]]);
-
         return TranslationResource::collection(
-            $this->translationService->list($per_page)
+            $this->translationService->list($this->perPage())
         )->additional([
             'sortable' => ['id', 'language_id', 'key', 'name'],
             'filterable' => [
@@ -58,32 +49,19 @@ class TranslationController extends Controller
         ]);
     }
 
-    public function store(TranslationCreateRequest $request): JsonResponse
+    public function store(TranslationCreateRequest $createRequest, TranslationData $translationData): JsonResponse
     {
-        $translationData = new TranslationData($request->validated());
-
-        $translation = $this->translationService->create($translationData);
-
-        return (new TranslationResource($translation))->response()->setStatusCode(201);
+        return (new TranslationResource($this->translationService->create($translationData)))->response()->setStatusCode(201);
     }
 
-    public function update(Translation $translation, TranslationUpdateRequest $request): TranslationResource
+    public function update(TranslationUpdateRequest $updateRequest, Translation $translation, TranslationData $translationData): TranslationResource
     {
-        $translationData = new TranslationData($request->validated());
-
-        $translation = $this->translationService->update(
-            $translation,
-            $translationData
-        );
-
-        return new TranslationResource($translation);
+        return new TranslationResource($this->translationService->update($translation, $translationData));
     }
 
-    public function destroy(Translation $translation): Response
+    public function destroy(TranslationDeleteRequest $deleteRequest, Translation $translation): Response
     {
-        $this->authorize('delete', $translation);
-
-        $translation->delete();
+        $this->translationService->delete($translation);
 
         return response(null, 204);  // 204 status code indicates successful deletion with no content in the response
     }

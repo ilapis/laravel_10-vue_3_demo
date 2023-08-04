@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Data\UserData;
-//use App\DTO\UserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
+use App\Traits\PerPage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -17,6 +17,8 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
+    use PerPage;
+
     public function __construct(private readonly UserService $userService)
     {
 
@@ -36,10 +38,8 @@ class UserController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $per_page = filter_var($request->get('per_page', 10), FILTER_VALIDATE_INT, ['options' => ['default' => 10, 'min_range' => 1]]);
-
         return UserResource::collection(
-            $this->userService->list($per_page)
+            $this->userService->list($this->perPage())
         )->additional([
             'sortable' => ['id', 'name', 'email'],
             'filterable' => [

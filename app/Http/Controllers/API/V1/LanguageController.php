@@ -10,6 +10,7 @@ use App\Http\Requests\LanguageDeleteRequest;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
 use App\Services\LanguageService;
+use App\Traits\PerPage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -17,6 +18,8 @@ use Illuminate\Http\Response;
 
 class LanguageController extends Controller
 {
+    use PerPage;
+
     public function __construct(private readonly LanguageService $languageService)
     {
 
@@ -34,10 +37,8 @@ class LanguageController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $per_page = filter_var($request->get('per_page', 10), FILTER_VALIDATE_INT, ['options' => ['default' => 10, 'min_range' => 1]]);
-
         return LanguageResource::collection(
-            $this->languageService->list($per_page)
+            $this->languageService->list($this->perPage())
         )->additional([
             'sortable' => ['id', 'code', 'name'],
             'filterable' => [

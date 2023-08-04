@@ -4,6 +4,8 @@ namespace App\Data;
 
 class ArticleData extends BaseData
 {
+    public ?int $id;
+
     public string $title;
 
     public string $text;
