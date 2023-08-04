@@ -11,7 +11,7 @@ class AuthService {
 
             if (response?.data?.authorization?.token) {
                 localStorage.setItem('token', response?.data?.authorization?.token)
-                if (response?.authorization?.data?.abilities) {
+                if (response?.data?.authorization?.abilities) {
                     localStorage.setItem('abilities', response.data?.authorization.abilities)
                 }
                 if (response?.data?.authorization?.expires_at) {

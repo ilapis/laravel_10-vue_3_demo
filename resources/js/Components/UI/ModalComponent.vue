@@ -39,12 +39,13 @@ const setModalBodyHeight = () => {
             let newHeight = windowHeight * 0.9;  // 90% of the window's height
             modal.style.height = newHeight + "px";
 
-            // Reduce the modal body's height accordingly
-            //let headerFooterHeight = modal.offsetHeight - modalBody.offsetHeight;
-            //modalBody.style.height = (newHeight - headerFooterHeight - 0) + "px";
-        }
-        if (modalBody.offsetHeight > modal.offsetHeight) {
-            modalBody.style.height = (modal.offsetHeight - 96 - 96) + 'px';
+            if ((modalBody.offsetHeight + 96 + 96) > modal.offsetHeight) {
+                modalBody.style.height = (modal.offsetHeight - 96 - 96) + 'px';
+            }
+        } else {
+            if ((modalBody.offsetHeight + 96 + 96) > modal.offsetHeight) {
+                modalBody.style.height = (modal.offsetHeight - 96 - 64) + 'px';
+            }
         }
     }
 };

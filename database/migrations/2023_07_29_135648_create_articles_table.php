@@ -17,9 +17,11 @@ return new class extends Migration
             $table->foreignId('language_id')->constrained();
             $table->string('title');
             $table->string('tags');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['language_id', 'title']);
         });
     }
 

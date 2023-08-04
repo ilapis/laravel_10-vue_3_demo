@@ -27,4 +27,11 @@ class ArticleService
 
         return $article->fresh();
     }
+
+    public function delete(Article $article): ?Article
+    {
+        $article->delete();
+
+        return $article->fresh();
+    }
 }

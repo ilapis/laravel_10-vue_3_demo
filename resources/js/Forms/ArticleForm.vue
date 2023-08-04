@@ -25,6 +25,7 @@ const props = defineProps({
 onMounted( async () => {
     languageStore.fetchCollection();
     await userStore.fetchEnabled();
+    localForm.value = JSON.parse(JSON.stringify(articleForm));
     if (props.id !== null) {
         localForm.value = await articleStore.get(props.id);
     }
@@ -92,6 +93,15 @@ const submitForm = async (id) => {
         :errors="articleStore?.errors?.title"
       />
 
+        <InputText
+            v-model="localForm.text"
+            style="clear:both;"
+            label="table.text"
+            :underline-text="['The text field is required.']"
+            :errors="articleStore?.errors?.text"
+        />
+
+        <!--
       <div class="mt-4">
         <TextEditor
           v-model="localForm.text"
@@ -100,6 +110,7 @@ const submitForm = async (id) => {
           :errors="articleStore?.errors?.text"
         />
       </div>
+        -->
     </div>
   </div>
 </template>

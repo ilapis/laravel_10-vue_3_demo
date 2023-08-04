@@ -33,6 +33,10 @@ php artisan key:generate
 php artisan jwt:secret
 php artisan migrate
 php artisan db:seed
+
+php artisan import:abilities ./storage/import/abilities.csv
+php artisan import:translations ./storage/import/translations-en.csv
+php artisan import:translations ./storage/import/translations-lt.csv
 ```
 
 Then, navigate to \`https://localhost/admin\` in your web browser. You may need to add an exception for a self-signed SSL certificate.

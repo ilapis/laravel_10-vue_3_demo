@@ -11,10 +11,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use LaravelLegends\EloquentFilter\Concerns\HasFilter;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+//use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, HasFilter;
+    use HasApiTokens, HasFactory, Notifiable, HasFilter, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +27,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'enabled'
     ];
 
     /**
