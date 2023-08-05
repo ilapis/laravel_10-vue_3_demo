@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Data\LanguageData;
 //use App\DTO\LanguageDTO;
-use App\Models\Article;
 use App\Models\Language;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;

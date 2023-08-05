@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\V1;
 use App\Data\UserData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserEnabledRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;

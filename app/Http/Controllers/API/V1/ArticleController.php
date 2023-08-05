@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Data\ArticleData;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleCreateRequest;
+use App\Http\Requests\ArticleDeleteRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\Services\ArticleService;
@@ -12,9 +15,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
-use App\Http\Requests\ArticleCreateRequest;
-use App\Http\Requests\ArticleUpdateRequest;
-use App\Http\Requests\ArticleDeleteRequest;
 
 class ArticleController extends Controller
 {

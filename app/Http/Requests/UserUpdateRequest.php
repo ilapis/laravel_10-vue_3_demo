@@ -16,7 +16,7 @@ class UserUpdateRequest extends BaseRequest
     {
         $user = $this->route('user');
 
-        if (!($user instanceof \App\Models\User)) {
+        if (! ($user instanceof \App\Models\User)) {
             throw new \RuntimeException('Invalid user route parameter');
         }
 

@@ -9,21 +9,25 @@ use JsonSerializable;
 
 abstract class BaseData implements Arrayable, Jsonable, JsonSerializable
 {
-    public function __construct(?Request $request = null, array $data = [])
+    public function __construct(Request $request = null, array $data = [])
     {
+        $source = [];
         if ($request !== null) {
-            $this->source = $request->all();
-        } elseif (!empty($data)) {
-            $this->source = $data;
+            $source = $request->all();
+        } elseif (! empty($data)) {
+            $source = $data;
         } else {
             throw new \InvalidArgumentException(
                 'Constructor expects an instance of Illuminate\Http\Request or an associative array.'
             );
         }
 
-        $this->fillProperties($this->source);
+        $this->fillProperties($source);
     }
 
+    /**
+     * @param array<string, string>$data
+     */
     protected function fillProperties(array $data): void
     {
         $properties = get_class_vars(static::class);
@@ -32,7 +36,7 @@ abstract class BaseData implements Arrayable, Jsonable, JsonSerializable
             if (array_key_exists($property, $data)) {
                 $this->{$property} = $data[$property];
             } else {
-                if (!isset($this->{$property})) {
+                if (! isset($this->{$property})) {
                     unset($this->{$property});
                 }
             }

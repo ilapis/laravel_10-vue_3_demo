@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Translation;
 use App\Data\TranslationData;
-use Illuminate\Support\Facades\Cache;
+use App\Models\Translation;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 
 class TranslationService
 {
@@ -19,7 +19,7 @@ class TranslationService
 
     public function locale(string $language_code): array
     {
-        return Cache::rememberForever('locale-' . $language_code, function () use ($language_code) {
+        return Cache::rememberForever('locale-'.$language_code, function () use ($language_code) {
             return Translation::query()
                 ->whereHas('language', function ($query) use ($language_code) {
                     $query->where('code', $language_code);
@@ -64,6 +64,6 @@ class TranslationService
 
     private function invalidateCache(string $language_code): void
     {
-        Cache::forget('locale-' . $language_code);
+        Cache::forget('locale-'.$language_code);
     }
 }

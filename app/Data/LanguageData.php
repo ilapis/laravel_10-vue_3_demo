@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-class LanguageData  extends BaseData
+class LanguageData extends BaseData
 {
     public ?int $id;
 

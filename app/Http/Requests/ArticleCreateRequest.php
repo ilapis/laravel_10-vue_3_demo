@@ -15,7 +15,7 @@ class ArticleCreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','min:5','max:255'],
+            'title' => 'required|string|min:5|max:255',
             'text' => 'required|string',
             'language_id' => 'required|int',
             'user_id' => 'required|int',
