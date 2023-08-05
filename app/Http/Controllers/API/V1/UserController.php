@@ -24,10 +24,8 @@ class UserController extends Controller
 
     }
 
-    public function enabled(): AnonymousResourceCollection
+    public function enabled(UserEnabledRequest $enabledRequest): AnonymousResourceCollection
     {
-        //$this->authorize('view', User::class);
-
         return UserResource::collection($this->userService->enabled());
     }
 
@@ -49,36 +47,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(UserCreateRequest $request): JsonResponse
+    public function store(UserCreateRequest $createRequest, UserData $userData): JsonResponse
     {
-        $this->authorize('create', User::class);
-
-        $userData = new UserData($request->validated());
-
-        $user = $this->userService->create($userData);
-
-        return (new UserResource($user))->response()->setStatusCode(201);
+        return (new UserResource($this->userService->create($userData)))->response()->setStatusCode(201);
     }
 
-    public function update(User $user, UserUpdateRequest $request): UserResource
+    public function update(UserUpdateRequest $updateRequest, User $user, UserData $userData): UserResource
     {
-        $this->authorize('update', $user);
-
-        $userData = new UserData($request->validated());
-
-        $user = $this->userService->update(
-            $user,
-            $userData
-        );
-
-        return new UserResource($user);
+        return new UserResource($this->userService->update($user, $userData));
     }
 
-    public function destroy(User $user): Response
+    public function destroy(UserDeleteRequest $deleteRequest, User $user): Response
     {
-        $this->authorize('delete', $user);
-
-        $user->delete();
+        $this->userService->delete($user);
 
         return response(null, 204);  // 204 status code indicates successful deletion with no content in the response
     }

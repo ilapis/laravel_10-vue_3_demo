@@ -2,9 +2,7 @@
 
 namespace App\Data;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-class UserData extends DataTransferObject
+class UserData extends BaseData
 {
     public ?int $id;
 
@@ -18,18 +16,4 @@ class UserData extends DataTransferObject
      * @var array<string>|null
      */
     public ?array $abilities;
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
-    {
-        $data = parent::toArray();
-
-        if ($this->password === null) {
-            unset($data['password']);
-        }
-
-        return $data;
-    }
 }

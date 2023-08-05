@@ -42,7 +42,7 @@ class TranslationService
         return $translation->fresh();
     }
 
-    public function delete(Translation $translation, TranslationData $dto): ?Translation
+    public function delete(Translation $translation): ?Translation
     {
         $translation->delete();
 

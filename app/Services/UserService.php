@@ -61,4 +61,11 @@ class UserService
 
         return $user->fresh();
     }
+
+    public function delete(User $user): ?User
+    {
+        $user->delete();
+
+        return $user->fresh();
+    }
 }
