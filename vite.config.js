@@ -35,7 +35,7 @@ export default defineConfig({
         //#========== laravel-vue-i18n ==========
         //i18n(),
         visualizer({
-            filename: './report.html',
+            filename: './storage/logs/visualizer-report.html',
             //open: true,
             gzipSize: true,
             brotliSize: true,

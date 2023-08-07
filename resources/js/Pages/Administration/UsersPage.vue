@@ -14,7 +14,7 @@ onMounted( async () => {
 
 <template>
   <AdministrationLayout>
-    <div class="w-full mt-4 height-12">
+    <div class="w-full my-4 height-12">
       <UserCreateModal />
     </div>
     <div
@@ -23,7 +23,14 @@ onMounted( async () => {
       <TableComponent
         :service="userStore"
         :rows="userStore.collection?.data"
+        :filterable="userStore.collection?.filterable"
+        :sortable="userStore.collection?.sortable"
         :row-settings="userTableSettings"
+        @sort="event => {
+          userStore._sort_by = event.column;
+          userStore._sort_direction = event.direction;
+          userStore.fetchCollection();
+        }"
       />
     </div>
     <TablePaginationComponent

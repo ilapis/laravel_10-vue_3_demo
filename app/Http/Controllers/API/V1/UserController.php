@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Data\UserData;
+use App\Filters\UserFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserDeleteRequest;
@@ -41,11 +42,8 @@ class UserController extends Controller
         return UserResource::collection(
             $this->userService->list($this->perPage())
         )->additional([
-            'sortable' => ['id', 'name', 'email'],
-            'filterable' => [
-                'name' => ['contains'],
-                'email' => ['contains'],
-            ],
+            'sortable' => UserFilter::SORTABLE,
+            'filterable' => UserFilter::FILTERABLE,
         ]);
     }
 

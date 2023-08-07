@@ -1,10 +1,21 @@
 <script setup>
-import {onMounted, onUnmounted, ref} from "vue";
+import {defineEmits, onMounted, onUnmounted, ref} from "vue";
+import SortIcon from "@/Components/Icons/SortIcon.vue";
+
+const emit = defineEmits(['sort']);
 
 const props = defineProps({
     rows: {
         type: Object,
         default: null
+    },
+    filterable: {
+      type: Object,
+      default: null
+    },
+    sortable: {
+      type: Object,
+      default: null
     },
     rowSettings: {
         type: Object,
@@ -21,7 +32,7 @@ const tableBodyId = ref("table_body_" + generateRandomId());
 const setTableBodyHeight = () => {
     const tableBody = document.getElementById(tableBodyId.value);
     if (tableBody) {
-        tableBody.style.height = window.innerHeight - 286 + "px";
+        tableBody.style.height = window.innerHeight - 302 + "px";
     }
 };
 onMounted( () => {
@@ -36,6 +47,10 @@ onUnmounted( () => {
 // Function to generate a random ID
 function generateRandomId() {
     return Math.random().toString(36).substr(2, 9);
+}
+
+function sortColumn(column, direction) {
+    emit('sort', { column, direction });
 }
 </script>
 
@@ -60,6 +75,15 @@ function generateRandomId() {
               <template v-if="header.type !== 'component'">
                 {{ $t('table.' + (header?.title ?? header?.column)) }}
               </template>
+              <div
+                v-if="props.sortable?.includes(header?.column)"
+                class="sort-option"
+              >
+                <SortIcon
+                  :sorted="props.service._sort_by == header?.column"
+                  @sort="value => {sortColumn(header?.column, value);}"
+                />
+              </div>
             </th>
           </template>
         </tr>
@@ -101,5 +125,13 @@ function generateRandomId() {
 <style scoped>
 .table-height {
     height:calc(100% - 8rem);
+}
+.sort-option {
+    float: right;
+    width: 24px;
+    margin-top: 4px;
+    right: 16px;
+    position: relative;
+    background: transparent;
 }
 </style>

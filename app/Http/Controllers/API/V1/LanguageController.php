@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Data\LanguageData;
+use App\Filters\LanguageFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageCreateRequest;
 use App\Http\Requests\LanguageDeleteRequest;
@@ -40,11 +41,8 @@ class LanguageController extends Controller
         return LanguageResource::collection(
             $this->languageService->list($this->perPage())
         )->additional([
-            'sortable' => ['id', 'code', 'name'],
-            'filterable' => [
-                'code' => ['exact'],
-                'name' => ['contains'],
-            ],
+            'sortable' => LanguageFilter::SORTABLE,
+            'filterable' => LanguageFilter::SORTABLE,
         ]);
     }
 

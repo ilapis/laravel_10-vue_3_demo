@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Data\TranslationData;
+use App\Filters\TranslationFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationCreateRequest;
 use App\Http\Requests\TranslationDeleteRequest;
@@ -40,12 +41,8 @@ class TranslationController extends Controller
         return TranslationResource::collection(
             $this->translationService->list($this->perPage())
         )->additional([
-            'sortable' => ['id', 'language_id', 'key', 'name'],
-            'filterable' => [
-                'language_id' => ['exact'],
-                'key' => ['contains'],
-                'value' => ['contains'],
-            ],
+            'sortable' => TranslationFilter::SORTABLE,
+            'filterable' => TranslationFilter::FILTERABLE,
         ]);
     }
 

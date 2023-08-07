@@ -9,6 +9,9 @@ use JsonSerializable;
 
 abstract class BaseData implements Arrayable, Jsonable, JsonSerializable
 {
+    /**
+     * @param  array<string, string>  $data
+     */
     public function __construct(Request $request = null, array $data = [])
     {
         $source = [];

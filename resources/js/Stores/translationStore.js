@@ -1,34 +1,22 @@
 import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
+import {fetchCollections} from '@/Helpers/fetchCollections.js';
 
 export const useTranslationStore = defineStore('translation-store', {
     state: () => ({
         collection: null,
         enabled: null,
         errors: null,
+        _api_endpoint: '/api/v1/translation',
         _query_parameter_page: 1,
+        _sort_by: 'id',
+        _sort_direction: -1,
     }),
     actions: {
 
         ...formMethods,
-
-        async fetchCollection() {
-            await http.get(`/api/v1/translation`).then((response) => {
-                this.collection = response.data;
-            });
-        },
-
-        async fetchPage(page) {
-            this._query_parameter_page = page;
-            await http.get(`/api/v1/translation?page=${page}`).then((response) => {
-                this.collection = response.data;
-            });
-        },
-
-        async refreshPage() {
-            return this.fetchPage(this._query_parameter_page);
-        },
+        ...fetchCollections,
 
         async create(form) {
 

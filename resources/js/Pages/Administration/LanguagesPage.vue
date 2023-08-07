@@ -14,7 +14,7 @@ onMounted( async () => {
 
 <template>
   <AdministrationLayout>
-    <div class="w-full mt-4 height-12">
+    <div class="w-full my-4 height-12">
       <LanguageCreateModal />
     </div>
     <div
@@ -23,7 +23,14 @@ onMounted( async () => {
       <TableComponent
         :service="languageStore"
         :rows="languageStore.collection?.data"
+        :filterable="languageStore.collection?.filterable"
+        :sortable="languageStore.collection?.sortable"
         :row-settings="languageTableSettings"
+        @sort="event => {
+          languageStore._sort_by = event.column;
+          languageStore._sort_direction = event.direction;
+          languageStore.fetchCollection();
+        }"
       />
     </div>
     <TablePaginationComponent

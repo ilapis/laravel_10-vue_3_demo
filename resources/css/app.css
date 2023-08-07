@@ -738,7 +738,19 @@ body, .ql-container {
 }
 
 .my-2 {
-    margin: 0 var(--margin-2);
+    margin: var(--margin-2) 0;
+}
+
+.my-4 {
+    margin: var(--margin-4) 0;
+}
+
+.mx-2 {
+    margin:0 var(--margin-2) ;
+}
+
+.mx-4 {
+    margin: 0 var(--margin-4);
 }
 
 .mb-4 {
@@ -829,7 +841,7 @@ input {
     text-align: left;
 }
 
-.bg-hover-grey:hover {
+.bg-hover-grey:hover, tr th:hover {
     background: #cccccc;
 }
 .select-content .bg-hover-grey:hover {
@@ -884,7 +896,7 @@ input {
 }
 
 .one-table-page {
-    height:calc(100% - 9.375rem);
+    height:calc(100% - 10.375rem);
 }
 
 .height-12 {

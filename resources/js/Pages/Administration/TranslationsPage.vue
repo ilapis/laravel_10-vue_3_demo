@@ -15,7 +15,7 @@ onMounted( async () => {
 
 <template>
   <AdministrationLayout>
-    <div class="w-full mt-4 height-12">
+    <div class="w-full my-4 height-12">
       <TranslationCreateModal />
     </div>
     <div
@@ -24,7 +24,14 @@ onMounted( async () => {
       <TableComponent
         :service="translationStore"
         :rows="translationStore.collection?.data"
+        :filterable="translationStore.collection?.filterable"
+        :sortable="translationStore.collection?.sortable"
         :row-settings="translationTableSettings"
+        @sort="event => {
+          translationStore._sort_by = event.column;
+          translationStore._sort_direction = event.direction;
+          translationStore.fetchCollection();
+        }"
       />
     </div>
     <TablePaginationComponent

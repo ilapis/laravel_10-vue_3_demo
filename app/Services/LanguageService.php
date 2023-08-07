@@ -3,13 +3,16 @@
 namespace App\Services;
 
 use App\Data\LanguageData;
-//use App\DTO\LanguageDTO;
+use App\Filters\LanguageFilter;
 use App\Models\Language;
+use App\Traits\OrderBy;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class LanguageService
 {
+    use OrderBy;
+
     public function enabled(): Collection
     {
         return Language::where('enabled', true)->filter()->get();
@@ -20,7 +23,7 @@ class LanguageService
      */
     public function list(int $perPage = 15): LengthAwarePaginator
     {
-        return Language::orderBy('id', 'desc')->withTrashed()->filter()->paginate($perPage)->withQueryString();
+        return Language::orderBy(...$this->orderBy(LanguageFilter::SORTABLE))->withTrashed()->filter()->paginate($perPage)->withQueryString();
     }
 
     public function create(LanguageData $languageData): Language

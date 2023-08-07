@@ -27,28 +27,12 @@ docker compose exec php bash
 Inside the container bash, run the following commands:
 
 ```shell
-composer install
-chmod -R 777 ./storage
-php artisan key:generate
-php artisan jwt:secret
-php artisan migrate
-php artisan db:seed
-
-php artisan import:abilities ./storage/import/abilities.csv
-php artisan import:translations ./storage/import/translations-en.csv
-php artisan import:translations ./storage/import/translations-lt.csv
+bash install.sh
 ```
 
-Then, navigate to \`https://localhost/admin\` in your web browser. You may need to add an exception for a self-signed SSL certificate.
-
-If getting memmory allocation error, try:
-
-```shell
-chmod -R 777 ./storage
-```
+Then, navigate to \`https://localhost/admin\` in your web browser.
 
 You can log in using the `MASTER_EMAIL` and `MASTER_PASSWORD` you defined in your \`.env\` file.
-
 
 # Pint
 

@@ -5,7 +5,6 @@ import { useArticleStore } from '@/Stores/articleStore.js';
 import articleForm from "@/FormsDefaults/articleForm.js";
 import {onMounted, ref} from "vue";
 import { useRouter } from 'vue-router';
-import TextEditor from "@/Components/UI/TextEditor.vue";
 
 const languageStore = new useLanguageStore()
 const userStore = new useUserStore()
@@ -93,24 +92,13 @@ const submitForm = async (id) => {
         :errors="articleStore?.errors?.title"
       />
 
-        <InputText
-            v-model="localForm.text"
-            style="clear:both;"
-            label="table.text"
-            :underline-text="['The text field is required.']"
-            :errors="articleStore?.errors?.text"
-        />
-
-        <!--
-      <div class="mt-4">
-        <TextEditor
-          v-model="localForm.text"
-          label="table.text"
-          :underline-text="['The text field is required.']"
-          :errors="articleStore?.errors?.text"
-        />
-      </div>
-        -->
+      <InputText
+        v-model="localForm.text"
+        style="clear:both;"
+        label="table.text"
+        :underline-text="['The text field is required.']"
+        :errors="articleStore?.errors?.text"
+      />
     </div>
   </div>
 </template>

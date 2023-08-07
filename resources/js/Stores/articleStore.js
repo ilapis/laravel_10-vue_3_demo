@@ -1,34 +1,21 @@
 import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
+import {fetchCollections} from '@/Helpers/fetchCollections.js';
 
 export const useArticleStore = defineStore('article-store', {
     state: () => ({
         collection: null,
         errors: null,
+        _api_endpoint: '/api/v1/article',
         _query_parameter_page: 1,
+        _sort_by: 'id',
+        _sort_direction: -1,
     }),
     actions: {
 
         ...formMethods,
-
-        async fetchCollection() {
-            await http.get(`/api/v1/article`).then((response) => {
-                this.errors = null;
-                this.collection = response.data;
-            });
-        },
-
-        async fetchPage(page) {
-            this._query_parameter_page = page;
-            await http.get(`/api/v1/article?page=${page}`).then((response) => {
-                this.collection = response.data;
-            });
-        },
-
-        async refreshPage() {
-            return this.fetchPage(this._query_parameter_page);
-        },
+        ...fetchCollections,
 
         async create(form) {
 

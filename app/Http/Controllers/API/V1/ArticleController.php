@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Data\ArticleData;
+use App\Filters\ArticleFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleCreateRequest;
 use App\Http\Requests\ArticleDeleteRequest;
@@ -35,12 +36,8 @@ class ArticleController extends Controller
         return ArticleResource::collection(
             $this->articleService->list($this->perPage())
         )->additional([
-            'sortable' => ['id', 'language_id', 'title'],
-            'filterable' => [
-                'language_id' => ['exact'],
-                'title' => ['contains'],
-                'text' => ['contains'],
-            ],
+            'sortable' => ArticleFilter::SORTABLE,
+            'filterable' => ArticleFilter::FILTERABLE,
         ]);
     }
 

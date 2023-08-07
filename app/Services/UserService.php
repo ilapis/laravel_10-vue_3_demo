@@ -3,13 +3,17 @@
 namespace App\Services;
 
 use App\Data\UserData;
+use App\Filters\UserFilter;
 use App\Models\Ability;
 use App\Models\User;
+use App\Traits\OrderBy;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
+    use OrderBy;
+
     public function enabled(): Collection
     {
         return User::all();
@@ -21,7 +25,7 @@ class UserService
      */
     public function list(int $perPage = 15): LengthAwarePaginator
     {
-        return User::orderBy('id', 'desc')->with('abilities')->filter()->paginate($perPage)->withQueryString();
+        return User::orderBy(...$this->orderBy(UserFilter::SORTABLE))->with('abilities')->filter()->paginate($perPage)->withQueryString();
     }
 
     public function create(UserData $userData): User

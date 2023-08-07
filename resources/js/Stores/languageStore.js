@@ -1,39 +1,27 @@
 import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
+import {fetchCollections} from '@/Helpers/fetchCollections.js';
 
 export const useLanguageStore = defineStore('language-store', {
     state: () => ({
         collection: null,
         enabled: null,
         errors: null,
+        _api_endpoint: '/api/v1/language',
         _query_parameter_page: 1,
+        _sort_by: 'id',
+        _sort_direction: -1,
     }),
     actions: {
 
         ...formMethods,
-
-        async fetchCollection() {
-            await http.get(`/api/v1/language`).then((response) => {
-                this.collection = response.data;
-            });
-        },
+        ...fetchCollections,
 
         async fetchEnabled() {
             await http.get(`/api/v1/language/enabled`).then((response) => {
                 this.enabled = response.data.data;
             });
-        },
-
-        async fetchPage(page) {
-            this._query_parameter_page = page;
-            await http.get(`/api/v1/language?page=${page}`).then((response) => {
-                this.collection = response.data;
-            });
-        },
-
-        async refreshPage() {
-            return this.fetchPage(this._query_parameter_page);
         },
 
         async create(form) {

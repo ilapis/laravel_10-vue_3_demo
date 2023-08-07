@@ -19,7 +19,7 @@ const navigateToCreateArticle = () => {
 
 <template>
   <AdministrationLayout>
-    <div class="w-full mt-4 height-12">
+    <div class="w-full my-4 height-12">
       <ButtonComponent
         class="btn-primary height-12 ml-4"
         label="create"
@@ -32,7 +32,14 @@ const navigateToCreateArticle = () => {
       <TableComponent
         :service="articleStore"
         :rows="articleStore.collection?.data"
+        :filterable="articleStore.collection?.filterable"
+        :sortable="articleStore.collection?.sortable"
         :row-settings="articleTableSettings"
+        @sort="event => {
+          articleStore._sort_by = event.column;
+          articleStore._sort_direction = event.direction;
+          articleStore.fetchCollection();
+        }"
       />
     </div>
     <TablePaginationComponent
