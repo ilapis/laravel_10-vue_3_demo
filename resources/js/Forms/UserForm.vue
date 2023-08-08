@@ -16,7 +16,7 @@ onMounted(() => {
     // Group abilities
     for (let ability of abilitiesStore.collection) {
         let split = ability.name.split('_');
-        if (split[split.length - 1] === 'user') {
+        if (split[0] === 'user' || split[0] === '*') {
             userAbilities.push(ability);
         } else if (split.length === 3) {
             let type = split[2];
@@ -44,7 +44,6 @@ const capitalize = (string) => {
 }
 
 const toggleAbility = (ability) => {
-    console.log(ability);
     const index = localForm.abilities.indexOf(ability);
     if (index === -1) {
         localForm.abilities.push(ability);
@@ -64,35 +63,35 @@ const isSelected = (ability) => {
     <div class="col-6 float-left">
       <InputText
         v-model="localForm.name"
-        label="Name"
+        label="table.name"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.name"
       />
 
       <InputText
         v-model="localForm.email"
-        label="Email"
+        label="table.email"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.email"
       />
 
       <InputText
         v-model="localForm.password"
-        label="Password"
+        label="table.password"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.password"
       />
 
       <InputText
         v-model="localForm.password_confirmation"
-        label="Password confirmation"
+        label="table.password_confirmation"
         :underline-text="['&nbsp;']"
         :errors="userStore?.errors?.password_confirmation"
       />
     </div>
 
     <div class="col-6 float-left text-indent-1rem">
-      <h3>User Abilities</h3>
+      <h3>User type</h3>
       <div
         v-for="ability in userAbilities"
         :key="ability.id"
@@ -105,6 +104,7 @@ const isSelected = (ability) => {
           @update:model-value="toggleAbility(ability.name)"
         />
       </div>
+        <template v-if="!isSelected('*')">
       <template
         v-for="(types, type) in groupedAbilities"
         :key="type"
@@ -123,6 +123,7 @@ const isSelected = (ability) => {
           />
         </div>
       </template>
+        </template>
     </div>
   </div>
 </template>

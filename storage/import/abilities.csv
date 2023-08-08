@@ -1,6 +1,7 @@
 name
-registered_user
-administrator_user
+*
+user_registered
+user_administrator
 can_create_language
 can_update_language
 can_delete_language
