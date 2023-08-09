@@ -3,17 +3,10 @@ import { useLanguageStore } from '@/Stores/languageStore.js'
 import { useUserStore } from '@/Stores/userStore.js'
 import { useArticleStore } from '@/Stores/articleStore.js';
 import articleForm from "@/FormsDefaults/articleForm.js";
-import {onMounted, ref} from "vue";
+import {defineAsyncComponent, onMounted, ref} from "vue";
 import { useRouter } from 'vue-router';
-import CKEditorComponent from '@/Components/UI/CKEditorComponent.vue';
-/*
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const editor = ref(ClassicEditor);
-const editorConfig = ref({
-    // The configuration of the editor
-});
-*/
+const CKEditorComponent = defineAsyncComponent(() => import('@/Components/UI/CKEditorComponent.vue'));
 const languageStore = new useLanguageStore()
 const userStore = new useUserStore()
 const articleStore = new useArticleStore();

@@ -9,11 +9,6 @@ RUN apk add util-linux pciutils usbutils coreutils binutils findutils grep iprou
 RUN apk add bash nano git curl php-cli php-mbstring php-mysqli
 RUN apk add openssh
 
-#RUN apk add zsh zsh-autosuggestions zsh-syntax-highlighting bind-tools && rm -rf /var/cache/apk/*
-#RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-#RUN echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
-#RUN echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-
 RUN apk add apache2-utils
 RUN apk add htop
 RUN apk add npm
@@ -28,9 +23,6 @@ RUN docker-php-ext-install zip
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-#RUN docker-php-ext-configure opcache --enable-opcache \
-#    && docker-php-ext-install opcache
 
 # REDIS
 RUN set -xe \
@@ -54,13 +46,13 @@ RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini
     && echo "xdebug.log=/var/www/html/storage/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Create a group and user
-RUN addgroup -g 1000 appgroup && adduser -u 1000 -G appgroup -s /bin/sh -D appuser
+#RUN addgroup -g 1000 appgroup && adduser -u 1000 -G appgroup -s /bin/sh -D appuser
 # Tell docker that all future commands should run as the appuser user
 #USER appuser
 #USER root
-RUN apk add --update sudo
-RUN echo "appuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/appuser
-USER appuser
+#RUN apk add --update sudo
+#RUN echo "appuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/appuser
+#USER appuser
 
 #COPY docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf

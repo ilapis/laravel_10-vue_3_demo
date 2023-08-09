@@ -1,5 +1,44 @@
 # Installation Instructions
 
+## local environment
+```
+docker compose --env-file .env.localhost -f docker-compose-localhost.yaml build
+docker compose --env-file .env.localhost -f docker-compose-localhost.yaml up -d
+```
+To stop containers:
+```
+docker compose --env-file .env.localhost -f docker-compose-localhost.yaml stop
+```
+## production environment
+```
+docker compose --env-file .env.production -f docker-compose-production.yaml build
+docker compose --env-file .env.production -f docker-compose-production.yaml up -d
+```
+To stop containers:
+```
+docker compose --env-file .env.production -f docker-compose-production.yaml stop
+```
+
+## execute scripts
+Enter docker php by:
+```
+docker compose --env-file .env.[YOUR_ENVIRONMENT] -f docker-compose-[YOUR_ENVIRONMENT].yaml exec php bash
+```
+were [YOUR_ENVIRONMENT] is localhost or production
+
+and execute commands:
+```
+composer install
+npm install
+npm run build
+php artisan key:generate
+php artisan jwt:secret
+php artisan migrate
+php artisan db:seed
+php artisan import:abilities ./storage/import/abilities.csv
+php artisan import:translations ./storage/import/translations-en.csv
+php artisan import:translations ./storage/import/translations-lt.csv
+```
 1. Copy and rename \`.env.example\` to \`.env\`.
 2. Copy and rename \`.env.testing.example\` to \`.env.testing\`.
 
@@ -17,12 +56,6 @@ MASTER_PASSWORD=your-login-password
 ```
 
 Run the following commands:
-
-```shell
-docker compose build
-docker compose up -d
-docker compose exec php bash
-```
 
 Inside the container bash, run the following commands:
 

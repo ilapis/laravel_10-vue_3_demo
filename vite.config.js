@@ -4,14 +4,6 @@ import vue from '@vitejs/plugin-vue';
 import fs from 'fs';
 import path from 'path';
 import { visualizer } from "rollup-plugin-visualizer";
-//import ckeditor5 from '@ckeditor/vite-plugin-ckeditor5';
-//import { createRequire } from 'node:module';
-//const require = createRequire( import.meta.url );
-
-//#========== laravel-vue-i18n ==========
-//Generate json for frontend from laravel php
-//https://github.com/xiCO2k/laravel-vue-i18n
-//import i18n from 'laravel-vue-i18n/vite';
 
 export default defineConfig({
     define: {
@@ -26,8 +18,8 @@ export default defineConfig({
           origin: '*',
         },
         https: {
-            key: fs.readFileSync(path.join(__dirname, 'data/certificates/localhost.key')),
-            cert: fs.readFileSync(path.join(__dirname, 'data/certificates/localhost.crt')),
+            key: fs.readFileSync(path.join(__dirname, 'data/localhost/certificates/localhost.key')),
+            cert: fs.readFileSync(path.join(__dirname, 'data/localhost/certificates/localhost.crt')),
         },
         port: 8000,
         open: true
@@ -42,9 +34,7 @@ export default defineConfig({
             //open: true,
             gzipSize: true,
             brotliSize: true,
-            // Other options...
         }),
-        //ckeditor5( { theme: require.resolve( '@ckeditor/ckeditor5-theme-lark' ) } ),
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
@@ -54,8 +44,6 @@ export default defineConfig({
 		alias: {
 			vue: "vue/dist/vue.esm-bundler.js",
             '@': path.resolve(__dirname, './resources/js'),
-            //'@ckeditor': fileURLToPath( new URL( './ckeditor5/src', import.meta.url ) )
-            //'@ckeditor': path.resolve(__dirname, './ckeditor5/src'),
 		}
 	}
 });

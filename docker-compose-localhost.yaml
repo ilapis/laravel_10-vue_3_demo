@@ -9,10 +9,12 @@ services:
       - mysql
       - nginx
     restart: unless-stopped
+    env_file:
+      - .env.localhost
     ports:
       - "8000:8000"
     build:
-      context: ./docker/php
+      context: docker/php-local
       dockerfile: Dockerfile
       args:
         - PHP_VERSION=${PHP_VERSION}
@@ -31,7 +33,7 @@ services:
       - "443:443"
     volumes:
       - ./:/var/www/html/
-      - ./docker/nginx:/etc/nginx/conf.d/
+      - ./docker/nginx-local:/etc/nginx/conf.d/
     networks:
       - app-network
 #----------------------------------------------------
@@ -45,7 +47,7 @@ services:
       args:
         - MYSQL_VERSION=8.0
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./data/localhost/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
@@ -69,7 +71,7 @@ services:
         - REDIS_PORT=${REDIS_PORT}
         - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
-      - ./data/redis:/data
+      - ./data/localhost/redis:/data
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     networks:

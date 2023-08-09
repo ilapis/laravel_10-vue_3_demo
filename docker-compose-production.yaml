@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+#----------------------------------------------------
+#----- PHP ------------------------------------------
+#----------------------------------------------------
+  php:
+    depends_on:
+      - mysql
+      - nginx
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    build:
+      context: docker/php-prod
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - app-network
+#----------------------------------------------------
+#----- NGINX ----------------------------------------
+#----------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html/
+      - ./docker/nginx-prod:/etc/nginx/conf.d/
+    networks:
+      - app-network
+#----------------------------------------------------
+#----- MYSQL ----------------------------------------
+#----------------------------------------------------
+  mysql:
+    restart: unless-stopped
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+      args:
+        - MYSQL_VERSION=8.0
+    volumes:
+      - ./data/production/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+      MYSQL_TCP_PORT: ${DB_PORT}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - app-network
+#----------------------------------------------------
+#----- REDIS ----------------------------------------
+#----------------------------------------------------
+  redis:
+    restart: unless-stopped
+    build:
+      context: ./docker/redis
+      dockerfile: Dockerfile
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+        - REDIS_PORT=${REDIS_PORT}
+        - REDIS_PASSWORD=${REDIS_PASSWORD}
+    volumes:
+      - ./data/production/redis:/data
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    networks:
+      - app-network
+#----------------------------------------------------
+#----------------------------------------------------
+#----------------------------------------------------
+networks:
+  app-network:
+    driver: bridge

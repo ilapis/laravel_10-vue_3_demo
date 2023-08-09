@@ -7,6 +7,7 @@
 .env
 .env.testing
 .env.backup
+.env.localhost
 .env.production
 .phpunit.result.cache
 Homestead.json
@@ -18,5 +19,5 @@ yarn-error.log
 /.idea
 /.vscode
 .editorconfig
-report.html
-stats.html
+/data/*/mysql/*
+/data/*/redis/*

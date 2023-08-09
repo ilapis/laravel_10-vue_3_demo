@@ -51,5 +51,7 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+$envFile = '.env.' . (env('APP_ENV') ?? 'localhost');
+$app->loadEnvironmentFrom($envFile);
 
 return $app;
