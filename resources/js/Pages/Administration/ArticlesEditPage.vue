@@ -4,12 +4,11 @@ import ArticleForm from "@/Forms/ArticleForm.vue";
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const id = route.params.id;
 </script>
 
 <template>
   <AdministrationLayout>
-    <ArticleForm :id="id" />
+    <ArticleForm :id="parseInt(route.params.id.toString())" />
   </AdministrationLayout>
 </template>
 

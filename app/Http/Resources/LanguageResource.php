@@ -25,6 +25,7 @@ class LanguageResource extends JsonResource
             'enabled' => $this->enabled,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i') : null,
             'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i') : null,
+            'deleted_at' => $this->deleted_at ? $this->deleted_at->format('Y-m-d H:i') : null,
         ];
     }
 }

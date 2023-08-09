@@ -30,4 +30,8 @@ export const sharedInputProps = {
         type: Boolean,
         default: false,
     },
+    validateWithDryRequest: {
+        type: Boolean,
+        default: false,
+    },
 };

@@ -11,7 +11,7 @@ export const languageTableSettings = [
     {
         'column': 'name',
         'title': 'language',
-        'width': '120px',
+        'width': '145px',
     },
     {
         'column': 'enabled',
@@ -19,9 +19,14 @@ export const languageTableSettings = [
     {
         'column': 'created_at',
         'width': '200px',
+        'class': 'hide-b-720',
     },
     {
         'column': 'updated_at',
+        'width': '200px',
+    },
+    {
+        'column': 'deleted_at',
         'width': '200px',
     },
     {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4c74ba1efe14fa83decad9f933668cf",
+    "content-hash": "b29d284394585445ea9732a9e4988137",
     "packages": [
         {
             "name": "brick/math",
@@ -135,6 +135,173 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.2"
             },
             "time": "2022-10-27T11:44:00+00:00"
+        },
+        {
+            "name": "dive-be/laravel-dry-requests",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dive-be/laravel-dry-requests.git",
+                "reference": "ef6ecc8912fb4d8d436f1d630ddb513b112c185f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dive-be/laravel-dry-requests/zipball/ef6ecc8912fb4d8d436f1d630ddb513b112c185f",
+                "reference": "ef6ecc8912fb4d8d436f1d630ddb513b112c185f",
+                "shasum": ""
+            },
+            "require": {
+                "dive-be/php-enum-utils": "^1.1",
+                "dive-be/php-utils": "^0.1.0",
+                "laravel/framework": "^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "nunomaduro/larastan": "^2.6",
+                "orchestra/testbench": "^8.5",
+                "pestphp/pest": "^2.6",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dive\\DryRequests\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dive\\DryRequests\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammed Sari",
+                    "email": "muhammed@dive.be",
+                    "homepage": "https://dive.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dry run your Laravel requests",
+            "homepage": "https://github.com/dive-be/laravel-dry-requests",
+            "keywords": [
+                "async",
+                "dive",
+                "dry",
+                "laravel",
+                "requests",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/dive-be/laravel-dry-requests/issues",
+                "source": "https://github.com/dive-be/laravel-dry-requests/tree/2.3.0"
+            },
+            "abandoned": "laravel/framework",
+            "time": "2023-05-03T11:38:15+00:00"
+        },
+        {
+            "name": "dive-be/php-enum-utils",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dive-be/php-enum-utils.git",
+                "reference": "f58532fdb04b20442cd472b40b7ad965063913ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dive-be/php-enum-utils/zipball/f58532fdb04b20442cd472b40b7ad965063913ac",
+                "reference": "f58532fdb04b20442cd472b40b7ad965063913ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "pestphp/pest": "^1.21"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dive\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammed Sari",
+                    "email": "muhammed@dive.be",
+                    "homepage": "https://dive.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Those utilities you always need when dealing with native enumerations.",
+            "homepage": "https://github.com/dive-be/php-enum-utils",
+            "support": {
+                "issues": "https://github.com/dive-be/php-enum-utils/issues",
+                "source": "https://github.com/dive-be/php-enum-utils/tree/1.2.0"
+            },
+            "time": "2023-04-27T15:26:39+00:00"
+        },
+        {
+            "name": "dive-be/php-utils",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dive-be/php-utils.git",
+                "reference": "795aa35f1df212d05193ef1dd11541a3a433a042"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dive-be/php-utils/zipball/795aa35f1df212d05193ef1dd11541a3a433a042",
+                "reference": "795aa35f1df212d05193ef1dd11541a3a433a042",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dive\\Utils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammed Sari",
+                    "email": "muhammed@dive.be",
+                    "homepage": "https://dive.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection of useful tools used at DIVE",
+            "homepage": "https://github.com/dive-be/php-utils",
+            "keywords": [
+                "dive",
+                "support",
+                "utilities"
+            ],
+            "support": {
+                "issues": "https://github.com/dive-be/php-utils/issues",
+                "source": "https://github.com/dive-be/php-utils/tree/0.1.0"
+            },
+            "time": "2022-05-23T16:56:08+00:00"
         },
         {
             "name": "doctrine/deprecations",

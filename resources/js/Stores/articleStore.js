@@ -2,6 +2,7 @@ import {defineStore} from "pinia";
 import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
 import {fetchCollections} from '@/Helpers/fetchCollections.js';
+import {validateField} from '@/Helpers/validateField.js';
 
 export const useArticleStore = defineStore('article-store', {
     state: () => ({
@@ -16,6 +17,7 @@ export const useArticleStore = defineStore('article-store', {
 
         ...formMethods,
         ...fetchCollections,
+        ...validateField,
 
         async create(form) {
 
@@ -24,7 +26,7 @@ export const useArticleStore = defineStore('article-store', {
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
-                    this.errors = null;
+                    this.errors = {};
                     this.refreshPage();
                 }
             });
@@ -33,7 +35,7 @@ export const useArticleStore = defineStore('article-store', {
         async get(id) {
 
             return http.get(`/api/v1/article/${id}`).then((response) => {
-                this.errors = null;
+                this.errors = {};
                 return response.data.data;
             });
         },
@@ -45,7 +47,7 @@ export const useArticleStore = defineStore('article-store', {
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
-                    this.errors = null;
+                    this.errors = {};
                     this.refreshPage();
                 }
             });
@@ -58,7 +60,7 @@ export const useArticleStore = defineStore('article-store', {
                 if (response?.data?.errors) {
                     this.errors = response?.data?.errors;
                 } else {
-                    this.errors = null;
+                    this.errors = {};
                     this.refreshPage();
                 }
             });

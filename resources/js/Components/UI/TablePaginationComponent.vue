@@ -28,14 +28,14 @@ const decodeHtmlEntities = (str) => {
 </script>
 
 <template>
-  <div class="pagination mt-3 py-4 bg-primary">
+  <div class="pagination py-4">
     <template
       v-for="(link, index) in links"
       :key="index"
     >
       <button
-        class="btn btn-pagination mt-1 border-none box-shadow"
-        :class="`${(link.active == true) ? 'btn-primary' : 'btn-default'}`"
+        class="btn btn-pagination mt-1 border-none"
+        :class="`${(link.active == true) ? 'btn-primary box-shadow' : 'btn-default'}`"
         :disabled="!link.url"
         @click="changePage(link.url)"
       >

@@ -6,7 +6,7 @@ export const articleTableSettings = [
     {
         'column': 'language_id',
         'title': 'language',
-        'width': '100px',
+        'width': '145px',
     },
     {
         'column': 'title',

@@ -5,7 +5,15 @@ import { useArticleStore } from '@/Stores/articleStore.js';
 import articleForm from "@/FormsDefaults/articleForm.js";
 import {onMounted, ref} from "vue";
 import { useRouter } from 'vue-router';
+import CKEditorComponent from '@/Components/UI/CKEditorComponent.vue';
+/*
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+const editor = ref(ClassicEditor);
+const editorConfig = ref({
+    // The configuration of the editor
+});
+*/
 const languageStore = new useLanguageStore()
 const userStore = new useUserStore()
 const articleStore = new useArticleStore();
@@ -22,6 +30,7 @@ const props = defineProps({
 })
 
 onMounted( async () => {
+    articleStore.errors = null;
     languageStore.fetchCollection();
     await userStore.fetchEnabled();
     localForm.value = JSON.parse(JSON.stringify(articleForm));
@@ -62,7 +71,7 @@ const submitForm = async (id) => {
     <div class="page-content">
       <InputSelect
         v-model="localForm.language_id"
-        style="max-width:200px;float:left;margin-right:1rem;"
+        style="max-width:400px;float:left;margin-right:1rem;"
         class="mt-4"
         label="table.language"
         :options="languageStore?.collection?.data"
@@ -90,15 +99,11 @@ const submitForm = async (id) => {
         label="table.title"
         :underline-text="['The group field is required.']"
         :errors="articleStore?.errors?.title"
+        :validate-with-dry-request="true"
+        @validate-with-dry-request="value => {articleStore.validateField('title', value, props.id)}"
       />
-
-      <InputText
-        v-model="localForm.text"
-        style="clear:both;"
-        label="table.text"
-        :underline-text="['The text field is required.']"
-        :errors="articleStore?.errors?.text"
-      />
+        <br/>
+        <CKEditorComponent v-model="localForm.text" />
     </div>
   </div>
 </template>

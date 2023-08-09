@@ -5,7 +5,7 @@ import router from './router.js';
 import {createPinia} from 'pinia';
 import {createI18n} from 'vue-i18n';
 import {getLanguage, loadLanguage} from './utils';
-
+//import CKEditor from '@ckeditor/ckeditor5-vue';
 import CloseIcon from "@/Components/Icons/CloseIcon.vue";
 import DownIcon from "@/Components/Icons/DownIcon.vue";
 import UpIcon from "@/Components/Icons/UpIcon.vue";
@@ -45,6 +45,7 @@ loadLanguage(currentLanguage);
 app.use(pinia);
 app.use(router);
 app.use(i18n);
+//app.use(CKEditor);
 
 app.mount("#app");
 

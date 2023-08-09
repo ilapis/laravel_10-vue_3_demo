@@ -896,7 +896,7 @@ input {
 }
 
 .one-table-page {
-    height:calc(100% - 10.375rem);
+    height:calc(100% - 10rem);
 }
 
 .height-12 {
@@ -932,18 +932,25 @@ input {
 }
 
 .btn-pagination {
-    background-color: #dddddd;
-    color: #000000;
     display: inline;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     line-height: 1rem;
     padding: 0.75rem;
+    min-width: 3rem;
+    height: 3rem;
 }
 
 .btn-default {
     background-color: #ffffff;
     color: #000000;
     border: 1px solid #ffffff;
+}
+
+.btn-default:hover {
+    background-color: #0039a6;
+    color: #fff;
+    border: 1px solid #0039a6;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .btn-primary {
@@ -972,8 +979,10 @@ input {
     background: #750f13;
     position: relative;
     width: 100%;
+    /*
     padding: 0 0.5rem;
     margin-left: -0.5rem;
+    */
     margin-top: 0.25rem;
     display: block;
 }
@@ -982,8 +991,10 @@ input {
     background: #fff;
     position: relative;
     width: 100%;
+    /*
     padding: 0 0.5rem;
     margin-left: -0.5rem;
+    */
     margin-top: 0.25rem;
     display: block;
 }

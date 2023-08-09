@@ -2,8 +2,12 @@
 
 namespace App\Http\Requests;
 
+use Dive\DryRequests\DryRunnable;
+
 class ArticleUpdateRequest extends BaseRequest
 {
+    use DryRunnable;
+
     public function permissions(): array
     {
         return ['can_update_article'];
