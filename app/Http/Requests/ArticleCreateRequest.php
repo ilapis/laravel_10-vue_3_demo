@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Dive\DryRequests\DryRunnable;
+use Illuminate\Validation\Rule;
 
 class ArticleCreateRequest extends BaseRequest
 {
@@ -19,7 +20,15 @@ class ArticleCreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:5|max:255',
+            'title' => [
+                'required',
+                'string',
+                'min:5',
+                'max:255',
+                Rule::unique('articles')->where(function ($query) {
+                    return $query->where('language_id', $this->input('language_id'));
+                }),
+            ],
             'text' => 'required|string',
             'language_id' => 'required|int',
             'user_id' => 'required|int',

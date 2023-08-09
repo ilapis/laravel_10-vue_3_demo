@@ -19,6 +19,10 @@ export const useArticleStore = defineStore('article-store', {
         ...fetchCollections,
         ...validateField,
 
+        hasErrors() {
+            return this.errors && Object.keys(this.errors).length > 0;
+        },
+
         async create(form) {
 
             return http.post(`/api/v1/article`, form).then((response) => {

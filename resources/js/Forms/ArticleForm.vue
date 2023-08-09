@@ -42,13 +42,13 @@ onMounted( async () => {
 const submitForm = async (id) => {
     if (id) {
         articleStore.update(props.id, localForm.value).then(() => {
-            if (!articleStore.errors) {
+            if (!articleStore.hasErrors()) {
                 router.push({name: 'admin-articles'});
             }
         });
     } else {
         articleStore.create(localForm.value).then(() => {
-            if (!articleStore.errors) {
+            if (!articleStore.hasErrors()) {
                 router.push({name: 'admin-articles'});
             }
         });
