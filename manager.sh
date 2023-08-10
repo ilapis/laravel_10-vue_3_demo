@@ -10,7 +10,11 @@ then
     ENVIRONMENT=localhost
 fi
 
-if [ "$COMMAND" = "build" ]
+if [ "$COMMAND" = "test" ]
+then
+    echo "Running tests ..."
+    docker compose --env-file .env.localhost -f docker-compose.yaml.localhost exec php bash -c "php artisan db:refresh_test && APP_ENV=testing php artisan db:seed && ./vendor/bin/pest $*"
+elif [ "$COMMAND" = "build" ]
 then
     echo "Building docker containers for $ENVIRONMENT..."
     docker compose --env-file .env.$ENVIRONMENT -f docker-compose.yaml.$ENVIRONMENT build

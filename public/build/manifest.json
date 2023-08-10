@@ -61,7 +61,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/Components/UI/CKEditorComponent.vue": {
-    "file": "assets/CKEditorComponent-b19bf7ea.js",
+    "file": "assets/CKEditorComponent-1981d801.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -69,7 +69,7 @@
     "src": "resources/js/Components/UI/CKEditorComponent.vue"
   },
   "resources/js/app.css": {
-    "file": "assets/app-70e5c285.css",
+    "file": "assets/app-45da06b2.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -90,12 +90,12 @@
       "assets/roboto-latin-400-normal-a9fdbefa.woff"
     ],
     "css": [
-      "assets/app-70e5c285.css"
+      "assets/app-45da06b2.css"
     ],
     "dynamicImports": [
       "resources/js/Components/UI/CKEditorComponent.vue"
     ],
-    "file": "assets/app-b9d071b7.js",
+    "file": "assets/app-e04697ff.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
