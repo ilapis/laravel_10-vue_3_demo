@@ -1,26 +1,64 @@
 # Installation Instructions
 
+1. Copy and rename \`.env.example\` to \`.env.localhost\`, \`.env.testing\`, \`.env.production\`.
+
+In both files add/change:
+
+```
+[----- set environment -----]
+APP_ENV=localhost #or testing,production
+
+[----- must be same for local|testing, different for production -----]
+DB_USERNAME=
+DB_PASSWORD=
+DB_PASSWORD_ROOT=
+
+[----- can be different for any environment-----]
+MASTER_NAME=your-username
+MASTER_EMAIL=your-login-email
+MASTER_PASSWORD=your-login-password
+```
+
 ## local environment
+Run command to build containers:
+```
+./manager build localhost
+```
+will execute:
 ```
 docker compose --env-file .env.localhost -f docker-compose-localhost.yaml build
+```
+then command to run containers:
+```
+./manager start localhost
+```
+will execute:
+```
 docker compose --env-file .env.localhost -f docker-compose-localhost.yaml up -d
 ```
-To stop containers:
+Command to stop containers:
+```
+./manager stop localhost
+```
+will execute:
 ```
 docker compose --env-file .env.localhost -f docker-compose-localhost.yaml stop
 ```
 ## production environment
+
+Similar to localhost, run command to build, start, stop containers:
 ```
-docker compose --env-file .env.production -f docker-compose-production.yaml build
-docker compose --env-file .env.production -f docker-compose-production.yaml up -d
-```
-To stop containers:
-```
-docker compose --env-file .env.production -f docker-compose-production.yaml stop
+./manager build production
+./manager start production
+./manager stop production
 ```
 
 ## execute scripts
-Enter docker php by:
+Enter php docker container by:
+```
+./manager bash [YOUR_ENVIRONMENT]
+```
+or
 ```
 docker compose --env-file .env.[YOUR_ENVIRONMENT] -f docker-compose-[YOUR_ENVIRONMENT].yaml exec php bash
 ```
@@ -39,31 +77,10 @@ php artisan import:abilities ./storage/import/abilities.csv
 php artisan import:translations ./storage/import/translations-en.csv
 php artisan import:translations ./storage/import/translations-lt.csv
 ```
-1. Copy and rename \`.env.example\` to \`.env\`.
-2. Copy and rename \`.env.testing.example\` to \`.env.testing\`.
-
-In both files add/change:
-
-```
-[----- must be same -----]
-DB_USERNAME=
-DB_PASSWORD=
-DB_PASSWORD\_ROOT=
-[----- can be different -----]
-MASTER_NAME=your-username
-MASTER_EMAIL=your-login-email
-MASTER_PASSWORD=your-login-password
-```
-
-Run the following commands:
 
 Inside the container bash, run the following commands:
 
-```shell
-bash install.sh
-```
-
-Then, navigate to \`https://localhost/admin\` in your web browser.
+Then, navigate to \`https://localhost/admin/` in your web browser.
 
 You can log in using the `MASTER_EMAIL` and `MASTER_PASSWORD` you defined in your \`.env\` file.
 
