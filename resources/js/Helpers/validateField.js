@@ -15,7 +15,7 @@ export const validateField = {
         const url = this._api_endpoint + (id ? `/${id}` : '');
 
         try {
-            const response = await http[method](url, data, { headers: { 'X-Dry-Run': true } });
+            const response = await http[method](url, data, { headers: { 'Precognition': true,  'Precognition-Validate-Only': field} });
 
             if (response.status === 422) {
                 this.errors[field] = response?.data?.errors[field];

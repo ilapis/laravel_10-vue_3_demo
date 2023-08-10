@@ -28,7 +28,7 @@ Route::middleware('locale')->group(function () {
         Route::get('language/enabled', 'LanguageController@enabled');
         Route::get('translation/locale/{language_code}', 'TranslationController@locale')->name('language_locale_list');
 
-        Route::middleware('auth.jwt')->group(function () {
+        Route::middleware(['auth.jwt', 'precognitive'])->group(function () {
 
             Route::resource('language', 'LanguageController')->only([
                 'index', 'show', 'store', 'update', 'destroy',

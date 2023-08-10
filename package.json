@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "NODE_ENV=localhost vite --host --no-open",
+        "dev": "vite --host --no-open",
         "build": "vite build",
         "vca": "vca --dir ./resources/js",
         "lint": "eslint --ext .js,.vue ./resources/js"
