@@ -5,6 +5,7 @@ import { useArticleStore } from '@/Stores/articleStore.js';
 import articleForm from "@/FormsDefaults/articleForm.js";
 import {defineAsyncComponent, onMounted, ref} from "vue";
 import { useRouter } from 'vue-router';
+import Button from "primevue/button";
 
 const CKEditorComponent = defineAsyncComponent(() => import('@/Components/UI/CKEditorComponent.vue'));
 const languageStore = new useLanguageStore()
@@ -24,11 +25,14 @@ const props = defineProps({
 
 onMounted( async () => {
     articleStore.errors = null;
-    languageStore.fetchCollection();
+    languageStore.fetchFullCollection();
     await userStore.fetchEnabled();
     localForm.value = JSON.parse(JSON.stringify(articleForm));
     if (props.id !== null) {
-        localForm.value = await articleStore.get(props.id);
+        const data = await articleStore.get(props.id);
+        if (data) {
+            localForm.value = await articleStore.get(props.id);
+        }
     }
 });
 
@@ -55,19 +59,14 @@ const submitForm = async (id) => {
     class="p-4"
   >
     <div class="w-full height-12">
-      <ButtonComponent
-        :label="`${props.id ? 'Update' : 'Create'}`"
-        class="btn-primary height-12"
-        @click="submitForm(props.id)"
-      />
+        <Button class="box-shadow" :label="`${props.id ? $t('button.update') : $t('button.create')}`" @click="submitForm(props.id)" />
     </div>
     <div class="page-content">
       <InputSelect
         v-model="localForm.language_id"
-        style="max-width:400px;float:left;margin-right:1rem;"
         class="mt-4"
         label="table.language"
-        :options="languageStore?.collection?.data"
+        :options="languageStore?.fullCollection"
         identifier="id"
         display="name"
         :underline-text="['The language field is required.']"
@@ -76,7 +75,6 @@ const submitForm = async (id) => {
 
       <InputSelect
         v-model="localForm.user_id"
-        style="max-width:400px;float:left;"
         class="mt-4"
         label="table.user"
         :options="userStore.enabled"
@@ -109,7 +107,7 @@ const submitForm = async (id) => {
     margin: 1rem 0 0 0;
     position: absolute;
     width: calc(100% - 22rem);
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     overflow-x: hidden;
 }
 </style>

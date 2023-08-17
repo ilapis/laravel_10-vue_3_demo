@@ -11,7 +11,6 @@ export const languageTableSettings = [
     {
         'column': 'name',
         'title': 'language',
-        'width': '145px',
     },
     {
         'column': 'enabled',

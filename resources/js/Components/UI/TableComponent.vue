@@ -1,6 +1,11 @@
 <script setup>
 import {defineEmits, onMounted, onUnmounted, ref} from "vue";
-import SortIcon from "@/Components/Icons/SortIcon.vue";
+//import SortIcon from "@/Components/Icons/SortIcon.vue";
+
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
 
 const emit = defineEmits(['sort']);
 
@@ -14,8 +19,8 @@ const props = defineProps({
       default: null
     },
     sortable: {
-      type: Object,
-      default: null
+      type: Array,
+      default: []
     },
     rowSettings: {
         type: Object,
@@ -28,11 +33,13 @@ const props = defineProps({
 });
 
 const tableBodyId = ref("table_body_" + generateRandomId());
+const tableHeight = ref("400px");
 
 const setTableBodyHeight = () => {
     const tableBody = document.getElementById(tableBodyId.value);
     if (tableBody) {
-        tableBody.style.height = window.innerHeight - 302 + "px";
+        tableBody.style.height = window.innerHeight - 252 + "px";
+        tableHeight.value = window.innerHeight - 252 + "px" ;
     }
 };
 onMounted( () => {
@@ -48,78 +55,34 @@ onUnmounted( () => {
 function generateRandomId() {
     return Math.random().toString(36).substr(2, 9);
 }
-
-function sortColumn(column, direction) {
+function sortColumn(event) {
+    let column = event.sortField;
+    let direction = event.sortOrder;
     emit('sort', { column, direction });
 }
 </script>
 
 
 <template>
-  <div
-    class="w-full table-height"
-  >
-    <table
-      class="w-full table-height"
-    >
-      <thead>
-        <tr class="line-height-4rem text-indent-1rem text-align-left">
-          <template
-            v-for="(header, index) in rowSettings"
-            :key="index"
-          >
-            <th
-              class="height-12"
-              :style="'width:'+`${header?.width}`+';'"
-            >
-              <template v-if="header.type !== 'component'">
-                {{ $t('table.' + (header?.title ?? header?.column)) }}
-              </template>
-              <div
-                v-if="props.sortable?.includes(header?.column)"
-                class="sort-option"
-              >
-                <SortIcon
-                  :sorted="props.service._sort_by == header?.column"
-                  @sort="value => {sortColumn(header?.column, value);}"
-                />
-              </div>
-            </th>
-          </template>
-        </tr>
-      </thead>
-      <tbody
-        :id="tableBodyId"
-        class="w-full"
-      >
-        <tr
-          v-for="row in rows"
-          :key="row.id"
-          class="line-height-4rem text-indent-1rem text-align-left bg-hover-grey"
-        >
-          <template
-            v-for="(header, index) in rowSettings"
-            :key="index"
-          >
-            <td
-              class=" height-12"
-              :style="'width:'+`${header?.width}`+';'"
-            >
-              <component
-                :is="header.component"
-                v-if="header?.type == 'component'"
-                :id="row.id"
-                :service="props.service"
-              />
-              <template v-else>
-                {{ row[header.column] }}
-              </template>
-            </td>
-          </template>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div :id="tableBodyId" style="overflow:auto;" >
+    <DataTable lazy scrollable :loading="service._loading ?? false" :scrollHeight="tableHeight" :value="props.rows" tableStyle="min-width: 50rem" @sort="sortColumn">
+        <template v-for="(header, index) in rowSettings" :key="index">
+        <Column :header="$t(('table.' + (header?.title ?? header.column)) === 'table.undefined' ? '' : ('table.' + (header?.title ?? header.column)))" :field="header.column" :sortable="sortable.includes(header.column)" :style="`width: ${header.width}`">
+            <template #body="{ data, field }">
+                <template v-if="header.type === 'component'">
+                    <component
+                        :is="header.component"
+                        v-if="header?.type == 'component'"
+                        :id="data.id"
+                        :service="props.service"
+                    />
+                </template>
+                <template v-else>{{data[header.column]}}</template>
+            </template>
+        </Column>
+        </template>
+    </DataTable>
+    </div>
 </template>
 
 <style scoped>

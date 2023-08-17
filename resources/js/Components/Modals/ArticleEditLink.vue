@@ -9,6 +9,7 @@ export default markRaw({
 <script setup>
 import { defineProps } from "vue";
 import { useRouter } from 'vue-router';
+import Button from "primevue/button";
 const router = useRouter(); // getting router instance
 
 const props = defineProps({
@@ -28,11 +29,5 @@ const navigateToEditArticle = (id) => {
 </script>
 
 <template>
-  <button
-    class="btn btn-primary border-none height-12 box-shadow ml-4"
-    @click="navigateToEditArticle(props.id)"
-  >
-    {{ $t('button.edit') }}
-    <slot />
-  </button>
+    <Button class="ml-4" :label="$t('button.edit')" @click="navigateToEditArticle(props.id)" />
 </template>

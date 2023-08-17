@@ -1,4 +1,7 @@
 <script setup>
+import {loadLanguage} from "@/utils.js";
+import {ref} from "vue";
+
 const props = defineProps({
     links: {
         type: Object,
@@ -10,12 +13,22 @@ const props = defineProps({
     },
 });
 
+const perPage = ref(props.service._query_parameter_per_page ?? 10);
+const pageLast = ref(1);
+const perPageOptions = ref([10, 20, 50]);
+
 const changePage = async (url) => {
     if (url) {
         const urlParams = new URLSearchParams(new URL(url).search);
-        const page = urlParams.get('page');
-        await props.service.fetchPage(page);
+        const page = parseInt(urlParams.get('page'));
+        pageLast.value = page;
+        await props.service.fetchPage(page, perPage.value);
     }
+};
+
+const changePageSize = async () => {
+    console.log('changePageSize', perPage.value);
+    await props.service.fetchPage(pageLast.value, perPage.value);
 };
 
 const decodeHtmlEntities = (str) => {
@@ -29,6 +42,15 @@ const decodeHtmlEntities = (str) => {
 
 <template>
   <div class="pagination py-4">
+
+      <div class="inline float-left ml-4" style="margin-top: -0.75rem;">
+          <InputSelect
+              v-model="perPage"
+              :options="perPageOptions"
+              @change="changePageSize"
+          />
+      </div>
+
     <template
       v-for="(link, index) in links"
       :key="index"

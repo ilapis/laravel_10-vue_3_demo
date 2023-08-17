@@ -10,6 +10,7 @@ export default markRaw({
 
 import {ref} from "vue";
 import { useLanguageStore } from '@/Stores/languageStore.js';
+import Button from "primevue/button";
 
 const languageStore = new useLanguageStore();
 const showModal = ref(false);
@@ -52,11 +53,7 @@ const destroy = () => {
 </script>
 
 <template>
-  <ButtonComponent
-    class="btn btn-danger height-12 ml-4 box-shadow"
-    label="Delete"
-    @click="openModal"
-  />
+    <Button severity="danger" class="ml-4 box-shadow" :label="$t('button.delete')" @click="openModal" />
   <ModalComponent
     :show="showModal"
     action-label="Delete"

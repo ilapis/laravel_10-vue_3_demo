@@ -5,7 +5,9 @@ export const formMethods = {
     },
 
     updateForm(form) {
-        this._form = form;
+        if (form) {
+            this._form = form;
+        }
     },
 
     getForm() {

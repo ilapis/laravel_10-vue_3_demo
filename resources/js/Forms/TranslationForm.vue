@@ -7,7 +7,7 @@ const translationStore = new useTranslationStore();
 const languageStore = new useLanguageStore()
 
 onMounted(async () => {
-    await languageStore.fetchCollection()
+    await languageStore.fetchFullCollection()
 })
 
 let localForm = translationStore.getForm();
@@ -20,7 +20,7 @@ let localForm = translationStore.getForm();
       v-model="localForm.language_id"
       class="mt-4"
       label="Language"
-      :options="languageStore?.collection?.data"
+      :options="languageStore?.fullCollection"
       identifier="id"
       display="name"
       :underline-text="['The language field is required.']"

@@ -14,7 +14,7 @@ onMounted( async () => {
 
 <template>
   <AdministrationLayout>
-    <div class="w-full my-4 height-12">
+    <div class="w-full mt-4 height-12">
       <UserCreateModal />
     </div>
     <div

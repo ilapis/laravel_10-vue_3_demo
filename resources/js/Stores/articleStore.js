@@ -10,8 +10,10 @@ export const useArticleStore = defineStore('article-store', {
         errors: null,
         _api_endpoint: '/api/v1/article',
         _query_parameter_page: 1,
+        _query_parameter_per_page: 10,
         _sort_by: 'id',
         _sort_direction: -1,
+        _loading: false,
     }),
     actions: {
 
@@ -40,7 +42,10 @@ export const useArticleStore = defineStore('article-store', {
 
             return http.get(`/api/v1/article/${id}`).then((response) => {
                 this.errors = {};
-                return response.data.data;
+                if (response.status == 200) {
+                    return response.data.data;
+                }
+                return null;
             });
         },
 

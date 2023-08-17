@@ -18,6 +18,11 @@ class LanguageService
         return Language::where('enabled', true)->filter()->get();
     }
 
+    public function all(): Collection
+    {
+        return Language::withTrashed()->get();
+    }
+
     /**
      * @return LengthAwarePaginator<Language>
      */

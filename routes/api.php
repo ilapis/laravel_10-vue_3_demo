@@ -30,6 +30,7 @@ Route::middleware('locale')->group(function () {
 
         Route::middleware(['auth.jwt', 'precognitive'])->group(function () {
 
+            Route::get('language/all', 'LanguageController@all');
             Route::resource('language', 'LanguageController')->only([
                 'index', 'show', 'store', 'update', 'destroy',
             ]);

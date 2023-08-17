@@ -10,8 +10,10 @@ export const useUserStore = defineStore('user-store', {
         errors: null,
         _api_endpoint: '/api/v1/user',
         _query_parameter_page: 1,
+        _query_parameter_per_page: 10,
         _sort_by: 'id',
         _sort_direction: -1,
+        _loading: false,
     }),
     actions: {
 

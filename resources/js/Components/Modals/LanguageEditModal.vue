@@ -10,6 +10,8 @@ export default markRaw({
 import { useLanguageStore } from '@/Stores/languageStore.js';
 import { useModalForm } from '@/Helpers/useModalForm.js';
 import languageForm from '@/FormsDefaults/languageForm.js';
+import Button from "primevue/button";
+import Dialog from "primevue/dialog";
 
 const languageStore = new useLanguageStore();
 
@@ -39,23 +41,15 @@ const populateAndOpenModal = async () => {
 </script>
 
 <template>
-  <ButtonComponent
-    class="btn btn-primary height-12 ml-4 box-shadow"
-    label="Edit"
-    @click="populateAndOpenModal"
-  />
-  <ModalComponent
-    :show="showModal"
-    action-label="Update"
-    @update:show="showModal = $event"
-    @update:action="doModalAction($event)"
-  >
-    <LanguageForm
-      :language-store="languageStore"
-      :form="languageStore.getForm()"
-      @update:form="languageStore.setForm($event)"
-    />
-  </ModalComponent>
+    <Button class="ml-4" :label="$t('button.edit')" @click="populateAndOpenModal" />
+
+    <Dialog v-model:visible="showModal" modal :header="$t('button.create')" :style="{ width: '50vw' }" @hide="doModalAction('cancel')">
+        <LanguageForm />
+        <template #footer>
+            <Button severity="secondary" class="float-left" :label="$t('button.cancel')" icon="pi pi-times" @click="doModalAction('cancel')" text />
+            <Button :label="$t('button.create')" icon="pi pi-check" @click="doModalAction('action')" autofocus />
+        </template>
+    </Dialog>
 </template>
 
 <style scoped>

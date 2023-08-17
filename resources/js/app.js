@@ -4,8 +4,11 @@ import App from './App.vue';
 import router from './router.js';
 import {createPinia} from 'pinia';
 import {createI18n} from 'vue-i18n';
+import PrimeVue from 'primevue/config';
+import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
+import 'primeicons/primeicons.css';
+
 import {getLanguage, loadLanguage} from './utils';
-//import CKEditor from '@ckeditor/ckeditor5-vue';
 import CloseIcon from "@/Components/Icons/CloseIcon.vue";
 import DownIcon from "@/Components/Icons/DownIcon.vue";
 import UpIcon from "@/Components/Icons/UpIcon.vue";
@@ -45,7 +48,23 @@ loadLanguage(currentLanguage);
 app.use(pinia);
 app.use(router);
 app.use(i18n);
-//app.use(CKEditor);
+app.use(PrimeVue, {
+    pt: {
+        button: {
+            root: { class: 'box-shadow' }
+        },
+        inputText: {
+            root: { class: 'w-full' }
+        },
+        dropdown: {
+            root: { style: 'width:300px;' },
+            panel: {
+                style: 'width:calc(300px + 2rem);margin-left: -1rem;',
+                class: 'box-shadow'
+            },
+        }
+    }
+});
 
 app.mount("#app");
 

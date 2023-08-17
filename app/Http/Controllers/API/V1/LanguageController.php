@@ -31,6 +31,11 @@ class LanguageController extends Controller
         return LanguageResource::collection($this->languageService->enabled());
     }
 
+    public function all(): AnonymousResourceCollection
+    {
+        return LanguageResource::collection($this->languageService->all());
+    }
+
     public function show(Language $language): LanguageResource
     {
         return new LanguageResource($language);

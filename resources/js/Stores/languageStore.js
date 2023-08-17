@@ -5,13 +5,16 @@ import {fetchCollections} from '@/Helpers/fetchCollections.js';
 
 export const useLanguageStore = defineStore('language-store', {
     state: () => ({
+        fullCollection: null,
         collection: null,
         enabled: null,
         errors: null,
         _api_endpoint: '/api/v1/language',
         _query_parameter_page: 1,
+        _query_parameter_per_page: 10,
         _sort_by: 'id',
         _sort_direction: -1,
+        _loading: false,
     }),
     actions: {
 
@@ -21,6 +24,12 @@ export const useLanguageStore = defineStore('language-store', {
         async fetchEnabled() {
             await http.get(`/api/v1/language/enabled`).then((response) => {
                 this.enabled = response.data.data;
+            });
+        },
+
+        async fetchFullCollection() {
+            await http.get(`/api/v1/language/all`).then((response) => {
+                this.fullCollection = response.data.data;
             });
         },
 

@@ -7,110 +7,58 @@ export default markRaw({
 </script>
 
 <script setup>
-import {defineProps, ref, defineEmits, computed, onMounted, onBeforeUnmount} from "vue";
+import {defineProps, ref, defineEmits, computed, onMounted, onBeforeUnmount, watch} from "vue";
 import { sharedInputProps } from '@/Helpers/sharedInputProps.js';
+import Dropdown from 'primevue/dropdown';
 
 const props = defineProps(sharedInputProps);
 const emit = defineEmits(['change', 'update:modelValue']);
 
-const updateInputValue = (value) => {
-    emit('update:modelValue', value);
-    emit('change', value);
-    toggleDropdown();
+const updateInputValue = () => {
+    emit('update:modelValue', localModel.value);
+    emit('change', localModel.value);
 };
 
-const displayRecord = computed(() => {
-    let record = null;
+const localModel = ref(props.value || props.modelValue);
+const localOptionLabel = ref(props.display);
+const localOptionValue = ref(props.identifier);
 
-    if (props?.options) {
-        record = props?.options?.find((record) => {
-            if (record[props.identifier] == props.modelValue) {
-                return record;
-            }
-        });
-    }
-
-    return record;
+watch(() => props.value, (newValue) => {
+    localModel.value = newValue;
 });
-
-const showDropdown = ref(false);
-const toggleDropdown = () => {
-    showDropdown.value = !showDropdown.value;
-}
-const dropdownRef = ref(null);
-const handleClickOutside = (event) => {
-    if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-        showDropdown.value = false;
-    }
-};
-
-onMounted(() => {
-    window.addEventListener('click', handleClickOutside);
+watch(() => props.modelValue, (newValue) => {
+    localModel.value = newValue;
 });
-
-onBeforeUnmount(() => {
-    window.removeEventListener('click', handleClickOutside);
+watch(() => props.display, (newValue) => {
+    localOptionLabel.value = newValue;
+});
+watch(() => props.identifier, (newValue) => {
+    localOptionValue.value = newValue;
 });
 </script>
 
 <template>
   <div
-    ref="dropdownRef"
     class="select-wrapper w-full mt-4 position-relative"
   >
     <label
       v-if="props.label"
-      class="float-left"
+      class="block float-left col-sm-12"
     >{{ $t(props.label) }}</label>
-
-    <div
-      class="selection-display line-height-3rem border border-bottom"
-      @click="toggleDropdown"
-    >
-      <template v-if="displayRecord">
-        {{ displayRecord[props.display] }}
-      </template>
-      <template v-else>
-        {{ $t('Select option') }}
-      </template>
-      <DownIcon
-        v-if="!showDropdown"
-        class="line-height-3rem float-right mt-3"
+      <div>
+      <Dropdown
+          v-model="localModel"
+          @change="updateInputValue"
+          :options="props.options"
+          :option-label="localOptionLabel"
+          :option-value="localOptionValue"
+          :placeholder="$t('option.select')"
       />
-      <UpIcon
-        v-else
-        class="line-height-3rem float-right mt-3"
-      />
-    </div>
-
+      </div>
     <UnderlineComponent
       :underline-text="props.underlineText"
       :errors="props.errors"
     />
-
-    <div
-      v-if="showDropdown"
-      class="select-content line-height-3rem block box-shadow position-absolute w-100"
-    >
-      <template
-        v-for="(option, index) in props.options"
-        :key="index"
-      >
-        <slot
-          name="option"
-          :option="option"
-          :index="index"
-        >
-          <div
-            class="line-height-3rem bg-hover-grey"
-            :class="`${(props.modelValue === option[props.identifier]) ? 'btn-primary ' : '' }`"
-            @click="updateInputValue(option[props.identifier])"
-          >
-            {{ option[props.display] ?? option }}
-          </div>
-        </slot>
-      </template>
-    </div>
   </div>
 </template>
 
@@ -118,28 +66,7 @@ onBeforeUnmount(() => {
 .position-relative {
     position: relative;
 }
-
-.position-absolute {
-    position: absolute;
-}
-
-.w-100 {
-    width: 100%;
-}
 .select-wrapper {
     text-indent: 0;
-}
-.select-content {
-    text-indent: 0.5rem;
-    max-height: 15rem;
-    overflow: auto;
-    width: calc(100% + 1rem);
-    z-index: 100;
-    margin: 0 -0.5rem;
-    position: absolute;
-    top: 79px;
-}
-.selection-display {
-    margin-top: -1px;
 }
 </style>

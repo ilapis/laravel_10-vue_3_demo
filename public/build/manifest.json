@@ -55,13 +55,33 @@
     "file": "assets/roboto-vietnamese-400-normal-77b24796.woff2",
     "src": "node_modules/@fontsource/roboto/files/roboto-vietnamese-400-normal.woff2"
   },
+  "node_modules/primeicons/fonts/primeicons.eot": {
+    "file": "assets/primeicons-ce852338.eot",
+    "src": "node_modules/primeicons/fonts/primeicons.eot"
+  },
+  "node_modules/primeicons/fonts/primeicons.svg": {
+    "file": "assets/primeicons-5e10f102.svg",
+    "src": "node_modules/primeicons/fonts/primeicons.svg"
+  },
+  "node_modules/primeicons/fonts/primeicons.ttf": {
+    "file": "assets/primeicons-131bc3bf.ttf",
+    "src": "node_modules/primeicons/fonts/primeicons.ttf"
+  },
+  "node_modules/primeicons/fonts/primeicons.woff": {
+    "file": "assets/primeicons-90a58d3a.woff",
+    "src": "node_modules/primeicons/fonts/primeicons.woff"
+  },
+  "node_modules/primeicons/fonts/primeicons.woff2": {
+    "file": "assets/primeicons-3824be50.woff2",
+    "src": "node_modules/primeicons/fonts/primeicons.woff2"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-f41f2fe5.css",
+    "file": "assets/app-5670e355.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/Components/UI/CKEditorComponent.vue": {
-    "file": "assets/CKEditorComponent-1981d801.js",
+    "file": "assets/CKEditorComponent-ff2abfe1.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -69,7 +89,7 @@
     "src": "resources/js/Components/UI/CKEditorComponent.vue"
   },
   "resources/js/app.css": {
-    "file": "assets/app-45da06b2.css",
+    "file": "assets/app-72612086.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -87,15 +107,20 @@
       "assets/roboto-latin-ext-400-normal-3c23eb02.woff2",
       "assets/roboto-latin-ext-400-normal-c2b94086.woff",
       "assets/roboto-latin-400-normal-f6734f81.woff2",
-      "assets/roboto-latin-400-normal-a9fdbefa.woff"
+      "assets/roboto-latin-400-normal-a9fdbefa.woff",
+      "assets/primeicons-ce852338.eot",
+      "assets/primeicons-3824be50.woff2",
+      "assets/primeicons-90a58d3a.woff",
+      "assets/primeicons-131bc3bf.ttf",
+      "assets/primeicons-5e10f102.svg"
     ],
     "css": [
-      "assets/app-45da06b2.css"
+      "assets/app-72612086.css"
     ],
     "dynamicImports": [
       "resources/js/Components/UI/CKEditorComponent.vue"
     ],
-    "file": "assets/app-e04697ff.js",
+    "file": "assets/app-1f02b972.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
