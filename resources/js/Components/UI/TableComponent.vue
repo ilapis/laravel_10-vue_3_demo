@@ -82,6 +82,8 @@ function sortColumn(event) {
           :header="$t(('table.' + (header?.title ?? header.column)) === 'table.undefined' ? '' : ('table.' + (header?.title ?? header.column)))"
           :field="header.column"
           :sortable="sortable?.includes(header.column)"
+          :frozen="header.frozen ?? false"
+          :alignFrozen="header.alignFrozen ?? 'left'"
           :style="`width: ${header.width}`"
         >
           <template #body="{ data }">
@@ -92,7 +94,7 @@ function sortColumn(event) {
                 :data="data"
                 :service="props.service"
                 :component_settings="header?.component_settings"
-              />
+              /><!--//@TODO move all to config (id, data, service, components_settings) -->
             </template>
             <template v-else>
               {{ data[header.column] }}
@@ -105,15 +107,5 @@ function sortColumn(event) {
 </template>
 
 <style scoped>
-.table-height {
-    height:calc(100% - 8rem);
-}
-.sort-option {
-    float: right;
-    width: 24px;
-    margin-top: 4px;
-    right: 16px;
-    position: relative;
-    background: transparent;
-}
+
 </style>

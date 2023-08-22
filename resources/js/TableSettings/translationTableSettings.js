@@ -2,6 +2,7 @@ export const translationTableSettings = [
     {
         'column': 'id',
         'width': '80px',
+        'frozen': true,
     },
     {
         'column': 'language_id',
@@ -32,11 +33,15 @@ export const translationTableSettings = [
     {
         'type': 'component',
         'width': '100px',
-        'component': 'TranslationEditModal'
+        'component': 'TranslationEditModal',
+        'frozen': true,
+        'alignFrozen': 'right',
     },
     {
         'type': 'component',
         'width': '135px',
-        'component': 'DeleteModal'
+        'component': 'DeleteModal',
+        'frozen': true,
+        'alignFrozen': 'right',
     },
 ];
