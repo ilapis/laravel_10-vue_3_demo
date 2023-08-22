@@ -7,7 +7,7 @@ export default markRaw({
 </script>
 
 <script setup>
-import {defineProps, ref, defineEmits, computed, onMounted, onBeforeUnmount, watch} from "vue";
+import {defineProps, ref, defineEmits, watch} from "vue";
 import { sharedInputProps } from '@/Helpers/sharedInputProps.js';
 import Dropdown from 'primevue/dropdown';
 
@@ -45,16 +45,16 @@ watch(() => props.identifier, (newValue) => {
       v-if="props.label"
       class="block float-left col-sm-12"
     >{{ $t(props.label) }}</label>
-      <div>
+    <div>
       <Dropdown
-          v-model="localModel"
-          @change="updateInputValue"
-          :options="props.options"
-          :option-label="localOptionLabel"
-          :option-value="localOptionValue"
-          :placeholder="$t('option.select')"
+        v-model="localModel"
+        :options="props.options"
+        :option-label="localOptionLabel"
+        :option-value="localOptionValue"
+        :placeholder="$t('option.select')"
+        @change="updateInputValue"
       />
-      </div>
+    </div>
     <UnderlineComponent
       :underline-text="props.underlineText"
       :errors="props.errors"

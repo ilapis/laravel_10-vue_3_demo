@@ -16,7 +16,6 @@ export const translationTableSettings = [
     {
         'column': 'key',
         'title': 'key',
-        'width': '150px',
     },
     {
         'column': 'value',

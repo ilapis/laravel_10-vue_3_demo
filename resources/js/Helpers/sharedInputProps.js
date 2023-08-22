@@ -3,6 +3,10 @@ export const sharedInputProps = {
         type: String,
         default: '',
     },
+    placeholder: {
+        type: String,
+        default: '',
+    },
     underlineText: {
         type: Array,
         default: [''],
@@ -13,6 +17,9 @@ export const sharedInputProps = {
     },
     modelValue: {
         default: null,
+    },
+    type: {
+        default: 'text',
     },
     value: {
         default: null,

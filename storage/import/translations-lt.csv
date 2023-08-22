@@ -37,3 +37,26 @@ lt,ability,view,Peržiūrėti
 lt,ability,create,Sukurti
 lt,ability,update,Atnaujinti
 lt,ability,delete,Ištrinti
+lt,table,manufacturer,Gamintojas
+lt,table,model,Modelis
+lt,button,restore,Atkurti
+lt,warning,delete_record,Ištrinti įrašą?
+lt,warning,restore_record,Atkurti įrašą?
+lt,menu,manufacturers,Gamintojai
+lt,table,manufacturers_name,Gamintojas
+lt,table,vehicle_model_manufacturer_name,Gamintojas
+lt,table,vehicle_models_name,Modelis
+lt,table,vehicle_model_name,Modelis
+lt,table,vehicle_models_deleted_at,Ištrinti modeliai
+lt,table,manufacturer_deleted_at,Ištrinti gamintojai
+lt,table,deleted_at,Rodyti ištrintus
+lt,menu,vehicle_models,Modeliai
+lt,menu,transport,Transportas
+lt,table,transport,Transportas
+lt,table,license_plate,Valstybinis numeris
+lt,table,fuel_tank_capacity,Kuro bako talpa (l)
+lt,table,average_fuel_consumption,Vidutinis kuro sunaudojimas (l/100 km)
+lt,table,predicted_distance,Prognozuojama distancija
+lt,option,select,Pasirinkite
+lt,menu,fleet_register,Autoparko registras
+lt,record,soft_deleted,Ištrinta

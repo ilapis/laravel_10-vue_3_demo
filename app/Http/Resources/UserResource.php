@@ -2,20 +2,21 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\User
+ * @mixin User
  */
 class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return array<string, int|string|null>
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
@@ -24,6 +25,7 @@ class UserResource extends JsonResource
             'abilities' => $this->abilities->pluck('name'),
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i') : null,
             'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i') : null,
+            'deleted_at' => $this->deleted_at ? $this->deleted_at->format('Y-m-d H:i') : null,
         ];
     }
 }

@@ -37,3 +37,26 @@ en,ability,view,View
 en,ability,create,Create
 en,ability,update,Update
 en,ability,delete,Delete
+en,table,manufacturer,Manufacturer
+en,table,model,Model
+en,button,restore,Restore
+en,warning,delete_record,Delete record?
+en,warning,restore_record,Restore record?
+en,menu,manufacturers,Manufacturers
+en,table,manufacturers_name,Manufacturer
+en,table,vehicle_model_manufacturer_name,Manufacturer
+en,table,vehicle_models_name,Model
+en,table,vehicle_model_name,Model
+en,table,vehicle_models_deleted_at,Deleted models
+en,table,manufacturer_deleted_at,Deleted manufacturers
+en,table,deleted_at,Show deleted
+en,menu,vehicle_models,Models
+en,menu,transport,Transport
+en,table,transport,Transport
+en,table,license_plate,License plate
+en,table,fuel_tank_capacity,Fuel tank capacity (l)
+en,table,average_fuel_consumption,Average fuel consumption (l/100 km)
+en,table,predicted_distance,Predicted distance
+en,option,select,Select
+en,menu,fleet_register,Fleet register
+en,record,soft_deleted,Deleted

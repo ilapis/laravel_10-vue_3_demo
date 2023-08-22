@@ -76,12 +76,12 @@
     "src": "node_modules/primeicons/fonts/primeicons.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-5670e355.css",
+    "file": "assets/app-4d0fd08c.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/Components/UI/CKEditorComponent.vue": {
-    "file": "assets/CKEditorComponent-ff2abfe1.js",
+    "file": "assets/CKEditorComponent-ecb32b50.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -89,7 +89,7 @@
     "src": "resources/js/Components/UI/CKEditorComponent.vue"
   },
   "resources/js/app.css": {
-    "file": "assets/app-72612086.css",
+    "file": "assets/app-dcd92ca2.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -115,12 +115,12 @@
       "assets/primeicons-5e10f102.svg"
     ],
     "css": [
-      "assets/app-72612086.css"
+      "assets/app-dcd92ca2.css"
     ],
     "dynamicImports": [
       "resources/js/Components/UI/CKEditorComponent.vue"
     ],
-    "file": "assets/app-1f02b972.js",
+    "file": "assets/app-b50cdf49.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

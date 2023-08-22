@@ -1,11 +1,8 @@
 <script setup>
 import {defineEmits, onMounted, onUnmounted, ref} from "vue";
-//import SortIcon from "@/Components/Icons/SortIcon.vue";
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';   // optional
-import Row from 'primevue/row';                   // optional
 
 const emit = defineEmits(['sort']);
 
@@ -20,7 +17,7 @@ const props = defineProps({
     },
     sortable: {
       type: Array,
-      default: []
+      default: null
     },
     rowSettings: {
         type: Object,
@@ -64,25 +61,47 @@ function sortColumn(event) {
 
 
 <template>
-    <div :id="tableBodyId" style="overflow:auto;" >
-    <DataTable lazy scrollable :loading="service._loading ?? false" :scrollHeight="tableHeight" :value="props.rows" tableStyle="min-width: 50rem" @sort="sortColumn">
-        <template v-for="(header, index) in rowSettings" :key="index">
-        <Column :header="$t(('table.' + (header?.title ?? header.column)) === 'table.undefined' ? '' : ('table.' + (header?.title ?? header.column)))" :field="header.column" :sortable="sortable.includes(header.column)" :style="`width: ${header.width}`">
-            <template #body="{ data, field }">
-                <template v-if="header.type === 'component'">
-                    <component
-                        :is="header.component"
-                        v-if="header?.type == 'component'"
-                        :id="data.id"
-                        :service="props.service"
-                    />
-                </template>
-                <template v-else>{{data[header.column]}}</template>
+  <div
+    :id="tableBodyId"
+    style="overflow:auto;"
+  >
+    <DataTable
+      lazy
+      scrollable
+      :loading="service._loading ?? false"
+      :scroll-height="tableHeight"
+      :value="props.rows"
+      table-style="min-width: 50rem"
+      @sort="sortColumn"
+    >
+      <template
+        v-for="(header, index) in rowSettings"
+        :key="index"
+      >
+        <Column
+          :header="$t(('table.' + (header?.title ?? header.column)) === 'table.undefined' ? '' : ('table.' + (header?.title ?? header.column)))"
+          :field="header.column"
+          :sortable="sortable?.includes(header.column)"
+          :style="`width: ${header.width}`"
+        >
+          <template #body="{ data }">
+            <template v-if="header.type === 'component'">
+              <component
+                :is="header.component"
+                :id="data.id"
+                :data="data"
+                :service="props.service"
+                :component_settings="header?.component_settings"
+              />
             </template>
+            <template v-else>
+              {{ data[header.column] }}
+            </template>
+          </template>
         </Column>
-        </template>
+      </template>
     </DataTable>
-    </div>
+  </div>
 </template>
 
 <style scoped>

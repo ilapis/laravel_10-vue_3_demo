@@ -22,7 +22,7 @@ MASTER_PASSWORD=your-login-password
 ## local environment
 Run command to build containers:
 ```
-./manager build localhost
+./manager.sh build localhost
 ```
 will execute:
 ```
@@ -30,7 +30,7 @@ docker compose --env-file .env.localhost -f docker-compose-localhost.yaml build
 ```
 then command to run containers:
 ```
-./manager start localhost
+./manager.sh start localhost
 ```
 will execute:
 ```
@@ -38,7 +38,7 @@ docker compose --env-file .env.localhost -f docker-compose-localhost.yaml up -d
 ```
 Command to stop containers:
 ```
-./manager stop localhost
+./manager.sh stop localhost
 ```
 will execute:
 ```
@@ -48,15 +48,15 @@ docker compose --env-file .env.localhost -f docker-compose-localhost.yaml stop
 
 Similar to localhost, run command to build, start, stop containers:
 ```
-./manager build production
-./manager start production
-./manager stop production
+./manager.sh build production
+./manager.sh start production
+./manager.sh stop production
 ```
 
 ## execute scripts
 Enter php docker container by:
 ```
-./manager bash [YOUR_ENVIRONMENT]
+./manager.sh bash [YOUR_ENVIRONMENT]
 ```
 or
 ```

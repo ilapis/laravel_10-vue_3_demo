@@ -1032,6 +1032,9 @@ input[type="checkbox"] {
 .p-button.p-button-danger {
     background: #750f13 !important;
 }
+.p-button.p-button-success {
+    background: #125f3b !important;
+}
 .p-button:focus {
 }
 .p-inputtext {

@@ -15,7 +15,6 @@ const props = defineProps(sharedInputProps);
 const emit = defineEmits(['update:modelValue', 'validate-with-dry-request']);
 
 const updateInputValue = (value) => {
-    console.log(value);
     emit('update:modelValue', value);
     if (props.validateWithDryRequest) {
         emit('validate-with-dry-request', value);
@@ -26,7 +25,15 @@ const updateInputValue = (value) => {
 <template>
   <div class="w-full mt-4">
     <label class="block">{{ $t(props.label) }}</label>
-      <InputText v-model="props.modelValue" @update:model-value="updateInputValue" />
-      <UnderlineComponent :underline-text="props.underlineText" :errors="props.errors" />
+    <InputText
+      :value="props.modelValue"
+      :type="props.type"
+      :placeholder="$t(props.placeholder)"
+      @update:model-value="updateInputValue"
+    />
+    <UnderlineComponent
+      :underline-text="props.underlineText"
+      :errors="props.errors"
+    />
   </div>
 </template>

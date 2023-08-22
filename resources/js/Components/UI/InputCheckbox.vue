@@ -13,7 +13,7 @@ import Checkbox from 'primevue/checkbox';
 
 const props = defineProps(sharedInputProps);
 const emit = defineEmits(['update:modelValue']);
-const inputValue = ref(props.modelValue || props.checked);
+const inputValue = ref(props.checked || props.modelValue);
 
 const toggleInputValueTo = () => {
     emit('update:modelValue', inputValue.value);
@@ -25,8 +25,16 @@ const toggleInputValue = () => {
 </script>
 
 <template>
-  <div class="block w-full indent-0" style="line-height: 2rem;height:2rem;">
-    <Checkbox class="float-left" v-model="inputValue" :binary="true" @click="toggleInputValueTo(true)" />
+  <div
+    class="block w-full indent-0"
+    style="line-height: 2rem;height:2rem;"
+  >
+    <Checkbox
+      v-model="inputValue"
+      class="float-left"
+      :binary="true"
+      @click="toggleInputValueTo(true)"
+    />
     <label
       class="float-left cursor-pointer"
       style="margin-left: 0.5rem;position: relative;top: -0.375rem;"

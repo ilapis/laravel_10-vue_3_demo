@@ -23,10 +23,13 @@ export const fetchCollections = {
         } else if (this._query_parameter_per_page !== null) {
             params['per_page'] = this._query_parameter_per_page;
         }
-        console.log(params);
+        if (this._prevSetFilters != this._setFilters) {
+            this._prevSetFilters = this._setFilters;
+            params['page'] = 1;
+        }
 
         this._loading = true;
-        await http.get(endpoint, { params: params }).then((response) => {
+        await http.get(endpoint + '?' + this._setFilters, { params: params }).then((response) => {
             this.collection = response.data;
             this._loading = false;
         });

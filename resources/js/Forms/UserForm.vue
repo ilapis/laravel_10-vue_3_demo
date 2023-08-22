@@ -11,8 +11,8 @@ let localForm = userStore.getForm();
 let groupedAbilities = reactive({});
 let userAbilities = reactive([]);
 
-onMounted(() => {
-    abilitiesStore.fetchCollection();
+onMounted(async () => {
+    await abilitiesStore.fetchCollection();
     // Group abilities
     for (let ability of abilitiesStore.collection) {
         let split = ability.name.split('_');

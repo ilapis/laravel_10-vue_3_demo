@@ -1,5 +1,4 @@
 <script setup>
-import {loadLanguage} from "@/utils.js";
 import {ref} from "vue";
 
 const props = defineProps({
@@ -42,14 +41,16 @@ const decodeHtmlEntities = (str) => {
 
 <template>
   <div class="pagination py-4">
-
-      <div class="inline float-left ml-4" style="margin-top: -0.75rem;">
-          <InputSelect
-              v-model="perPage"
-              :options="perPageOptions"
-              @change="changePageSize"
-          />
-      </div>
+    <div
+      class="inline float-left ml-4"
+      style="margin-top: -0.75rem;"
+    >
+      <InputSelect
+        v-model="perPage"
+        :options="perPageOptions"
+        @change="changePageSize"
+      />
+    </div>
 
     <template
       v-for="(link, index) in links"

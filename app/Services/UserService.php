@@ -25,7 +25,7 @@ class UserService
      */
     public function list(int $perPage = 15): LengthAwarePaginator
     {
-        return User::orderBy(...$this->orderBy(UserFilter::SORTABLE))->with('abilities')->filter()->paginate($perPage)->withQueryString();
+        return User::withTrashed()->orderBy(...$this->orderBy(UserFilter::SORTABLE))->with('abilities')->filter()->paginate($perPage)->withQueryString();
     }
 
     public function create(UserData $userData): User

@@ -5,23 +5,28 @@ namespace App\Traits;
 trait OrderBy
 {
     /**
-     * @param  array<string>  $sortable
-     * @return array<string, string>
+     * Orders the results by the specified column and direction.
+     *
+     * @param  array<int, string>  $sortable The columns that can be sorted.
+     * @param  array<string, string>  $mapping  Optional mapping of custom column names to database columns.
+     * @return array<string, string|int> An associative array containing the 'column' to sort by and the 'direction' (asc or desc).
      */
-    private function orderBy(array $sortable): array
+    private function orderBy(array $sortable, array $mapping = []): array
     {
         // Extract the sortby parameter
         $sortby = request()->input('sortby', []);
         $column = key($sortby);
         $direction = current($sortby);
 
-        // Default to 'id' and 'asc' if the sortby parameter is not present or not valid
-        if (! in_array($column, $sortable) || ! in_array($direction, [1, -1])) {
-            $column = 'id';
-            $direction = 'asc';
+        if (isset($mapping[$column])) {
+            $column = $mapping[$column];
         } else {
-            $direction = ($direction == 1) ? 'asc' : 'desc';
+            if (! in_array($column, $sortable) || ! in_array($direction, [1, -1])) {
+                $column = 'id';
+                $direction = 'asc';
+            }
         }
+        $direction = ($direction == 1) ? 'asc' : 'desc';
 
         return ['column' => $column, 'direction' => $direction];
     }

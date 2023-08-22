@@ -17,4 +17,12 @@ export const formMethods = {
     resetForm() {
         this._form = JSON.parse(JSON.stringify(this._form_deep_copy));
     },
+
+    hasErrors() {
+        return this.errors && Object.keys(this.errors).length > 0;
+    },
+
+    clearErrors() {
+        return this.errors= null;
+    },
 }

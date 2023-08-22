@@ -26,7 +26,8 @@ class TranslationService
      */
     public function locale(string $language_code): array
     {
-        return Cache::rememberForever('locale-'.$language_code, function () use ($language_code) {
+        //TODO add route and button frontend to refresh caches
+        //return Cache::rememberForever('locale-'.$language_code, function () use ($language_code) {
             return Translation::query()
                 ->whereHas('language', function ($query) use ($language_code) {
                     $query->where('code', $language_code);
@@ -37,7 +38,7 @@ class TranslationService
                     return $groupItems->pluck('value', 'key');
                 })
                 ->toArray();
-        });
+        //});
     }
 
     public function create(TranslationData $dto): ?Translation
