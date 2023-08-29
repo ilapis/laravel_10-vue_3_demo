@@ -1,6 +1,6 @@
 <script setup>
-import { useLanguageStore } from '@/Stores/languageStore.js'
-import { useUserStore } from '@/Stores/userStore.js'
+import { useLanguageStore } from '@/Stores/languageStore.js';
+import { useUserStore } from '@/Stores/userStore.js';
 import { useArticleStore } from '@/Stores/articleStore.js';
 import articleForm from "@/FormsDefaults/articleForm.js";
 import {defineAsyncComponent, onMounted, ref} from "vue";
@@ -8,8 +8,8 @@ import { useRouter } from 'vue-router';
 import Button from "primevue/button";
 
 const CKEditorComponent = defineAsyncComponent(() => import('@/Components/UI/CKEditorComponent.vue'));
-const languageStore = new useLanguageStore()
-const userStore = new useUserStore()
+const languageStore = new useLanguageStore();
+const userStore = new useUserStore();
 const articleStore = new useArticleStore();
 const router = useRouter();
 const localForm = ref(articleForm);
@@ -25,7 +25,7 @@ const props = defineProps({
 
 onMounted( async () => {
     articleStore.errors = null;
-    languageStore.fetchFullCollection();
+    await languageStore.fetchFullCollection();
     await userStore.fetchEnabled();
     localForm.value = JSON.parse(JSON.stringify(articleForm));
     if (props.id !== null) {

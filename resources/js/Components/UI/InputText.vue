@@ -12,10 +12,11 @@ import { sharedInputProps } from '@/Helpers/sharedInputProps.js';
 import InputText from 'primevue/inputtext';
 
 const props = defineProps(sharedInputProps);
-const emit = defineEmits(['update:modelValue', 'validate-with-dry-request']);
+const emit = defineEmits(['update:modelValue', 'validate-with-dry-request', 'change']);
 
 const updateInputValue = (value) => {
     emit('update:modelValue', value);
+    emit('change', value);
     if (props.validateWithDryRequest) {
         emit('validate-with-dry-request', value);
     }
@@ -23,7 +24,7 @@ const updateInputValue = (value) => {
 </script>
 
 <template>
-  <div class="w-full mt-4">
+  <div class="w-full">
     <label class="block">{{ $t(props.label) }}</label>
     <InputText
       :value="props.modelValue"

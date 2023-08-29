@@ -11,7 +11,6 @@ use App\Http\Requests\TranslationUpdateRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
 use App\Services\TranslationService;
-use App\Traits\PerPage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -19,8 +18,6 @@ use Illuminate\Http\Response;
 
 class TranslationController extends Controller
 {
-    use PerPage;
-
     public function __construct(private TranslationService $translationService)
     {
 
@@ -39,7 +36,7 @@ class TranslationController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         return TranslationResource::collection(
-            $this->translationService->list($this->perPage())
+            $this->translationService->list()
         )->additional([
             'sortable' => TranslationFilter::SORTABLE,
             'filterable' => TranslationFilter::FILTERABLE,

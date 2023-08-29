@@ -1,4 +1,8 @@
 import axios from 'axios';
+// using ES6 modules
+import mitt from 'mitt';
+export  const emitter = mitt();
+
 
 export function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -6,7 +10,7 @@ export function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-function setCookie(name, value, days = 365, path = '/') {
+export function setCookie(name, value, days = 365, path = '/') {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=' + path + '; SameSite=None; Secure';
 }
@@ -43,6 +47,8 @@ export function setLanguage(language) {
     } catch (e) {
         console.error('Failed to set language in cookie', e);
     }
+
+    emitter.emit('language-changed');
 }
 
 export function loadLanguage(language) {

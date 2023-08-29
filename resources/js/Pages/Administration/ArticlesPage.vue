@@ -5,6 +5,7 @@ import AdministrationLayout from '@/Layouts/AdministrationLayout.vue';
 import TableComponent from "@/Components/UI/TableComponent.vue";
 import {useArticleStore} from '@/Stores/articleStore.js';
 import {articleTableSettings} from '@/TableSettings/articleTableSettings.js';
+import DataTableComponent from "@/Components/UI/DataTableComponent.vue";
 
 import Button from 'primevue/button';
 
@@ -17,8 +18,6 @@ onMounted(async () => {
 const navigateToCreateArticle = () => {
     router.push({name: 'admin-article-create'});
 }
-
-const testKey = ref(1);
 </script>
 
 <template>
@@ -29,25 +28,22 @@ const testKey = ref(1);
     <div
       class="w-full one-table-page"
     >
-      <TableComponent
-        :service="articleStore"
-        :rows="articleStore.collection?.data"
-        :filterable="articleStore.collection?.filterable"
-        :sortable="articleStore.collection?.sortable"
-        :row-settings="articleTableSettings"
-        @sort="event => {
-            console.log(event);
-          articleStore._sort_by = event.column;
-          articleStore._sort_direction = event.direction;
+        <DataTableComponent
+            v-if="articleStore.collection"
+            :service="articleStore"
+            :rows="articleStore.collection?.data"
+            :filterable="articleStore.collection?.filterable"
+            :sortable="articleStore.collection?.sortable"
+            :row-settings="articleTableSettings"
+            :pagination-links="articleStore.collection?.meta?.links"
+            @update:service="(event) => {
+          articleStore._sort_by = event._sort_by;
+          articleStore._sort_direction = event._sort_direction;
+          articleStore._sort_direction = event._sort_direction;
           articleStore.fetchCollection();
         }"
-      />
+        />
     </div>
-    <TablePaginationComponent
-      v-if="articleStore.collection?.meta?.links"
-      :links="articleStore.collection?.meta?.links"
-      :service="articleStore"
-    />
   </AdministrationLayout>
 </template>
 

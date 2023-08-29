@@ -23,7 +23,7 @@ export function useModalForm(store, actionMethod) {
         if (action === 'action') {
             try {
                 await actionMethod();
-                if (!store?.errors) {
+                if (!store?.errors || Object.keys(store.errors).length == 0) {
                     hideModal();
                 }
             } catch (error) {

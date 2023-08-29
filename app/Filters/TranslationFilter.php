@@ -4,10 +4,10 @@ namespace App\Filters;
 
 class TranslationFilter
 {
-    public const SORTABLE = ['id', 'language_id', 'key', 'name'];
+    public const SORTABLE = ['translations.id', 'language.name', 'key', 'name'];
 
     public const FILTERABLE = [
-        'language_id' => ['exact'],
+        'language.name' => ['exact'],
         'key' => ['contains'],
         'value' => ['contains'],
     ];

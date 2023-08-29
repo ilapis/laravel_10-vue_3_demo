@@ -47,7 +47,7 @@ class LanguageController extends Controller
             $this->languageService->list($this->perPage())
         )->additional([
             'sortable' => LanguageFilter::SORTABLE,
-            'filterable' => LanguageFilter::SORTABLE,
+            'filterable' => LanguageFilter::FILTERABLE,
         ]);
     }
 

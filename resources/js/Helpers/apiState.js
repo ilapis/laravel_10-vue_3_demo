@@ -10,5 +10,5 @@ export const apiState = {
     _sort_direction: -1,
     _setFilters: null,
     _prevSetFilters: null,
-    _loading: false,
+    _loading: true,
 };

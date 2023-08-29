@@ -17,7 +17,7 @@ const { showModal, openModal, doModalAction } = useModalForm(props.store, () => 
   <Button
     class="ml-4"
     :label="$t('button.add')"
-    @click="openModal()"
+    @click="openModal(true)"
   />
 
   <Dialog

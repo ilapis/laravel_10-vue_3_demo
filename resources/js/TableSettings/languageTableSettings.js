@@ -2,11 +2,12 @@ export const languageTableSettings = [
     {
         'column': 'id',
         'width': '80px',
+        'frozen': true,
     },
     {
         'column': 'code',
         'title': 'language_code',
-        'width': '100px',
+        'frozen': true,
     },
     {
         'column': 'name',
@@ -25,17 +26,17 @@ export const languageTableSettings = [
         'width': '200px',
     },
     {
-        'column': 'deleted_at',
-        'width': '200px',
-    },
-    {
         'type': 'component',
         'width': '100px',
-        'component': 'LanguageEditModal'
+        'component': 'LanguageEditModal',
+        'frozen': true,
+        'alignFrozen': 'right',
     },
     {
         'type': 'component',
         'width': '135px',
-        'component': 'DeleteModal'
+        'component': 'DeleteModal',
+        'frozen': true,
+        'alignFrozen': 'right',
     },
 ];

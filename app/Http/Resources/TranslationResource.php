@@ -19,8 +19,8 @@ class TranslationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'language_id' => $this->language_id,
+            'translations.id' => $this->id,
+            'language.name' => $this->language->name,
             'group' => $this->group,
             'key' => $this->key,
             'value' => $this->value,

@@ -71,7 +71,7 @@ let language = ref(getLanguage());
       class="inline btn btn-primary float-right mr-4 mt-4"
       @click="logout"
     />
-    <div class="logout-timer inline line-height-3rem height-12 float-right mr-4 mt-4">
+    <div class="logout-timer bg-primary inline line-height-3rem float-right mr-4 mt-4">
       {{ logoutTimer }}
     </div>
   </div>

@@ -57,7 +57,7 @@ const decodeHtmlEntities = (str) => {
       :key="index"
     >
       <button
-        class="btn btn-pagination mt-1 border-none"
+        class="btn btn-pagination mt-1 border-none box-shadow"
         :class="`${(link.active == true) ? 'btn-primary box-shadow' : 'btn-default'}`"
         :disabled="!link.url"
         @click="changePage(link.url)"

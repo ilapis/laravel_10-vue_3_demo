@@ -28,6 +28,7 @@ en,button,import,Import
 en,button,download,Download
 en,button,export,Export
 en,button,next,Next
+en,button,filter,Filter
 en,button,previous,Previous
 en,menu,articles,Articles
 en,menu,languages,Languages
@@ -60,3 +61,164 @@ en,table,predicted_distance,Predicted distance
 en,option,select,Select
 en,menu,fleet_register,Fleet register
 en,record,soft_deleted,Deleted
+en,placeholder,search,Search
+en,primevue,startsWith,Starts with
+en,primevue,contains,Contains
+en,primevue,notContains,Not contains
+en,primevue,endsWith,Ends with
+en,primevue,equals,Equals
+en,primevue,notEquals,Not equals
+en,primevue,noFilter,No Filter
+en,primevue,lt,Less than
+en,primevue,lte,Less than or equal to
+en,primevue,gt,Greater than
+en,primevue,gte,Greater than or equal to
+en,primevue,dateIs,Date is
+en,primevue,dateIsNot,Date is not
+en,primevue,dateBefore,Date is before
+en,primevue,dateAfter,Date is after
+en,primevue,clear,Clear
+en,primevue,apply,Apply
+en,primevue,matchAll,Match All
+en,primevue,matchAny,Match Any
+en,primevue,addRule,Add Rule
+en,primevue,removeRule,Remove Rule
+en,primevue,accept,Yes
+en,primevue,reject,No
+en,primevue,choose,Choose
+en,primevue,upload,Upload
+en,primevue,cancel,Cancel
+en,primevue,completed,Completed
+en,primevue,pending,Pending
+en,primevue,dayNames[0],Sunday
+en,primevue,dayNames[1],Monday
+en,primevue,dayNames[2],Tuesday
+en,primevue,dayNames[3],Wednesday
+en,primevue,dayNames[4],Thursday
+en,primevue,dayNames[5],Friday
+en,primevue,dayNames[6],Saturday
+en,primevue,dayNamesShort[0],Sun
+en,primevue,dayNamesShort[1],Mon
+en,primevue,dayNamesShort[2],Tue
+en,primevue,dayNamesShort[3],Wed
+en,primevue,dayNamesShort[4],Thu
+en,primevue,dayNamesShort[5],Fri
+en,primevue,dayNamesShort[6],Sat
+en,primevue,dayNamesMin[0],Su
+en,primevue,dayNamesMin[1],Mo
+en,primevue,dayNamesMin[2],Tu
+en,primevue,dayNamesMin[3],We
+en,primevue,dayNamesMin[4],Th
+en,primevue,dayNamesMin[5],Fr
+en,primevue,dayNamesMin[6],Sa
+en,primevue,monthNames[0],January
+en,primevue,monthNames[1],February
+en,primevue,monthNames[2],March
+en,primevue,monthNames[3],April
+en,primevue,monthNames[4],May
+en,primevue,monthNames[5],June
+en,primevue,monthNames[6],July
+en,primevue,monthNames[7],August
+en,primevue,monthNames[8],September
+en,primevue,monthNames[9],October
+en,primevue,monthNames[10],November
+en,primevue,monthNames[11],December
+en,primevue,monthNamesShort[0],Jan
+en,primevue,monthNamesShort[1],Feb
+en,primevue,monthNamesShort[2],Mar
+en,primevue,monthNamesShort[3],Apr
+en,primevue,monthNamesShort[4],May
+en,primevue,monthNamesShort[5],Jun
+en,primevue,monthNamesShort[6],Jul
+en,primevue,monthNamesShort[7],Aug
+en,primevue,monthNamesShort[8],Sep
+en,primevue,monthNamesShort[9],Oct
+en,primevue,monthNamesShort[10],Nov
+en,primevue,monthNamesShort[11],Dec
+en,primevue,chooseYear,Choose Year
+en,primevue,chooseMonth,Choose Month
+en,primevue,chooseDate,Choose Date
+en,primevue,prevDecade,Previous Decade
+en,primevue,nextDecade,Next Decade
+en,primevue,prevYear,Previous Year
+en,primevue,nextYear,Next Year
+en,primevue,prevMonth,Previous Month
+en,primevue,nextMonth,Next Month
+en,primevue,prevHour,Previous Hour
+en,primevue,nextHour,Next Hour
+en,primevue,prevMinute,Previous Minute
+en,primevue,nextMinute,Next Minute
+en,primevue,prevSecond,Previous Second
+en,primevue,nextSecond,Next Second
+en,primevue,am,am
+en,primevue,pm,pm
+en,primevue,today,Today
+en,primevue,weekHeader,Wk
+en,primevue,firstDayOfWeek,0
+en,primevue,dateFormat,mm/dd/yy
+en,primevue,weak,Weak
+en,primevue,medium,Medium
+en,primevue,strong,Strong
+en,primevue,passwordPrompt,Enter a password
+en,primevue,emptyFilterMessage,No results found
+en,primevue,searchMessage,{0} results are available
+en,primevue,selectionMessage,{0} items selected
+en,primevue,emptySelectionMessage,No selected item
+en,primevue,emptySearchMessage,No results found
+en,primevue,emptyMessage,No available options
+en,primevue,aria.trueLabel,True
+en,primevue,aria.falseLabel,False
+en,primevue,aria.nullLabel,Not Selected
+en,primevue,aria.star,1 star
+en,primevue,aria.stars,{star} stars
+en,primevue,aria.selectAll,All items selected
+en,primevue,aria.unselectAll,All items unselected
+en,primevue,aria.close,Close
+en,primevue,aria.previous,Previous
+en,primevue,aria.next,Next
+en,primevue,aria.navigation,Navigation
+en,primevue,aria.scrollTop,Scroll Top
+en,primevue,aria.moveTop,Move Top
+en,primevue,aria.moveUp,Move Up
+en,primevue,aria.moveDown,Move Down
+en,primevue,aria.moveBottom,Move Bottom
+en,primevue,aria.moveToTarget,Move to Target
+en,primevue,aria.moveToSource,Move to Source
+en,primevue,aria.moveAllToTarget,Move All to Target
+en,primevue,aria.moveAllToSource,Move All to Source
+en,primevue,aria.pageLabel,{page}
+en,primevue,aria.firstPageLabel,First Page
+en,primevue,aria.lastPageLabel,Last Page
+en,primevue,aria.nextPageLabel,Next Page
+en,primevue,aria.prevPageLabel,Previous Page
+en,primevue,aria.rowsPerPageLabel,Rows per page
+en,primevue,aria.jumpToPageDropdownLabel,Jump to Page Dropdown
+en,primevue,aria.jumpToPageInputLabel,Jump to Page Input
+en,primevue,aria.selectRow,Row Selected
+en,primevue,aria.unselectRow,Row Unselected
+en,primevue,aria.expandRow,Row Expanded
+en,primevue,aria.collapseRow,Row Collapsed
+en,primevue,aria.showFilterMenu,Show Filter Menu
+en,primevue,aria.hideFilterMenu,Hide Filter Menu
+en,primevue,aria.filterOperator,Filter Operator
+en,primevue,aria.filterConstraint,Filter Constraint
+en,primevue,aria.editRow,Row Edit
+en,primevue,aria.saveEdit,Save Edit
+en,primevue,aria.cancelEdit,Cancel Edit
+en,primevue,aria.listView,List View
+en,primevue,aria.gridView,Grid View
+en,primevue,aria.slide,Slide
+en,primevue,aria.slideNumber,{slideNumber}
+en,primevue,aria.zoomImage,Zoom Image
+en,primevue,aria.zoomIn,Zoom In
+en,primevue,aria.zoomOut,Zoom Out
+en,primevue,aria.rotateRight,Rotate Right
+en,primevue,aria.rotateLeft,Rotate Left
+en,primevue,exact,Exact
+en,primevue,notEqual,Not equal
+en,primevue,dateExact,Date exact
+en,primevue,dateMax,Date to
+en,primevue,dateMin,Date from
+en,primevue,min,Min
+en,primevue,max,Max
+en,primevue,null,No filter

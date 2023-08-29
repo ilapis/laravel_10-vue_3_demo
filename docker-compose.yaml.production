@@ -7,12 +7,26 @@ services:
   php:
     depends_on:
       - mysql
-      - nginx
     restart: unless-stopped
-    #env_file:
-    #  - .env.production
     build:
       context: docker/php-prod
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - app-network
+#----------------------------------------------------
+#----- WEBSOCKET ------------------------------------
+#----------------------------------------------------
+  websocket:
+    depends_on:
+      - mysql
+      - php
+    restart: unless-stopped
+    build:
+      context: docker/websocket-prod
       dockerfile: Dockerfile
       args:
         - PHP_VERSION=${PHP_VERSION}
@@ -26,6 +40,8 @@ services:
   nginx:
     image: nginx:alpine
     restart: unless-stopped
+    depends_on:
+      - websocket
     ports:
       - "80:80"
       - "443:443"

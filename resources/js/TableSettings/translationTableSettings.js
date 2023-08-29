@@ -1,13 +1,15 @@
 export const translationTableSettings = [
     {
-        'column': 'id',
+        'column': 'translations.id',
+        'title': 'id',
         'width': '80px',
         'frozen': true,
     },
     {
-        'column': 'language_id',
+        'column': 'language.name',
         'title': 'language',
         'width': '145px',
+        'filter': 'LanguageFilter',
     },
     {
         'column': 'group',
@@ -21,14 +23,6 @@ export const translationTableSettings = [
     {
         'column': 'value',
         'title': 'value',
-    },
-    {
-        'column': 'created_at',
-        'width': '200px',
-    },
-    {
-        'column': 'updated_at',
-        'width': '200px',
     },
     {
         'type': 'component',

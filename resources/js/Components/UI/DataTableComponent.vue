@@ -7,6 +7,7 @@
       :sortable="props.sortable"
       :row-settings="props.rowSettings"
       @sort="event => onSort(event)"
+      @filter="event => onFilter(event)"
     />
     <TablePaginationComponent
       v-if="props.paginationLinks"
@@ -32,7 +33,14 @@ const props = defineProps({
 const emit = defineEmits(['update:service']);
 
 const onSort = (event) => {
+    //console.log('36', event);
     const updatedService = { _sort_by: event.column, _sort_direction: event.direction };
     emit('update:service', updatedService);
+    emit('update:sort', updatedService);
+};
+const onFilter = (event) => {
+    //console.log('41', event);
+    const updatedService = { _setFilters: event };
+    emit('update:filter', updatedService);
 };
 </script>

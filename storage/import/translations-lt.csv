@@ -28,6 +28,7 @@ lt,button,import,Įkelti
 lt,button,download,Parsisiųsti
 lt,button,export,Eksportuoti
 lt,button,next,Sekantis
+lt,button,filter,Filtruoti
 lt,button,previous,Atgal
 lt,menu,articles,Straipsniai
 lt,menu,languages,Kalbos
@@ -60,3 +61,164 @@ lt,table,predicted_distance,Prognozuojama distancija
 lt,option,select,Pasirinkite
 lt,menu,fleet_register,Autoparko registras
 lt,record,soft_deleted,Ištrinta
+lt,placeholder,search,Ieškoti
+lt,primevue,startsWith,Prasideda su
+lt,primevue,contains,Turi
+lt,primevue,notContains,Neturi
+lt,primevue,endsWith,Baigiasi su
+lt,primevue,equals,Lygus
+lt,primevue,notEquals,Nelygus
+lt,primevue,noFilter,Be filtro
+lt,primevue,lt,Mažiau nei
+lt,primevue,lte,Mažiau arba lygu
+lt,primevue,gt,Daugiau nei
+lt,primevue,gte,Daugiau arba lygu
+lt,primevue,dateIs,Data yra
+lt,primevue,dateIsNot,Data nėra
+lt,primevue,dateBefore,Data prieš
+lt,primevue,dateAfter,Data po
+lt,primevue,clear,Išvalyti
+lt,primevue,apply,Taikyti
+lt,primevue,matchAll,Atitikti visus
+lt,primevue,matchAny,Atitikti bet kurį
+lt,primevue,addRule,Pridėti taisyklę
+lt,primevue,removeRule,Pašalinti taisyklę
+lt,primevue,accept,Taip
+lt,primevue,reject,Ne
+lt,primevue,choose,Pasirinkti
+lt,primevue,upload,Įkelti
+lt,primevue,cancel,Atšaukti
+lt,primevue,completed,Užbaigta
+lt,primevue,pending,Laukimas
+lt,primevue,dayNames[0],Sekmadienis
+lt,primevue,dayNames[1],Pirmadienis
+lt,primevue,dayNames[2],Antradienis
+lt,primevue,dayNames[3],Trečiadienis
+lt,primevue,dayNames[4],Ketvirtadienis
+lt,primevue,dayNames[5],Penktadienis
+lt,primevue,dayNames[6],Šeštadienis
+lt,primevue,dayNamesShort[0],Sek
+lt,primevue,dayNamesShort[1],Pir
+lt,primevue,dayNamesShort[2],Ant
+lt,primevue,dayNamesShort[3],Tre
+lt,primevue,dayNamesShort[4],Ket
+lt,primevue,dayNamesShort[5],Pen
+lt,primevue,dayNamesShort[6],Šeš
+lt,primevue,dayNamesMin[0],S
+lt,primevue,dayNamesMin[1],P
+lt,primevue,dayNamesMin[2],A
+lt,primevue,dayNamesMin[3],T
+lt,primevue,dayNamesMin[4],K
+lt,primevue,dayNamesMin[5],P
+lt,primevue,dayNamesMin[6],Š
+lt,primevue,monthNames[0],Sausis
+lt,primevue,monthNames[1],Vasaris
+lt,primevue,monthNames[2],Kovas
+lt,primevue,monthNames[3],Balandis
+lt,primevue,monthNames[4],Gegužė
+lt,primevue,monthNames[5],Birželis
+lt,primevue,monthNames[6],Liepa
+lt,primevue,monthNames[7],Rugpjūtis
+lt,primevue,monthNames[8],Rugsėjis
+lt,primevue,monthNames[9],Spalis
+lt,primevue,monthNames[10],Lapkritis
+lt,primevue,monthNames[11],Gruodis
+lt,primevue,monthNamesShort[0],Sau
+lt,primevue,monthNamesShort[1],Vas
+lt,primevue,monthNamesShort[2],Kov
+lt,primevue,monthNamesShort[3],Bal
+lt,primevue,monthNamesShort[4],Geg
+lt,primevue,monthNamesShort[5],Bir
+lt,primevue,monthNamesShort[6],Lie
+lt,primevue,monthNamesShort[7],Rgp
+lt,primevue,monthNamesShort[8],Rgs
+lt,primevue,monthNamesShort[9],Spa
+lt,primevue,monthNamesShort[10],Lap
+lt,primevue,monthNamesShort[11],Gru
+lt,primevue,chooseYear,Pasirinkti metus
+lt,primevue,chooseMonth,Pasirinkti mėnesį
+lt,primevue,chooseDate,Pasirinkti datą
+lt,primevue,prevDecade,Praėjęs dešimtmetis
+lt,primevue,nextDecade,Kitas dešimtmetis
+lt,primevue,prevYear,Praėję metai
+lt,primevue,nextYear,Kiti metai
+lt,primevue,prevMonth,Praėjęs mėnuo
+lt,primevue,nextMonth,Kitas mėnuo
+lt,primevue,prevHour,Praėjęs valanda
+lt,primevue,nextHour,Kitas valanda
+lt,primevue,prevMinute,Praėjusi minutė
+lt,primevue,nextMinute,Kita minutė
+lt,primevue,prevSecond,Praėjusi sekundė
+lt,primevue,nextSecond,Kita sekundė
+lt,primevue,am,am
+lt,primevue,pm,pm
+lt,primevue,today,Šiandien
+lt,primevue,weekHeader,Sav
+lt,primevue,firstDayOfWeek,0
+lt,primevue,dateFormat,mm/dd/yy
+lt,primevue,weak,Silpnas
+lt,primevue,medium,Vidutinis
+lt,primevue,strong,Stiprus
+lt,primevue,passwordPrompt,Įveskite slaptažodį
+lt,primevue,emptyFilterMessage,Rezultatų nerasta
+lt,primevue,searchMessage,{0} rezultatai yra prieinami
+lt,primevue,selectionMessage,{0} daiktai pasirinkti
+lt,primevue,emptySelectionMessage,Nėra pasirinkto elemento
+lt,primevue,emptySearchMessage,Rezultatų nerasta
+lt,primevue,emptyMessage,Nėra galimų variantų
+lt,primevue,aria.trueLabel,Tiesa
+lt,primevue,aria.falseLabel,Netiesa
+lt,primevue,aria.nullLabel,Nepasirinkta
+lt,primevue,aria.star,1 žvaigždė
+lt,primevue,aria.stars,{star} žvaigždės
+lt,primevue,aria.selectAll,Pasirinkti visus elementus
+lt,primevue,aria.unselectAll,Atžymėti visus elementus
+lt,primevue,aria.close,Uždaryti
+lt,primevue,aria.previous,Ankstesnis
+lt,primevue,aria.next,Kitas
+lt,primevue,aria.navigation,Navigacija
+lt,primevue,aria.scrollTop,Slinkti į viršų
+lt,primevue,aria.moveTop,Perkelti į viršų
+lt,primevue,aria.moveUp,Perkelti aukštyn
+lt,primevue,aria.moveDown,Perkelti žemyn
+lt,primevue,aria.moveBottom,Perkelti į apačią
+lt,primevue,aria.moveToTarget,Perkelti į tikslą
+lt,primevue,aria.moveToSource,Perkelti į šaltinį
+lt,primevue,aria.moveAllToTarget,Perkelti visus į tikslą
+lt,primevue,aria.moveAllToSource,Perkelti visus į šaltinį
+lt,primevue,aria.pageLabel,{page}
+lt,primevue,aria.firstPageLabel,Pirmas puslapis
+lt,primevue,aria.lastPageLabel,Paskutinis puslapis
+lt,primevue,aria.nextPageLabel,Kitas puslapis
+lt,primevue,aria.prevPageLabel,Ankstesnis puslapis
+lt,primevue,aria.rowsPerPageLabel,Eilučių puslapyje
+lt,primevue,aria.jumpToPageDropdownLabel,Peršokti į puslapio išskleidžiamąjį meniu
+lt,primevue,aria.jumpToPageInputLabel,Peršokti į puslapio įvestį
+lt,primevue,aria.selectRow,Pasirinkti eilutę
+lt,primevue,aria.unselectRow,Atžymėti eilutę
+lt,primevue,aria.expandRow,Išplėsti eilutę
+lt,primevue,aria.collapseRow,Suskleisti eilutę
+lt,primevue,aria.showFilterMenu,Rodyti filtro meniu
+lt,primevue,aria.hideFilterMenu,Slėpti filtro meniu
+lt,primevue,aria.filterOperator,Filtro operatorius
+lt,primevue,aria.filterConstraint,Filtro apribojimas
+lt,primevue,aria.editRow,Redaguoti eilutę
+lt,primevue,aria.saveEdit,Išsaugoti redagavimą
+lt,primevue,aria.cancelEdit,Atšaukti redagavimą
+lt,primevue,aria.listView,Sąrašo peržiūra
+lt,primevue,aria.gridView,Tinklelio peržiūra
+lt,primevue,aria.slide,Slinkti
+lt,primevue,aria.slideNumber,{slideNumber}
+lt,primevue,aria.zoomImage,Didinti vaizdą
+lt,primevue,aria.zoomIn,Didinti
+lt,primevue,aria.zoomOut,Sumažinti
+lt,primevue,aria.rotateRight,Pasukti dešinėn
+lt,primevue,aria.rotateLeft,Pasukti kairėn
+lt,primevue,exact,Lygu
+lt,primevue,notEqual,Ne lygu
+lt,primevue,dateExact,Tiksli data
+lt,primevue,dateMax,Data iki
+lt,primevue,dateMin,Data nuo
+lt,primevue,min,Nuo
+lt,primevue,max,Iki
+lt,primevue,null,Be filtro

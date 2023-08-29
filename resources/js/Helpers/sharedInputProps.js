@@ -32,6 +32,7 @@ export const sharedInputProps = {
     },
     display: {
         type: String,
+        default: null,
     },
     checked: {
         type: Boolean,

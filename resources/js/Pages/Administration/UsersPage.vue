@@ -1,67 +1,55 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import AdministrationLayout from '@/Layouts/AdministrationLayout.vue';
-//import TableComponent from "@/Components/UI/TableComponent.vue";
 import DataTableComponent from "@/Components/UI/DataTableComponent.vue";
-import { useUserStore } from '@/Stores/userStore.js';
+import {useUserStore} from '@/Stores/userStore.js';
 import {userTableSettings} from "@/TableSettings/userTableSettings.js";
-import { createQueryString, initializeFilters } from '@/Helpers/filtersHelper.js';
+import {createQueryString, initializeFilters} from '@/Helpers/filtersHelper.js';
+import Button from "primevue/button";
 
 const userStore = new useUserStore();
 const filters = ref({});
 
-onMounted( async () => {
-    await userStore.fetchCollection();
-    initializeFilters(userStore, filters);
+onMounted(async () => {
+  await userStore.fetchCollection();
+  initializeFilters(userStore, filters);
 });
-
-const updateFilters = (filters) => {
-    userStore._setFilters = createQueryString(userStore.collection?.filterable, filters);
-    userStore.fetchCollection();
-}
 </script>
 
 <template>
   <AdministrationLayout>
     <div class="w-full mt-4 height-12">
-      <UserCreateModal />
+      <UserCreateModal/>
+      <Button type="button"
+              class="ml-4"
+              @click="userStore.fetchCollection()"
+              :label="$t('button.filter')"/>
     </div>
     <div
-      class="w-full one-table-page"
-    ><!--
-      <TableComponent
-        :service="userStore"
-        :rows="userStore.collection?.data"
-        :filterable="userStore.collection?.filterable"
-        :sortable="userStore.collection?.sortable"
-        :row-settings="userTableSettings"
-        @sort="event => {
-          userStore._sort_by = event.column;
-          userStore._sort_direction = event.direction;
-          userStore.fetchCollection();
-        }"
-      />
-    </div>
-    <TablePaginationComponent
-      v-if="userStore.collection?.meta?.links"
-      :links="userStore.collection?.meta?.links"
-      :service="userStore"
-    />
--->
+        class="w-full one-table-page"
+    >
       <DataTableComponent
+          v-if="userStore.collection"
           :service="userStore"
           :rows="userStore.collection?.data"
           :filterable="userStore.collection?.filterable"
           :sortable="userStore.collection?.sortable"
           :row-settings="userTableSettings"
           :pagination-links="userStore.collection?.meta?.links"
-          @update:service="(event) => {
-          userStore._sort_by = event._sort_by;
-          userStore._sort_direction = event._sort_direction;
-          userStore.fetchCollection();
-        }"
+          @update:sort="(event) => {
+              if (event._sort_by) {
+                  userStore._sort_by = event._sort_by;
+              }
+              if (event._sort_direction) {
+                  userStore._sort_direction = event._sort_direction;
+              }
+              userStore.fetchCollection();
+          }"
+          @update:filter="(event) => {
+             userStore._setFilters = createQueryString(userStore.collection?.filterable, event._setFilters);
+          }"
       />
-      </div>
+    </div>
   </AdministrationLayout>
 </template>
 

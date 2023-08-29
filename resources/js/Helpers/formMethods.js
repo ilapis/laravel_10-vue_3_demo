@@ -23,6 +23,6 @@ export const formMethods = {
     },
 
     clearErrors() {
-        return this.errors= null;
+        return this.errors = {};
     },
 }

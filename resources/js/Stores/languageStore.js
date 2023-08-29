@@ -3,6 +3,7 @@ import http from "@/http.js";
 import {formMethods} from '@/Helpers/formMethods.js';
 import {fetchCollections} from '@/Helpers/fetchCollections.js';
 import {apiState} from '@/Helpers/apiState.js';
+import {modalCrud} from '@/Helpers/modalCrud.js';
 
 export const useLanguageStore = defineStore('language-store', {
     state: () => ({
@@ -13,6 +14,7 @@ export const useLanguageStore = defineStore('language-store', {
 
         ...formMethods,
         ...fetchCollections,
+        ...modalCrud,
 
         async fetchEnabled() {
             await http.get(`${this._api_endpoint}/enabled`).then((response) => {
@@ -26,54 +28,17 @@ export const useLanguageStore = defineStore('language-store', {
             });
         },
 
-        async create(form) {
-
-            await http.post(`/api/v1/language`, form).then((response) => {
-
-                if (response?.data?.errors) {
-                    this.errors = response?.data?.errors;
-                } else {
-                    this.errors = null;
-                    this.refreshPage();
-                    this.fetchEnabled();
-                }
-            });
+        afterCreate() {
+            this.fetchEnabled();
         },
 
-        async get(id) {
-
-            return http.get(`/api/v1/language/${id}`).then((response) => {
-                this.errors = null;
-                return response.data.data;
-            });
+        afterUpdate() {
+            this.fetchEnabled();
         },
 
-        async update(id, form) {
-
-            return http.put(`/api/v1/language/${id}`, form).then((response) => {
-
-                if (response?.data?.errors) {
-                    this.errors = response?.data?.errors;
-                } else {
-                    this.errors = null;
-                    this.refreshPage();
-                    this.fetchEnabled();
-                }
-            });
+        afterDelete() {
+            this.fetchEnabled();
         },
 
-        async destroy(id) {
-
-            return http.delete(`/api/v1/language/${id}`).then((response) => {
-
-                if (response?.data?.errors) {
-                    this.errors = response?.data?.errors;
-                } else {
-                    this.errors = null;
-                    this.refreshPage();
-                    this.fetchEnabled();
-                }
-            });
-        },
     },
 })
