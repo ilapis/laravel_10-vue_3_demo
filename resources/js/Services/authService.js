@@ -10,7 +10,7 @@ class AuthService {
         return http.post(`/api/v1/auth/login`, form).then((response) => {
 
             if (response?.data?.authorization?.token) {
-                localStorage.setItem('token', response?.data?.authorization?.token)
+                //localStorage.setItem('token', response?.data?.authorization?.token)
                 if (response?.data?.authorization?.abilities) {
                     localStorage.setItem('abilities', response.data?.authorization.abilities)
                 }
@@ -26,7 +26,7 @@ class AuthService {
 
     async logout() {
         await http.post(`/api/v1/auth/logout`);
-        localStorage.removeItem('token');
+        //localStorage.removeItem('token');
         this.router.push({ name: 'admin' });
     }
 }

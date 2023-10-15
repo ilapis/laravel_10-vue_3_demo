@@ -15,7 +15,7 @@ const authService = new AuthService(router);
 
 const logout = async () => {
     await authService.logout();
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
     await router.push({name: 'admin'});
 };
 
@@ -34,7 +34,7 @@ const calculateTimeLeft = () => {
 
     if (difference < 0) {
         clearInterval(timerInterval);
-        logout();
+        //logout();
     }
 }
 
